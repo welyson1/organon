@@ -1,2 +1,2 @@
 # organon
-Trabalho para construção de um software de gerenciamento de tarefas para uma equipe de desenvolvimento
+Construção de um software para gerenciamento de tarefas de uma equipe de desenvolvimento
