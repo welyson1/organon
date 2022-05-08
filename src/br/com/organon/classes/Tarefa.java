@@ -11,7 +11,7 @@ public class Tarefa {
     private String dataFim;
     private int importancia;
     private int id;
-    private Sessao sessao;
+    private int sessao;
     
     
     public Tarefa(){
@@ -22,13 +22,13 @@ public class Tarefa {
         this.dataFim = "";
         this.importancia = 0;
         this.id = 0;
-        this.sessao = new Sessao();
+        this.sessao = 0;
         
     }
     
     
     public Tarefa(String nome, String descricao, String resp,String dataIni,
-                  String dataFim, int impor, int id, Sessao sessao ){
+                  String dataFim, int impor, int id, int sessao ){
         this.nome = nome;
         this.descricao = descricao;
         this.responsavel = resp;
@@ -36,7 +36,7 @@ public class Tarefa {
         this.dataFim = dataFim;
         this.importancia = impor;
         this.id = id;
-        this.sessao = new Sessao(sessao);
+        this.sessao = 0;
        
         
     }
@@ -98,11 +98,11 @@ public class Tarefa {
         this.id = id;
     }
 
-    public Sessao getSessao() {
+    public int getSessao() {
         return sessao;
     }
 
-    public void setSessao(Sessao sessao) {
+    public void setSessao(int sessao) {
         this.sessao = sessao;
     }
     
