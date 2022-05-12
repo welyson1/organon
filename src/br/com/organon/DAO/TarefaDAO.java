@@ -88,8 +88,8 @@ public class TarefaDAO {
                 p.setDataFim(ConverterDataParaDate(rst.getDate("dataFin")));
                 p.setImportancia(rst.getInt("importancia"));
                 // Sessão e projeto tem que implementar a busca no ProjetoDAO e SessaoDAO
-                p.setSessao(rst.getInt("sessao"));
-                p.setProjeto(rst.getInt("projeto"));
+                p.setSessao(rst.getInt("sessaoId"));
+                p.setProjeto(rst.getInt("projetoId"));
            }else{
                return null;
            }
