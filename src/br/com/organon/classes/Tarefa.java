@@ -2,33 +2,39 @@
 package br.com.organon.classes;
 
 import br.com.organon.DAO.TarefaDAO;
+import java.lang.Object;
+import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Tarefa {
     private String nome;
     private String descricao;
-    private String responsavel;
-    private String  dataIni;
-    private String dataFim;
+    private int responsavel;
+    private Date  dataIni;
+    private Date dataFim;
     private int importancia;
     private int id;
     private int sessao;
+    private int projeto;
     
     
     public Tarefa(){
-        this.nome = "";
-        this.descricao = "";
-        this.responsavel = "";
-        this.dataIni = "";
-        this.dataFim = "";
+        this.nome = "a";
+        this.descricao = "b";
+        this.responsavel = 0;
+        this.dataIni = new GregorianCalendar(2022, Calendar.MAY, 11).getTime();
+        this.dataFim = new GregorianCalendar(2022, Calendar.MAY, 15).getTime();
         this.importancia = 0;
         this.id = 0;
-        this.sessao = 0;
+        this.sessao = 1;
+        this.projeto = 3;
         
     }
     
     
-    public Tarefa(String nome, String descricao, String resp,String dataIni,
-                  String dataFim, int impor, int id, int sessao ){
+    public Tarefa(String nome, String descricao, int resp, Date dataIni,
+                  Date dataFim, int impor, int id, int sessao, int projeto ){
         this.nome = nome;
         this.descricao = descricao;
         this.responsavel = resp;
@@ -36,7 +42,8 @@ public class Tarefa {
         this.dataFim = dataFim;
         this.importancia = impor;
         this.id = id;
-        this.sessao = 0;
+        this.sessao = sessao;
+        this.projeto = projeto;
        
         
     }
@@ -58,27 +65,27 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    public String getResponsavel() {
+    public int getResponsavel() {
         return responsavel;
     }
 
-    public void setResponsavel(String responsavel) {
+    public void setResponsavel(int responsavel) {
         this.responsavel = responsavel;
     }
 
-    public String getDataIni() {
+    public Date getDataIni() {
         return dataIni;
     }
 
-    public void setDataIni(String dataIni) {
+    public void setDataIni(Date dataIni) {
         this.dataIni = dataIni;
     }
 
-    public String getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(String dataFim) {
+    public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
 
@@ -101,9 +108,17 @@ public class Tarefa {
     public int getSessao() {
         return sessao;
     }
+    
+    public int getProjeto() {
+        return projeto;
+    }
 
     public void setSessao(int sessao) {
         this.sessao = sessao;
+    }
+    
+    public void setProjeto(int projeto) {
+        this.projeto = projeto;
     }
     
 
