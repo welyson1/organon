@@ -9,7 +9,7 @@ public class TstMaAin {
         Tarefa tar = new Tarefa();
         TarefaDAO tarefaDao = new TarefaDAO();
         tarefaDao.buscar(12);
-        System.out.println("Tarefa 12: " +  tarefaDao.buscar(12));
+        System.out.println("Tarefa 12: " +  tarefaDao.buscar(12).getDataIni());
         //tar.setId(10);
         //sec.adcTar(1, tar);
         //System.out.println("Lista de tarefas antes de excluir:" + sec.buscar(1));
