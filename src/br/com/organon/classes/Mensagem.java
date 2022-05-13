@@ -4,14 +4,20 @@ import java.util.ArrayList;
 
 public class Mensagem {
     private int id;
-    private String origEmail;
+    private String titulo;
+    private String conteudo;
     private ArrayList<String> destEmail;
     
-    public Mensagem(String origEmail, ArrayList<String> destEmail){
-        this.origEmail = origEmail;
+    public Mensagem(ArrayList<String> destEmail){
         for(String email : destEmail ){
             this.destEmail.add(email);
         }
+    }
+    public Mensagem(){
+        this.id = 0;
+        this.titulo="";
+        this.conteudo="";
+        this.destEmail = new ArrayList();
     }
 
     public int getId() {
@@ -22,13 +28,6 @@ public class Mensagem {
         this.id = id;
     }
 
-    public String getOrigEmail() {
-        return origEmail;
-    }
-
-    public void setOrigEmail(String origEmail) {
-        this.origEmail = origEmail;
-    }
 
     public ArrayList<String> getDestEmail() {
         return destEmail;
@@ -36,6 +35,22 @@ public class Mensagem {
 
     public void setDestEmail(ArrayList<String> destEmail) {
         this.destEmail = destEmail;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
     }
     
     

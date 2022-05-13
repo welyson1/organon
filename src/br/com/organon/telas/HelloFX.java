@@ -1,4 +1,4 @@
-    package br.com.organon.tela;
+    package br.com.organon.telas;
     
     import java.io.IOException;
     import javafx.application.Application;
