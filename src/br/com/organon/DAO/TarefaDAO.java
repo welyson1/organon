@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 public class TarefaDAO {
        
         
-        public void criar_Tarefa(Tarefa tarefa){
+        public Tarefa criar_Tarefa(Tarefa tarefa){
             
             Connection conn = null;
             PreparedStatement pst = null;
@@ -23,7 +23,8 @@ public class TarefaDAO {
                         +                         "dataIn, dataFin,responsavelId"
                         +                         ",sessaoId,projetoId)"
                         + " values  (?,?,?,?,?,?,?,?)";
-                Date d= new Date();
+            String sql2 = "Select * from Tarefa where id = "
+                   + "(Select max(id) from Tarefa) ";
 
             try{                
                 conn = Conexao.conexao();
@@ -48,6 +49,12 @@ public class TarefaDAO {
 
                 pst.execute();
                 
+                    pst = conn.prepareStatement(sql2);
+              rst = pst.executeQuery();
+              if(rst.next()){
+                  tarefa.setId(rst.getInt("id"));
+              }
+                
 
             }catch(Exception e){
                 System.out.println("Erro DAO" + e);
@@ -65,7 +72,7 @@ public class TarefaDAO {
                     System.out.println(e);
                 }
             }
-           // return tarefa;
+           return tarefa;
         }
     
      public Tarefa buscar(int id){
@@ -166,6 +173,41 @@ public class TarefaDAO {
             
         }
             
+    }
+    
+    public Tarefa deleta(Tarefa tarefa){
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rst = null;
+        String sql = "DELETE FROM Tarefa  WHERE id = ?";
+        try{
+           if(buscar(tarefa.getId()) != null ){
+                conn = Conexao.conexao();
+                pst = conn.prepareStatement(sql);
+                pst.setInt(1,tarefa.getId());
+                pst.execute();
+           }else{
+               return null;
+           }
+        }
+        catch(Exception e){
+            System.out.println("Erro TarefaDAO" + e);
+        }
+        finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+                
+            }catch(Exception e){
+                System.out.println(e);
+            }
+            
+        }
+        return tarefa;
     }
     
     private java.sql.Date ConverterDataParaSql(Date dataOriginal){
