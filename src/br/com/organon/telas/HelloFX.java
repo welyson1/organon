@@ -1,6 +1,5 @@
-    package br.com.organon.telas;
-    
-    import java.io.IOException;
+    package br.com.organon.telas;    
+
     import javafx.application.Application;
     import javafx.fxml.FXMLLoader;
     import javafx.scene.Parent;
@@ -11,17 +10,16 @@
     public class HelloFX extends Application {
     
         @Override
-        public void start(Stage stage) throws IOException {
-            Parent root;
-            root = FXMLLoader.load(getClass().getResource("tela.fxml"));
+        public void start(Stage stage) throws Exception {            
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("tela.fxml"));
             
-            Scene scene = new Scene (root);
-            stage.setScene(scene);
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
             stage.show();
         }
     
         public static void main(String[] args) {
-            launch();
+            launch(args);
         }
     
     }
