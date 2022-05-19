@@ -7,11 +7,11 @@
     import javafx.stage.Stage;
     
     
-    public class HelloFX extends Application {
+    public class MainFX extends Application {
     
         @Override
         public void start(Stage stage) throws Exception {            
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("tela.fxml"));
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("MainBoard.fxml"));
             
             Parent root = loader.load();
             stage.setScene(new Scene(root));
