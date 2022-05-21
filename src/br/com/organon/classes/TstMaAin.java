@@ -5,9 +5,13 @@ import java.util.Arrays;
 
 public class TstMaAin {
     public static void main (String args[]){
-
+       //Testes Empregado
+       ProjetoDAO proj = new ProjetoDAO();
         
         
+        
+        
+    
     }
     
 }

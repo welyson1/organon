@@ -35,5 +35,10 @@ public class Gestor extends Empregado {
               
         
     }
+
+    @Override
+    public String toString() {
+        return getId() + getNome()+getEmail()+getSenha()+getTipo()+getListaProj();
+    }
     
 }

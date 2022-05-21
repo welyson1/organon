@@ -1,4 +1,4 @@
-/*
+
 package br.com.organon.DAO;
 
 import br.com.organon.classes.Gestor;
@@ -76,4 +76,3 @@ public class MensagemDAO {
     }
     
 }
-*/

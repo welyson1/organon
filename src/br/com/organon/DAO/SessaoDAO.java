@@ -24,6 +24,7 @@ public class SessaoDAO {
             if(rst.next()){
                 tarList = rst.getString("listTarefas");
             }
+            return tarList;
         }catch(Exception e){
             System.out.println("Erro SESSAO " + e);
         }finally{
@@ -38,8 +39,9 @@ public class SessaoDAO {
                 System.out.println("Erro SESSAO " + e);
             }
         }
-        return tarList;
+        return null;
     }
+    //Adiciona tarefa em uma sessão. Obs: int tipo = 1,2,3,4
     public void adcTar(int tipo, Tarefa tar){
         String list = buscar(tipo);
         String sql = "UPDATE Sessao set listTarefas = ? WHERE tipo = ?";
@@ -49,6 +51,8 @@ public class SessaoDAO {
             list = list + "," + Integer.toString(tar.getId());
             pst.setString(1, list);
             pst.setInt(2,tipo);
+            //Altera o atributo sessao na tarefa passada como argumento
+            tar.setSessao(tipo);
             pst.execute();
         }catch(Exception e){
             System.out.println("Erro SESSAO " + e);
@@ -66,6 +70,7 @@ public class SessaoDAO {
         }
         
     }
+    //Exclui uma tarefa de uma determina sessão, int tipo = 1,2,3,4
     
     public void excTar(int tipo, Tarefa tar){
         

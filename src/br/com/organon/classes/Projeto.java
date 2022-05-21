@@ -97,9 +97,8 @@ public class Projeto {
     }
 
     public void setDevs(ArrayList<String> devs) {
-        for(String dev : devs){
-            this.devs.add(dev);
-        }
+            this.devs = devs;
+        
     }
     
     public Projeto excluirProj(Projeto Proj){

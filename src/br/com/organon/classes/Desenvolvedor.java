@@ -12,6 +12,8 @@ public class Desenvolvedor extends Empregado{
         this.num_TarToDo = num_TarToDo;
     }
 
+
+
     public int getNumTarDone() {
         return numTarDone;
     }
@@ -28,5 +30,10 @@ public class Desenvolvedor extends Empregado{
     }
     public void filtrarTar(){
         
+    }    
+    
+    
+    public String toString() {
+         return getId() + getNome()+getEmail()+getSenha()+getTipo()+getNum_TarToDo()+getNumTarDone();
     }
 }

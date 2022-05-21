@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
         
 public class ProjetoDAO {
-    
+    //Cria um projeto no banco e retorna projeto criado
     public Projeto criar(Projeto p){
         Connection conn = null;
         PreparedStatement pst = null;
@@ -31,7 +31,7 @@ public class ProjetoDAO {
            if(rst.next()){
                p.setId(rst.getInt("id"));
            }
-        
+           return p;
         }
         catch(Exception e){
             System.out.println("Erro ProjetoDAO" + e);
@@ -50,9 +50,10 @@ public class ProjetoDAO {
             }
             
         }
-        return p;
+        return null;
     }
     
+    //Busca projeto no banco usando id e retorna ele como objeto de Projeto
     public Projeto buscar(int id){
         Connection conn = null;
         PreparedStatement pst = null;
@@ -101,16 +102,73 @@ public class ProjetoDAO {
         
         return p;
     }
+    //Busca todos os projetos do banco e retorna um ArrayList de Projeto
+    public ArrayList<Projeto> buscarTodos(){
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rst = null;
+        String sql = "Select * from Projeto";
+        ArrayList<Projeto> lista = new ArrayList();
+
+        try{
+           conn = Conexao.conexao();
+           pst = conn.prepareStatement(sql);
+           rst = pst.executeQuery();
+
+           while(rst.next()){          
+                Projeto p = new Projeto();
+                
+                p.setId(rst.getInt("id"));
+                p.setNome(rst.getString("nome"));
+                p.setLinguagem(rst.getString("linguagem"));
+                p.setDescricao(rst.getString("descricao"));
+                String[] list = rst.getString("devs").split(",");
+                ArrayList<String> devs = new ArrayList<String>(Arrays.asList(list));
+                p.setDevs(devs);
+                p.setRepositorio(rst.getString("repositorioGit"));
+                p.setMdlProcess(rst.getString("modeloProcesso"));
+                
+                lista.add(p);
+           }
+           return lista;  
+        }
+        catch(Exception e){
+            System.out.println("Erro ProjetoDAO" + e);
+        }
+        finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+                
+            }catch(Exception e){
+                System.out.println(e);
+            }
+            
+        }
+        return null;
+        
+    }
+    //Altera o projeto no banco usando um projeto como argumento
     public void alterar(Projeto p){
         Connection conn = null;
         PreparedStatement pst = null;
         ResultSet rst = null;
-        String sql = "UPDATE Projeto SET nome = ? WHERE id = ?";
+        String sql = "UPDATE Projeto SET nome = ?, linguagem = ?, descricao = ?,"
+                + "devs = ?, repositorioGit = ?, modeloProcesso = ? WHERE id = ?";
         try{
            conn = Conexao.conexao();
            pst = conn.prepareStatement(sql);
            pst.setString(1, p.getNome());
-           pst.setInt(2,p.getId());
+           pst.setString(2, p.getLinguagem());
+           pst.setString(3, p.getDescricao());
+           pst.setString(4, String.join(",",p.getDevs()));
+           pst.setString(5, p.getRepositorio());
+           pst.setString(6, p.getMdlProcess());
+           pst.setInt(7,p.getId());
            pst.execute();
            
         }

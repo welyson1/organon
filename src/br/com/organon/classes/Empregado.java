@@ -2,7 +2,7 @@ package br.com.organon.classes;
 
 public abstract class Empregado {
     private String nome;
-    private String tipo;
+    private int tipo;
     private String email;
     private String senha;
     private int id;
@@ -15,11 +15,11 @@ public abstract class Empregado {
         this.nome = nome;
     }
 
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 

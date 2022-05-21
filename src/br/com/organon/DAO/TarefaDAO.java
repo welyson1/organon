@@ -5,6 +5,7 @@ import br.com.organon.classes.Conexao;
 import br.com.organon.classes.Projeto;
 import br.com.organon.classes.Tarefa;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -49,7 +50,7 @@ public class TarefaDAO {
 
                 pst.execute();
                 
-                    pst = conn.prepareStatement(sql2);
+              pst = conn.prepareStatement(sql2);
               rst = pst.executeQuery();
               if(rst.next()){
                   tarefa.setId(rst.getInt("id"));
@@ -127,7 +128,7 @@ public class TarefaDAO {
         Connection conn = null;
         PreparedStatement pst = null;
         ResultSet rst = null;
-        String sql = "UPDATE Projeto SET nome= ?, importancia = ?, descricao = ?,"
+        String sql = "UPDATE Tarefa SET nome= ?, importancia = ?, descricao = ?,"
                         +                         "dataIn = ?, dataFin = ?,responsavelId = ?,"
                         +                         ",sessaoId = ?,projetoId = ?"
                         + "WHERE id = ?";
@@ -209,7 +210,57 @@ public class TarefaDAO {
         }
         return tarefa;
     }
-    
+    //Retorna todas as tarefas de um desenvolvedor em determinada sessão
+    // int id = id do dev e sessao = 1(fazer),2(fazendo),3(feita),4(concluida)
+    public ArrayList<Tarefa> buscarTodas(int id, int sessao){
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rst = null;
+        String sql = "Select * from Tarefa where responsavelId = ? "
+                   + "and sessaoId =? ";
+        ArrayList<Tarefa> lista = new ArrayList<Tarefa>();
+        try{
+           conn = Conexao.conexao();
+           pst = conn.prepareStatement(sql);
+           pst.setInt(1, id);
+           pst.setInt(2,sessao);
+           rst = pst.executeQuery();
+           while(rst.next()){
+                Tarefa p = new Tarefa();
+                p.setId(rst.getInt("id"));
+                p.setNome(rst.getString("nome"));
+                p.setDescricao(rst.getString("descricao"));
+                p.setDataIni(ConverterDataParaDate(rst.getDate("dataIn")));
+                p.setDataFim(ConverterDataParaDate(rst.getDate("dataFin")));
+                p.setImportancia(rst.getInt("importancia"));
+                // Sessão e projeto tem que implementar a busca no ProjetoDAO e SessaoDAO
+                p.setSessao(rst.getInt("sessaoId"));
+                p.setProjeto(rst.getInt("projetoId"));
+                lista.add(p);
+           }
+           return lista;
+            
+        }
+        catch(Exception e){
+            System.out.println("Erro TarefaDAO" + e);
+        }
+        finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+                
+            }catch(Exception e){
+                System.out.println(e);
+            }
+            
+        }
+        
+        return null;
+    }
     private java.sql.Date ConverterDataParaSql(Date dataOriginal){
         java.sql.Date sqlDate = new java.sql.Date(dataOriginal.getTime());
         return sqlDate;
