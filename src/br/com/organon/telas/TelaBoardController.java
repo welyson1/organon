@@ -26,8 +26,14 @@ public class TelaBoardController implements Initializable  {
     
     //Chama a tela de criar projeto
     @FXML
-    void abrirCriadorProjeto(ActionEvent event) {
+    void abrirCriadorProjeto(ActionEvent event) throws IOException {
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TelaCriacaoProjeto.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
         
+        Stage stage = new Stage();
+        stage.setTitle("Criador de Projeto");
+        stage.setScene(new Scene(root1));  
+        stage.show();  
     }
     
     //Chama a tela de criar tarefa
