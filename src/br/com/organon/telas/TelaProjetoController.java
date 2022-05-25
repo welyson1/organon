@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
  *
  * @author 404
  */
-public class TelaCriacaoProjetoController implements Initializable {
+public class TelaProjetoController implements Initializable {
 
     @FXML
     private TextField txtNomeProjeto;
@@ -39,21 +39,23 @@ public class TelaCriacaoProjetoController implements Initializable {
     private Button bntExcluirProjeto;
     @FXML
     private Button btnSalvarProjeto;
-
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    
+    //Ao clicar no botão EDITAR na interface essa função é chamada
     @FXML
     private void funcaoEditarProjeto(ActionEvent event) {
     }
-
+    
+    //Ao clicar no botão EXCLUIR na interface essa função é chamada
     @FXML
     private void funcaoExcluirProjeto(ActionEvent event) {
     }
-
+    
+    //Ao clicar no botão SALVAR na interface essa função é chamada
     @FXML
     private void funcaoSalvarProjeto(ActionEvent event) {
     }

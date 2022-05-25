@@ -11,6 +11,7 @@
     
         @Override
         public void start(Stage stage) throws Exception {            
+            //Criação do palco e cena (Esse parte inicia a tela inicial)
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("TelaBoard.fxml"));
             
             stage.setTitle("Organon (Gerencie suas tarefas)");

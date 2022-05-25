@@ -1,15 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="52.0" prefWidth="74.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.telas.ObjetoTarefaController">
+<AnchorPane id="AnchorPane" prefHeight="50.0" prefWidth="276.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.telas.ObjetoTarefaController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label text="Nome da tarefa" />
-         </children>
-      </HBox>
+      <BorderPane layoutX="-4.0" layoutY="-4.0" prefHeight="110.0" prefWidth="300.0" style="-fx-background-radius: 2em; -fx-background-color: #999999;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <right>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </right>
+         <top>
+            <Label text="Nome da tarefa" BorderPane.alignment="CENTER_LEFT">
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+         </top>
+         <bottom>
+            <Label text="Label" BorderPane.alignment="CENTER_LEFT">
+               <graphic>
+                  <Label text="Label" />
+               </graphic>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+         </bottom>
+      </BorderPane>
    </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
 </AnchorPane>

@@ -11,7 +11,7 @@ import javafx.scene.control.ChoiceBox;
  *
  * @author Welyson
  */
-public class TelaCriacaoTarefaController implements Initializable {
+public class TelaTarefaController implements Initializable {
     @FXML
     private ChoiceBox<String> comboBoxResponsavel;
     
