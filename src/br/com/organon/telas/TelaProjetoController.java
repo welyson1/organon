@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
  * @author 404
  */
 public class TelaProjetoController implements Initializable {
-
+    ProjetoDAO pDAO = new ProjetoDAO();
     @FXML
     private TextField txtNomeProjeto;
     @FXML
@@ -49,15 +49,24 @@ public class TelaProjetoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Carrega o array de string com os valores dos responsaveis
-        choiseBoxEscolherProjeto.getItems().addAll(att());
+        choiseBoxEscolherProjeto.getItems().addAll(getNomeProjetos());
         
         //Ativa o retorno do responsavel
         choiseBoxEscolherProjeto.setOnAction(this::getProjetolInterface);
+        
+        
     } 
     
     //Função de retorno da seleção do responsavel pelo usuario
     public void getProjetolInterface(javafx.event.ActionEvent event){
         //Mostra o returno no console (String)
+        Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
+        txtNomeProjeto.setText(p.getNome());
+        txtLinkRepositorio.setText(p.getRepositorio());
+        txtLinguagens.setText(p.getLinguagem());
+        txtModProcesso.setText(p.getMdlProcess());
+        txtDescricao.setText(p.getDescricao());
+           
         System.out.print(choiseBoxEscolherProjeto.getValue()); 
     }
     
@@ -65,20 +74,13 @@ public class TelaProjetoController implements Initializable {
     @FXML
     private void funcaoEditarProjeto(ActionEvent event) {
         
-    }
-    private ArrayList<String> att(){
-        ProjetoDAO pDAO = new ProjetoDAO();
-        ArrayList<Projeto> laland = pDAO.buscarTodos();
-        ArrayList<String> sLista = new ArrayList();
-        for(Projeto p: laland){
-            sLista.add(p.getNome());
-        }
-        return sLista;
+        editar();
     }
     
     //Ao clicar no botão EXCLUIR na interface essa função é chamada
     @FXML
     private void funcaoExcluirProjeto(ActionEvent event) {
+        excluir();
     }
     
     //Ao clicar no botão SALVAR na interface essa função é chamada
@@ -104,5 +106,54 @@ public class TelaProjetoController implements Initializable {
             System.out.print("Foi não");
         }
     }
+    
+  public Projeto buscarNome(String projNome){
+      ArrayList<Projeto> listP = pDAO.buscarTodos();
+      for(Projeto p: listP){
+        if(p.getNome().equals(projNome)){
+            return p;
+        }
+              
+      }
+      return null;
+    }    
+  public void editar(){  
+        Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
+        p.setNome(txtNomeProjeto.getText());
+        p.setRepositorio(txtLinkRepositorio.getText());
+        p.setLinguagem(txtLinguagens.getText());
+        p.setMdlProcess(txtModProcesso.getText());
+        p.setDescricao(txtDescricao.getText());
+        pDAO.alterar(p);
+    }
+  public void excluir(){
+      Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
+      pDAO.deleta(p);
+    }    
+  //Metood apos criar tarefa 
+/*  public void criarTar(){
+      
+      Tarefa tar = new Tarefa();
+      Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
+      ArrayList<String> devList = new ArrayList();
+      String dev = new String();
+      
+      //tar.get
+      //Add responsavel ao projeto no banco
+      dev= Integer.toString(tar.getResponsavel());
+      devList.add(dev);
+      p.setDevs(devList);
+      
+    }
+*/  
+    public ArrayList<String> getNomeProjetos(){
+        ArrayList<Projeto> laland = pDAO.buscarTodos();
+        ArrayList<String> sLista = new ArrayList();
+        for(Projeto p: laland){
+            sLista.add(p.getNome());
+        }
+        return sLista;
+    }
+    
     
 }

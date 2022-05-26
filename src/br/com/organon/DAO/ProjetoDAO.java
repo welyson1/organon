@@ -191,7 +191,7 @@ public class ProjetoDAO {
         }
             
     }
-    
+    //Recebe um projeto e recebe o mesmo para uso se necessário
     public Projeto deleta(Projeto p){
         Connection conn = null;
         PreparedStatement pst = null;
