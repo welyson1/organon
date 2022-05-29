@@ -43,9 +43,9 @@ public class TelaProjetoController implements Initializable {
     @FXML
     private Button btnSalvarProjeto;
     
-    //Criar um array de string para carregar os valores do seletor de projetos
+    //Criar um array de string para carregar os valores do seletor de projetos    
     private String[] projetos = {"Projeto a","Projeto b"}; 
-    
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Carrega o array de string com os valores dos responsaveis
