@@ -44,7 +44,7 @@ public class TelaBoardController implements Initializable  {
                 vObjetoTarefaBacklog.getChildren().add(nodes[i]);
             }catch(Exception e){
             }
-        }
+        }        
     } 
     
     //Função que é chamada ao clicar no botão CRIAR PROJETO na interface
