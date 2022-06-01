@@ -92,6 +92,7 @@ public class TarefaDAO {
                 p.setDataIni(ConverterDataParaDate(rst.getDate("dataIn")));
                 p.setDataFim(ConverterDataParaDate(rst.getDate("dataFin")));
                 p.setImportancia(rst.getInt("importancia"));
+                p.setResponsavel(rst.getInt("responsavelId"));
                 // Sessão e projeto tem que implementar a busca no ProjetoDAO e SessaoDAO
                 p.setSessao(rst.getInt("sessaoId"));
                 p.setProjeto(rst.getInt("projetoId"));
@@ -125,36 +126,36 @@ public class TarefaDAO {
         Connection conn = null;
         PreparedStatement pst = null;
         ResultSet rst = null;
-        String sql = "UPDATE Tarefa SET nome= ?, importancia = ?, descricao = ?,"
-                        +                         "dataIn = ?, dataFin = ?,responsavelId = ?,"
-                        +                         ",sessaoId = ?,projetoId = ?"
-                        + "WHERE id = ?";
+        String sql = "UPDATE Tarefa SET nome = ?, importancia = ?, descricao = ?,"
+                   + "dataIn = ?, dataFin = ?,responsavelId = ?," + "sessaoId = ?,projetoId = ?"
+                   + " WHERE id = ?";
+        
         try{
            conn = Conexao.conexao();
            pst = conn.prepareStatement(sql);
            //nome
-                pst.setString(1, tarefa.getNome());
-                //importância(int:1,2,3,4)
-                 pst.setInt(2, tarefa.getImportancia());
-                //descrição(string)
-                pst.setString(3, tarefa.getDescricao());
-                //dataIn(string
-                pst.setDate(4, ConverterDataParaSql(tarefa.getDataIni()));
-                //dataFin(string
-                pst.setDate(5, ConverterDataParaSql(tarefa.getDataIni()));
-                //responsavelId(int
-                pst.setInt(6, tarefa.getResponsavel());
-                //sessaoId (int: 1,2,3,4)
-                pst.setInt(7, tarefa.getSessao());
-                //pst.setInt(7, tarefa.getSessao().getTipo());
-                //projetoId ()
-                pst.setInt(8, tarefa.getProjeto());
-                pst.setInt(9, tarefa.getId());
+           pst.setString(1, tarefa.getNome());
+           //importância(int:1,2,3,4)
+           pst.setInt(2, tarefa.getImportancia());
+           //descrição(string)
+           pst.setString(3, tarefa.getDescricao());
+           //dataIn(string
+           pst.setDate(4, ConverterDataParaSql(tarefa.getDataIni()));
+           //dataFin(string
+           pst.setDate(5, ConverterDataParaSql(tarefa.getDataIni()));
+           //responsavelId(int
+           pst.setInt(6, tarefa.getResponsavel());
+           //sessaoId (int: 1,2,3,4)
+           pst.setInt(7, tarefa.getSessao());
+           //pst.setInt(7, tarefa.getSessao().getTipo());
+           //projetoId ()
+           pst.setInt(8, tarefa.getProjeto());
+           pst.setInt(9, tarefa.getId());
            pst.execute();
            
         }
         catch(Exception e){
-            System.out.println("Erro TarefaDAO" + e);
+            System.out.println("Errooo TarefaDAO" + e);
         }
         finally{
             try{
