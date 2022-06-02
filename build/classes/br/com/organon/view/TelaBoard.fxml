@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="576.0" minWidth="1024.0" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.view.TelaBoardController">
    <children>
-      <SplitPane fx:id="splitPane" dividerPositions="0.19275929549902152, 0.5724070450097848" prefHeight="576.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane fx:id="splitPane" dividerPositions="0.21330724070450097, 0.5724070450097848" prefHeight="576.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
@@ -75,36 +75,41 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox layoutX="24.0" layoutY="48.0" prefHeight="484.0" prefWidth="640.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <VBox alignment="TOP_CENTER" layoutX="24.0" layoutY="48.0" prefHeight="484.0" prefWidth="640.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <children>
-                        <TextField fx:id="txtNomeTarefa" />
-                        <TextField fx:id="txtNomeResponsavel" />
-                        <TextField />
-                        <HBox prefHeight="42.0" prefWidth="414.0">
+                        <TextField fx:id="txtNomeTarefa" promptText="Nome da tarefa" />
+                        <ComboBox fx:id="cbResponsavel" prefHeight="25.0" prefWidth="414.0" promptText="Responsavel" />
+                        <HBox alignment="CENTER" prefHeight="28.0" prefWidth="414.0" spacing="10.0">
                            <children>
-                              <ComboBox fx:id="cbSessao" prefWidth="150.0" />
-                              <ComboBox fx:id="cbImportancia" prefWidth="150.0" />
+                              <ComboBox fx:id="cbSessao" prefHeight="25.0" prefWidth="200.0" promptText="Sessão" />
+                              <ComboBox fx:id="cbImportancia" prefHeight="25.0" prefWidth="200.0" promptText="Importancia" />
                            </children>
                         </HBox>
-                        <HBox prefHeight="38.0" prefWidth="414.0">
+                        <ComboBox fx:id="cbProjeto" prefHeight="25.0" prefWidth="414.0" promptText="Projeto" />
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="414.0" spacing="30.0">
                            <children>
-                              <ComboBox fx:id="cbProjeto" prefWidth="150.0" />
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Data de inicio" />
+                                    <DatePicker fx:id="dtDataIni" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Data de termino" />
+                                    <DatePicker fx:id="dtDataFim" />
+                                 </children>
+                              </VBox>
                            </children>
                         </HBox>
+                        <TextArea fx:id="txtareaDescricao" prefHeight="113.0" prefWidth="414.0" promptText="Descrição" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Button" />
-                              <Button mnemonicParsing="false" text="Button" />
-                              <Button mnemonicParsing="false" text="Button" />
+                              <Button fx:id="btnExcluirTarefa" mnemonicParsing="false" text="Excluir" />
+                              <Button fx:id="btnEditarTarefa" mnemonicParsing="false" text="Editar" />
+                              <Button fx:id="btnSalvarTarefa" mnemonicParsing="false" text="Salvar" />
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <DatePicker fx:id="dtDataIni" />
-                              <DatePicker fx:id="dtDataFim" />
-                           </children>
-                        </HBox>
-                        <TextArea fx:id="txtareaDescricao" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
