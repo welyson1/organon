@@ -1,4 +1,4 @@
-package br.com.organon.controller;
+package br.com.organon.view;
 
 import br.com.organon.view.*;
 

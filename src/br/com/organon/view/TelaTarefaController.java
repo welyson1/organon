@@ -1,4 +1,4 @@
-package br.com.organon.controller;
+package br.com.organon.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;

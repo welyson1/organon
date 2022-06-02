@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package br.com.organon.controller;
+package br.com.organon.view;
 
 import br.com.organon.model.ProjetoDAO;
 import br.com.organon.model.Projeto;
@@ -19,8 +19,8 @@ import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
- *
- * @author 404
+ * Controla a tela de criação de projeto
+ * @author Welyson
  */
 public class TelaProjetoController implements Initializable {
     ProjetoDAO pDAO = new ProjetoDAO();
@@ -42,24 +42,21 @@ public class TelaProjetoController implements Initializable {
     private Button bntExcluirProjeto;
     @FXML
     private Button btnSalvarProjeto;
-    
-    //Criar um array de string para carregar os valores do seletor de projetos    
-    private String[] projetos = {"Projeto a","Projeto b"}; 
-   
+          
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Carrega o array de string com os valores dos responsaveis
         choiseBoxEscolherProjeto.getItems().addAll(getNomeProjetos());
         
         //Ativa o retorno do responsavel
-        choiseBoxEscolherProjeto.setOnAction(this::getProjetolInterface);
-        
-        
+        choiseBoxEscolherProjeto.setOnAction(this::setProjetolInterface);    
     } 
     
-    //Função de retorno da seleção do responsavel pelo usuario
-    public void getProjetolInterface(javafx.event.ActionEvent event){
-        //Mostra o returno no console (String)
+    /**
+     * Carrega o nome de todos os projetos do banco de dados.
+     * @param event
+     */
+    public void setProjetolInterface(javafx.event.ActionEvent event){
         Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
         txtNomeProjeto.setText(p.getNome());
         txtLinkRepositorio.setText(p.getRepositorio());
@@ -70,20 +67,28 @@ public class TelaProjetoController implements Initializable {
         System.out.print(choiseBoxEscolherProjeto.getValue()); 
     }
     
-    //Ao clicar no botão EDITAR na interface essa função é chamada
+    /**
+     * Ao clicar no botão EDITAR na interface essa função é chamada
+     * @param event 
+     */
     @FXML
-    private void funcaoEditarProjeto(ActionEvent event) {
-        
+    private void funcaoEditarProjeto(ActionEvent event) {        
         editar();
     }
     
-    //Ao clicar no botão EXCLUIR na interface essa função é chamada
+    /**
+     * Ao clicar no botão EXCLUIR na interface essa função é chamada
+     * @param event 
+     */
     @FXML
     private void funcaoExcluirProjeto(ActionEvent event) {
         excluir();
     }
     
-    //Ao clicar no botão SALVAR na interface essa função é chamada
+    /**
+     * Ao clicar no botão SALVAR na interface essa função é chamada
+     * @param event 
+     */
     @FXML
     private void funcaoSalvarProjeto(ActionEvent event) {
         System.out.print("Entrou");
@@ -107,17 +112,25 @@ public class TelaProjetoController implements Initializable {
         }
     }
     
-  public Projeto buscarNome(String projNome){
-      ArrayList<Projeto> listP = pDAO.buscarTodos();
-      for(Projeto p: listP){
-        if(p.getNome().equals(projNome)){
-            return p;
+    /**
+     * Busca todas as tarefas pelo nome
+     * @param projNome
+     * @return null
+     */
+    public Projeto buscarNome(String projNome){
+        ArrayList<Projeto> listP = pDAO.buscarTodos();
+        for(Projeto p: listP){
+            if(p.getNome().equals(projNome)){
+                return p;
+            }
         }
-              
-      }
-      return null;
-    }    
-  public void editar(){  
+        return null;
+    } 
+    
+    /**
+     * Edita a tarefa no banco de dados
+     */
+    public void editar(){  
         Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
         p.setNome(txtNomeProjeto.getText());
         p.setRepositorio(txtLinkRepositorio.getText());
@@ -126,26 +139,33 @@ public class TelaProjetoController implements Initializable {
         p.setDescricao(txtDescricao.getText());
         pDAO.alterar(p);
     }
-  public void excluir(){
-      Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
-      pDAO.deleta(p);
+    
+    /**
+     * Exclui a tarefa no banco de dados
+     */
+    public void excluir(){
+        Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
+        pDAO.deleta(p);
     }    
-  //Metood apos criar tarefa 
-/*  public void criarTar(){
-      
-      Tarefa tar = new Tarefa();
-      Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
-      ArrayList<String> devList = new ArrayList();
-      String dev = new String();
-      
-      //tar.get
-      //Add responsavel ao projeto no banco
-      dev= Integer.toString(tar.getResponsavel());
-      devList.add(dev);
-      p.setDevs(devList);
-      
+  
+/* //Metood apos criar tarefa  
+    public void criarTar(){
+        Tarefa tar = new Tarefa();
+        Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
+        ArrayList<String> devList = new ArrayList();
+        String dev = new String();
+
+        //tar.get
+        //Add responsavel ao projeto no banco
+        dev= Integer.toString(tar.getResponsavel());
+        devList.add(dev);
+        p.setDevs(devList);
     }
-*/  
+*/ 
+    /**
+     * Carrega a lista de tarefas em uma ArrayList
+     * @return 
+     */
     public ArrayList<String> getNomeProjetos(){
         ArrayList<Projeto> laland = pDAO.buscarTodos();
         ArrayList<String> sLista = new ArrayList();
@@ -153,7 +173,6 @@ public class TelaProjetoController implements Initializable {
             sLista.add(p.getNome());
         }
         return sLista;
-    }
-    
+    }  
     
 }

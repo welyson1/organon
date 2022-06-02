@@ -1,4 +1,4 @@
-package br.com.organon.controller;
+package br.com.organon.view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -10,6 +10,10 @@ import javafx.scene.Scene;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SplitPane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -20,31 +24,16 @@ public class TelaBoardController implements Initializable  {
 
     @FXML
     private Button criarTarefa;
-    
-    @FXML
-    private VBox vObjetoTarefaBacklog;
 
     @FXML
-    private VBox vObjetoTarefaFazendo;
-
+    private VBox painelTarefa;
     @FXML
-    private VBox vObjetoTarefaFazer;
+    private SplitPane splitPane;
 
-    @FXML
-    private VBox vObjetoTarefaFeito;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        //Populando a sessão BACKLOG com os objetos de tarefa
-        Node [] nodes = new Node[10];
-        for (int i = 0; i < 10; i++) {
-            try {
-                nodes[i] = FXMLLoader.load(getClass().getResource("ObjetoTarefa.fxml"));
-                vObjetoTarefaBacklog.getChildren().add(nodes[i]);
-            }catch(Exception e){
-            }
-        }        
+        carregaTarefas();
     } 
     
     //Função que é chamada ao clicar no botão CRIAR PROJETO na interface
@@ -71,6 +60,21 @@ public class TelaBoardController implements Initializable  {
         stage.setScene(new Scene(root1));  
         stage.show();
     }
+    
+    /**
+     * Esse metodo carrega tarefas vazias no vBox  
+     */
+    private void carregaTarefas() {
+       Node [] nodes = new Node[20];
+        for (int i = 0; i < nodes.length; i++) {
+            try {
+                System.out.println("foi"+i);
+                nodes[i] = FXMLLoader.load(getClass().getResource("ObjetoTarefa.fxml"));
+                painelTarefa.getChildren().add(nodes[i]);
+            }catch(Exception e){
+            }
+        } 
+    }  
 
 }
 
