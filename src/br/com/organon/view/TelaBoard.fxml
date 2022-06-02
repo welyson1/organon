@@ -3,9 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -75,10 +77,20 @@
                <children>
                   <VBox layoutX="24.0" layoutY="48.0" prefHeight="484.0" prefWidth="640.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <children>
+                        <TextField fx:id="txtNomeTarefa" />
+                        <TextField fx:id="txtNomeResponsavel" />
                         <TextField />
-                        <TextField />
-                        <TextField />
-                        <TextField />
+                        <HBox prefHeight="42.0" prefWidth="414.0">
+                           <children>
+                              <ComboBox fx:id="cbSessao" prefWidth="150.0" />
+                              <ComboBox fx:id="cbImportancia" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="38.0" prefWidth="414.0">
+                           <children>
+                              <ComboBox fx:id="cbProjeto" prefWidth="150.0" />
+                           </children>
+                        </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
                               <Button mnemonicParsing="false" text="Button" />
@@ -86,6 +98,13 @@
                               <Button mnemonicParsing="false" text="Button" />
                            </children>
                         </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <DatePicker fx:id="dtDataIni" />
+                              <DatePicker fx:id="dtDataFim" />
+                           </children>
+                        </HBox>
+                        <TextArea fx:id="txtareaDescricao" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>

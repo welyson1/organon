@@ -1,19 +1,18 @@
 package br.com.organon.model;
 
-/*
-package br.com.organon.DAO;
 
-import br.com.organon.classes.Gestor;
-import br.com.organon.classes.Mensagem;
+import br.com.organon.model.Gestor;
+import br.com.organon.model.Mensagem;
 import java.util.ArrayList;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
-import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import java.util.Properties;
 
 public class MensagemDAO {
     
@@ -78,4 +77,3 @@ public class MensagemDAO {
     }
     
 }
-*/
