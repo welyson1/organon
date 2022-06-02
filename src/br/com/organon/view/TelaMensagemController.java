@@ -1,23 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package br.com.organon.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author 404
- */
 public class TelaMensagemController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+   /*
+    @FXML
+    private TextField txtTitulo;
+    
+    @FXML
+    private TextField txtAssunto;
+    
+    @FXML
+    private TextArea txtConteudo;
+    
+    @FXML
+    private Button btnEnviar;
+    
+    @FXML
+    private ComboBox cbDest;
+    */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

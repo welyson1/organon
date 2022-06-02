@@ -49,11 +49,6 @@
                </font>
             </Text>
             <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="3.0" layoutY="401.0" prefHeight="18.0" prefWidth="342.0" textAlignment="JUSTIFY" textFill="RED" />
-            <Button fx:id="btnSair" layoutX="276.0" layoutY="14.0" minWidth="50.0" mnemonicParsing="false" onAction="#btnSairOnAction" prefHeight="28.0" prefWidth="60.0" style="-fx-background-color: #191970;" text="Sair" textFill="WHITE">
-               <font>
-                  <Font name="Book Antiqua" size="12.0" />
-               </font>
-            </Button>
             <Label fx:id="txtLoginMessage" alignment="CENTER" layoutX="1.0" layoutY="188.0" prefHeight="18.0" prefWidth="346.0" textFill="RED" />
          </children>
       </AnchorPane>

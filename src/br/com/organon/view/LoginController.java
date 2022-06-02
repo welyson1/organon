@@ -26,9 +26,6 @@ public class LoginController implements Initializable {
     private Scene scene;
     private Parent root;
     
-    @FXML 
-    private Button btnSair;
-    
     @FXML
     private Label txtLoginMessage;
     
@@ -55,11 +52,6 @@ public class LoginController implements Initializable {
             txtLoginMessage.setText("Por favor insira o email e a senha.");
         }
         
-    }
-    
-    public void btnSairOnAction(ActionEvent e){
-        stage = (Stage) btnSair.getScene().getWindow();
-        stage.close();
     }
     
     public int validateLogin(){

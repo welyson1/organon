@@ -12,8 +12,8 @@
         @Override
         public void start(Stage stage) throws Exception {            
             //Criação do palco e cena (Esse parte inicia a tela inicial)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaBoard.fxml"));
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaBoard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaMensagem.fxml"));
             
             Parent root = loader.load();
             Scene scene = new Scene(root);
