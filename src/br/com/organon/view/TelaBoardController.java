@@ -1,7 +1,15 @@
 package br.com.organon.view;
+import br.com.organon.model.EmpregadoDAO;
+import br.com.organon.model.Gestor;
+import br.com.organon.model.Projeto;
+import br.com.organon.model.ProjetoDAO;
+import br.com.organon.model.SessaoDAO;
 import br.com.organon.model.Tarefa;
+import br.com.organon.model.TarefaDAO;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,8 +30,14 @@ import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class TelaBoardController implements Initializable  {    
-            
+public class TelaBoardController implements Initializable  {
+
+    EmpregadoDAO empDAO = new EmpregadoDAO();    
+    TarefaDAO tarDAO = new TarefaDAO();
+    SessaoDAO sessaoDAO = new SessaoDAO();
+    ProjetoDAO pDAO = new ProjetoDAO();
+    
+    ArrayList<Tarefa> tarList = new ArrayList();
     @FXML
     private Button criarProjeto;
 
@@ -37,13 +51,13 @@ public class TelaBoardController implements Initializable  {
     @FXML
     private TextField txtNomeTarefa;
     @FXML
-    private TextField txtNomeResponsavel;
+    private ComboBox<String> cbResponsavel;
     @FXML
-    private ComboBox<?> cbSessao;
+    private ComboBox<String> cbSessao;
     @FXML
-    private ComboBox<?> cbImportancia;
+    private ComboBox<String> cbImportancia;
     @FXML
-    private ComboBox<?> cbProjeto;
+    private ComboBox<String> cbProjeto;
     @FXML
     private DatePicker dtDataIni;
     @FXML
@@ -99,27 +113,38 @@ public class TelaBoardController implements Initializable  {
       public void criarTar(){
       
       Tarefa tar = new Tarefa();
-      tar.setNome("");
-      tar.setDescricao("");
-      if(CheckBox.value()=="pequena"){
+      tar.setNome(txtNomeTarefa.getText());
+      tar.setDescricao(txtareaDescricao.getText());
+      //Definindo importancia
+      if(cbImportancia.getValue().equals("Baixa")){
       
           tar.setImportancia(1);  
-          
-      }else if(CheckBox.value()=="media"){
+     
+      }else if(cbImportancia.getValue().equals("Média")){
           tar.setImportancia(2);
       }else{
            tar.setImportancia(3);
       }
-      tar.setDataIni(null);
-      tar.setDataFim(null);
-      tar.setResponsavel(Integer.valueOf(s));
-      tar.setProjeto(Integer.valueOf(s));
-      tar.setSessao(Integer.valueOf(s));
-      
+      tar.setDataIni(new Date());
+      tar.setDataFim(new Date());
+      tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
+      tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
+      //Definindo Sessao
+      if(cbSessao.getValue().equals("Backlog")){
+          tar.setSessao(1);
+      }else if(cbSessao.getValue().equals("A fazer")){
+          tar.setSessao(2);
+      }else if(cbSessao.getValue().equals("Fazendo")){
+          tar.setSessao(3);
+      }else{
+          tar.setSessao(4);        
+      }
       
       tarDAO.criar_Tarefa(tar);
+      //Adicionado tarefa aqui para controle
+      tarList.add(tar);
       //Add responsavel ao projeto no banco
-      Projeto p = buscarNome();
+      Projeto p = pDAO.buscar(tar.getProjeto());
       ArrayList<String> devList = new ArrayList();
       String dev = new String();
       dev= Integer.toString(tar.getResponsavel());
@@ -127,44 +152,71 @@ public class TelaBoardController implements Initializable  {
       p.setDevs(devList);
       
       
-      
 
     }
     public void editarTar(){
-        Tarefa tar = tarDAO.buscar(id);
-        tar.setNome("");
-        if(CheckBox.value()=="pequena"){
-
-            tar.setImportancia(1);  
-
-        }else if(CheckBox.value()=="media"){
-            tar.setImportancia(2);
-        }else{
-             tar.setImportancia(3);
-        }
-        tar.setDescricao("");
-        tar.setDataIni(null);
-        tar.setDataFim(null);
-        tar.setResponsavel(Integer.valueOf(s));
-        tar.setProjeto(Integer.valueOf(s));
-        tar.setSessao(Integer.valueOf(s));
-        tarDAO.alterar(tar);
+      Tarefa tar = new Tarefa();
+      tar.setNome(txtNomeTarefa.getText());
+      tar.setDescricao(txtareaDescricao.getText());
+      //Definindo importancia
+      if(cbImportancia.getValue().equals("Baixa")){
+      
+          tar.setImportancia(1);  
+     
+      }else if(cbImportancia.getValue().equals("Média")){
+          tar.setImportancia(2);
+      }else{
+           tar.setImportancia(3);
+      }
+      tar.setDataIni(new Date());
+      tar.setDataFim(new Date());
+      tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
+      tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
+      //Definindo Sessao
+      if(cbSessao.getValue().equals("Backlog")){
+          tar.setSessao(1);
+      }else if(cbSessao.getValue().equals("A fazer")){
+          tar.setSessao(2);
+      }else if(cbSessao.getValue().equals("Fazendo")){
+          tar.setSessao(3);
+      }else{
+          tar.setSessao(4);        
+      }
+      tarDAO.alterar(tar);
     }
     public void excluirTar(){
-        Tarefa tar = //;
+        Tarefa tar = tarDAO.buscar(0);//;
 
         tarDAO.deleta(tar);
     }
      /// Sessao 
-    SessaoDAO sessaoDAO = new SessaoDAO();
     public void adcTar(){
-        Tarefa tar = new Tarefa();
-        sessaoDAO.adcTar(1, tar);
+        Tarefa tar = tarDAO.buscar(0);
+        sessaoDAO.adcTar(Integer.valueOf(cbSessao.getValue()), tar);
 
     }
-    public void rmvTar(){
+    public void bosta (){
         Tarefa tar = new Tarefa();
-
+        sessaoDAO.excTar(Integer.valueOf(cbSessao.getValue()), tar);
     }
+    
+    public int buscarNomeResponsavel(String nome){
+        ArrayList<Gestor> emp = empDAO.buscarTodos();
+        for(Gestor gestor : emp){
+            if(gestor.getNome().equals(nome)){
+                return gestor.getId();
+            }
+        }
+        return 0;
+    }
+    public int buscarNomeProjeto(String projNome){
+        ArrayList<Projeto> listP = pDAO.buscarTodos();
+        for(Projeto p: listP){
+            if(p.getNome().equals(projNome)){
+                return p.getId();
+            }
+        }
+        return 0;
+    } 
 }
 

@@ -6,6 +6,7 @@ import br.com.organon.model.Desenvolvedor;
 import br.com.organon.model.Empregado;
 import br.com.organon.model.Gestor;
 import java.sql.*;
+import java.util.ArrayList;
 public class EmpregadoDAO {
         private  Connection conn = null;
         private  PreparedStatement pst = null;
@@ -203,6 +204,36 @@ public class EmpregadoDAO {
             }
         }
         return 2;
+    }
+    public <T extends Empregado> ArrayList<Gestor> buscarTodos(){
+        try{
+            String sql = "Select * from Empregado";
+            ArrayList<Gestor> lista = new ArrayList();
+            conn = Conexao.conexao();
+            pst = conn.prepareStatement(sql);
+            rst = pst.executeQuery();
+            if(rst.next()){
+              Gestor emp = new Gestor();
+              emp.setId(rst.getInt("id"));
+              emp.setNome(rst.getString("nome"));
+              lista.add(emp);
+            }
+            return lista;
+        }catch(Exception e ){
+            System.out.println(e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+            }catch(Exception e){
+                System.out.println("Erro Empregado " + e);
+            }
+        }
+        return null;
     }
     
     

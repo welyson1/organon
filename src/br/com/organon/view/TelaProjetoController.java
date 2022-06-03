@@ -148,20 +148,7 @@ public class TelaProjetoController implements Initializable {
         pDAO.deleta(p);
     }    
   
-/* //Metood apos criar tarefa  
-    public void criarTar(){
-        Tarefa tar = new Tarefa();
-        Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
-        ArrayList<String> devList = new ArrayList();
-        String dev = new String();
 
-        //tar.get
-        //Add responsavel ao projeto no banco
-        dev= Integer.toString(tar.getResponsavel());
-        devList.add(dev);
-        p.setDevs(devList);
-    }
-*/ 
     /**
      * Carrega a lista de tarefas em uma ArrayList
      * @return 
