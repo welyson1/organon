@@ -205,17 +205,19 @@ public class EmpregadoDAO {
         }
         return 2;
     }
-    public <T extends Empregado> ArrayList<Gestor> buscarTodos(){
+    public <T extends Empregado> ArrayList<Desenvolvedor> buscarTodos(){
         try{
-            String sql = "Select * from Empregado";
-            ArrayList<Gestor> lista = new ArrayList();
+            String sql = "Select * from Empregado where tipo = ?";
+            ArrayList<Desenvolvedor> lista = new ArrayList();
             conn = Conexao.conexao();
             pst = conn.prepareStatement(sql);
+            pst.setInt(1, 0);
             rst = pst.executeQuery();
-            if(rst.next()){
-              Gestor emp = new Gestor();
+            while(rst.next()){
+              Desenvolvedor emp = new Desenvolvedor();
               emp.setId(rst.getInt("id"));
               emp.setNome(rst.getString("nome"));
+              emp.setTipo(rst.getInt("tipo"));
               lista.add(emp);
             }
             return lista;

@@ -1,6 +1,5 @@
 package br.com.organon.view;
 
-import br.com.organon.view.*;
 
 import br.com.organon.model.EmpregadoDAO;
 import java.io.IOException;
@@ -25,6 +24,10 @@ public class LoginController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    
+    public static String email;
+    public static String senha;
+    public static int tipo;
     
     @FXML
     private Label txtLoginMessage;
@@ -57,8 +60,8 @@ public class LoginController implements Initializable {
     public int validateLogin(){
         try{
             EmpregadoDAO empDAO = new EmpregadoDAO();
-            String email =  txtUser.getText();
-            String senha = txtSenha.getText();
+            email =  txtUser.getText();
+            senha = txtSenha.getText();
             int validacao = empDAO.Login(email, senha);
             
             if(validacao == 2){

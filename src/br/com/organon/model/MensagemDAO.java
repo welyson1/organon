@@ -1,8 +1,6 @@
 package br.com.organon.model;
 
 
-import br.com.organon.model.Gestor;
-import br.com.organon.model.Mensagem;
 import java.util.ArrayList;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;

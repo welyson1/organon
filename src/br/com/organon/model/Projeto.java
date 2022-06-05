@@ -99,6 +99,9 @@ public class Projeto {
             this.devs = devs;
         
     }
+    public void addDev(String dev){
+        this.devs.add(dev);
+    }
     
     public Projeto excluirProj(Projeto Proj){
         return Proj;

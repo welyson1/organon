@@ -34,9 +34,9 @@ public class TarefaDAO {
                 //descrição(string)
                 pst.setString(3, tarefa.getDescricao());
                 //dataIn(string
-                pst.setDate(4, ConverterDataParaSql(tarefa.getDataIni()));
+                pst.setDate(4, java.sql.Date.valueOf(tarefa.getDataIni()));
                 //dataFin(string
-                pst.setDate(5,ConverterDataParaSql(tarefa.getDataFim()));
+                pst.setDate(5,java.sql.Date.valueOf(tarefa.getDataFim()));
                 //responsavelId(int
                 pst.setInt(6, tarefa.getResponsavel());
                 //sessaoId (int: 1,2,3,4)
@@ -89,8 +89,8 @@ public class TarefaDAO {
                 p.setId(rst.getInt("id"));
                 p.setNome(rst.getString("nome"));
                 p.setDescricao(rst.getString("descricao"));
-                p.setDataIni(ConverterDataParaDate(rst.getDate("dataIn")));
-                p.setDataFim(ConverterDataParaDate(rst.getDate("dataFin")));
+                p.setDataIni(rst.getDate("dataIn").toLocalDate());
+                p.setDataFim(rst.getDate("dataFin").toLocalDate());
                 p.setImportancia(rst.getInt("importancia"));
                 p.setResponsavel(rst.getInt("responsavelId"));
                 // Sessão e projeto tem que implementar a busca no ProjetoDAO e SessaoDAO
@@ -140,9 +140,9 @@ public class TarefaDAO {
            //descrição(string)
            pst.setString(3, tarefa.getDescricao());
            //dataIn(string
-           pst.setDate(4, ConverterDataParaSql(tarefa.getDataIni()));
+           pst.setDate(4, java.sql.Date.valueOf(tarefa.getDataIni()));
            //dataFin(string
-           pst.setDate(5, ConverterDataParaSql(tarefa.getDataIni()));
+           pst.setDate(5, java.sql.Date.valueOf(tarefa.getDataIni()));
            //responsavelId(int
            pst.setInt(6, tarefa.getResponsavel());
            //sessaoId (int: 1,2,3,4)
@@ -228,8 +228,8 @@ public class TarefaDAO {
                 p.setId(rst.getInt("id"));
                 p.setNome(rst.getString("nome"));
                 p.setDescricao(rst.getString("descricao"));
-                p.setDataIni(ConverterDataParaDate(rst.getDate("dataIn")));
-                p.setDataFim(ConverterDataParaDate(rst.getDate("dataFin")));
+                p.setDataIni(rst.getDate("dataIn").toLocalDate());
+                p.setDataFim(rst.getDate("dataFin").toLocalDate());
                 p.setImportancia(rst.getInt("importancia"));
                 // Sessão e projeto tem que implementar a busca no ProjetoDAO e SessaoDAO
                 p.setSessao(rst.getInt("sessaoId"));
@@ -276,8 +276,8 @@ public class TarefaDAO {
                 tar.setId(rst.getInt("id"));
                 tar.setNome(rst.getString("nome"));
                 tar.setDescricao(rst.getString("descricao"));
-                tar.setDataIni(ConverterDataParaDate(rst.getDate("dataIn")));
-                tar.setDataFim(ConverterDataParaDate(rst.getDate("dataFin")));
+                tar.setDataIni(rst.getDate("dataIn").toLocalDate());
+                tar.setDataFim(rst.getDate("dataFin").toLocalDate());
                 tar.setImportancia(rst.getInt("importancia"));
                 
                 tar.setSessao(rst.getInt("sessaoId"));

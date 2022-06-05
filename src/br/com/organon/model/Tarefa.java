@@ -2,6 +2,7 @@
 package br.com.organon.model;
 
 import java.lang.Object;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -10,8 +11,8 @@ public class Tarefa {
     private String nome;
     private String descricao;
     private int responsavel;
-    private Date  dataIni;
-    private Date dataFim;
+    private LocalDate  dataIni;
+    private LocalDate dataFim;
     private int importancia;
     private int id;
     private int sessao;
@@ -22,8 +23,8 @@ public class Tarefa {
         this.nome = "a";
         this.descricao = "b";
         this.responsavel = 0;
-        this.dataIni = new GregorianCalendar(2022, Calendar.MAY, 11).getTime();
-        this.dataFim = new GregorianCalendar(2022, Calendar.MAY, 15).getTime();
+        this.dataIni = LocalDate.now();
+        this.dataFim = LocalDate.now();
         this.importancia = 0;
         this.id = 0;
         this.sessao = 1;
@@ -32,8 +33,8 @@ public class Tarefa {
     }
     
     
-    public Tarefa(String nome, String descricao, int resp, Date dataIni,
-                  Date dataFim, int impor, int id, int sessao, int projeto ){
+    public Tarefa(String nome, String descricao, int resp, LocalDate dataIni,
+                  LocalDate dataFim, int impor, int id, int sessao, int projeto ){
         this.nome = nome;
         this.descricao = descricao;
         this.responsavel = resp;
@@ -72,19 +73,19 @@ public class Tarefa {
         this.responsavel = responsavel;
     }
 
-    public Date getDataIni() {
+    public LocalDate getDataIni() {
         return dataIni;
     }
 
-    public void setDataIni(Date dataIni) {
+    public void setDataIni(LocalDate dataIni) {
         this.dataIni = dataIni;
     }
 
-    public Date getDataFim() {
+    public LocalDate getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(Date dataFim) {
+    public void setDataFim(LocalDate dataFim) {
         this.dataFim = dataFim;
     }
 
