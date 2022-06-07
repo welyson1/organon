@@ -38,10 +38,9 @@
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                            <children>
                               <Label text="Filtros" />
-                              <ComboBox prefWidth="150.0" promptText="ssss" />
-                              <ComboBox prefWidth="150.0" promptText="ssss" />
-                              <ComboBox prefWidth="150.0" promptText="ssss" />
-                              <ComboBox prefWidth="150.0" promptText="ssss" />
+                              <ComboBox fx:id="cbFiltroImportancia" prefWidth="150.0" promptText="Importância" />
+                              <ComboBox fx:id="cbFiltroResponsavel" prefWidth="150.0" promptText="Responsável" />
+                              <ComboBox fx:id="cbFiltroSessao" prefWidth="150.0" promptText="Sessão" />
                            </children>
                         </VBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
@@ -52,10 +51,10 @@
                         </HBox>
                         <VBox alignment="BOTTOM_RIGHT" prefHeight="109.0" prefWidth="198.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Backlog" />
-                              <Button mnemonicParsing="false" text="Fazer" />
-                              <Button mnemonicParsing="false" text="Fazendo" />
-                              <Button mnemonicParsing="false" text="Feito" />
+                              <Button fx:id="btnBacklog" mnemonicParsing="false" onAction="#btnBacklog" text="Backlog" />
+                              <Button fx:id="btnFazer" mnemonicParsing="false" onAction="#btnFazer" text="Fazer" />
+                              <Button fx:id="btnFazendo" mnemonicParsing="false" onAction="#btnFazendo" text="Fazendo" />
+                              <Button fx:id="btnFeito" mnemonicParsing="false" onAction="#btnFeito" text="Feito" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />

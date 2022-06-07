@@ -118,8 +118,6 @@ public class TelaMensagemController implements Initializable {
                     if(!(s.equals(""))){                            
 
                         if(dev.getId() == Integer.valueOf(s)){
-
-                            System.out.println("ADd email");
                             sLista.add(dev.getEmail());
 
                             break;

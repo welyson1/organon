@@ -275,6 +275,7 @@ public class TarefaDAO {
                 Tarefa tar = new Tarefa();
                 tar.setId(rst.getInt("id"));
                 tar.setNome(rst.getString("nome"));
+                tar.setResponsavel(rst.getInt("responsavelId"));
                 tar.setDescricao(rst.getString("descricao"));
                 tar.setDataIni(rst.getDate("dataIn").toLocalDate());
                 tar.setDataFim(rst.getDate("dataFin").toLocalDate());

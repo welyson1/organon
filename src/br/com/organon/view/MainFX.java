@@ -13,9 +13,9 @@
         public void start(Stage stage) throws Exception {            
             //Criação do palco e cena (Esse parte inicia a tela inicial)
           // FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaBoard.fxml"));
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/br/com/organon/view/TelaMensagem.fxml"));
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/br/com/organon/view/TelaBoard.fxml"));
             
-            Parent root = loader.load();
+            Parent root = loader.load(); 
             Scene scene = new Scene(root);
             stage.setTitle("Organon");
             stage.setScene(scene);

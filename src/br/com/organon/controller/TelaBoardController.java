@@ -45,7 +45,8 @@ public class TelaBoardController implements Initializable  {
 
     @FXML
     private Button criarTarefa;
-
+    @FXML
+    private Button btnBacklog;
     @FXML
     private VBox painelTarefa;
     @FXML
@@ -66,15 +67,39 @@ public class TelaBoardController implements Initializable  {
     private DatePicker dtDataFim;
     @FXML
     private TextArea txtareaDescricao;
+    @FXML
+    private Button btnExcluirTarefa;
+    @FXML
+    private Button btnEditarTarefa;
+    @FXML
+    private Button btnSalvarTarefa;
+    @FXML
+    private ComboBox<String> cbFiltroImportancia;
+    @FXML
+    private ComboBox<String> cbFiltroResponsavel;
+    @FXML
+    private ComboBox<String> cbFiltroSessao;
+    @FXML
+    private Button btnFazer;
+    @FXML
+    private Button btnFazendo;
+    @FXML
+    private Button btnFeito;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Populando comboboxs lado direito
         cbResponsavel.getItems().addAll(getNomeResponsavel());
         cbSessao.getItems().addAll(getNomeSessao());
         cbProjeto.getItems().addAll(getNomeProjeto());
         cbImportancia.getItems().addAll(getNomeImportancia());
-        carregaTarefas();
+        //Populando combobox lado esquerdo
+        cbFiltroImportancia.getItems().addAll(getNomeImportancia());
+        cbFiltroSessao.getItems().addAll(getNomeSessao());
+        cbFiltroResponsavel.getItems().addAll(getNomeResponsavel());
+        //Carrega tarefas da sessão fazer
+        carregaTarefas(tarDAO.buscar_Sessao(1));
     } 
     //Ao clicar no botão salvar a tarefa é criada no banco
     @FXML
@@ -140,14 +165,71 @@ public class TelaBoardController implements Initializable  {
         stage.setScene(new Scene(root1));  
         stage.show();
     }
-    
+   ///Métodos responsáveis pela mudança na exibição das tarefas
+    @FXML
+    public void btnBacklog(ActionEvent e){
+        ArrayList<Tarefa> tars = tarDAO.buscar_Sessao(1); 
+        carregaTarefas(tarFiltro(tars));
+
+    }
+    @FXML 
+    public void btnFazer(ActionEvent e){
+        
+        carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(2)));        
+
+    }
+    @FXML 
+    public void btnFazendo(ActionEvent e){
+        carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(3)));
+
+    }
+    @FXML 
+    public void btnFeito(ActionEvent e){
+        carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(4)));
+      
+    }
+    //Modifica a lista de tarefas caso algum frito esteja ativiado
+    public ArrayList<Tarefa> tarFiltro(ArrayList<Tarefa> tars){
+        ArrayList<Tarefa> tarsFiltradas = new ArrayList();
+        if(cbFiltroImportancia.getValue()!= null && cbFiltroResponsavel.getValue()!=null){
+
+                for(int i = 0; i<tars.size();i++){
+                    if(tars.get(i).getImportancia()==getImportancia(cbFiltroImportancia.getValue()) &&
+                       tars.get(i).getResponsavel()==buscarNomeResponsavel(cbFiltroResponsavel.getValue())){
+                        tarsFiltradas.add(tars.get(i));
+                    }
+                }                 
+                return tarsFiltradas;            
+        }else if(cbFiltroImportancia.getValue()!= null){
+            
+                for(int i = 0; i<tars.size();i++){
+                    if(tars.get(i).getImportancia()==getImportancia(cbFiltroImportancia.getValue())){
+                        tarsFiltradas.add(tars.get(i));
+                    }
+                }
+                return tarsFiltradas;              
+        }else if(cbFiltroResponsavel.getValue()!=null){
+            
+                for(int i = 0; i<tars.size();i++){
+                    if(tars.get(i).getResponsavel()==buscarNomeResponsavel(cbFiltroResponsavel.getValue())){
+                        tarsFiltradas.add(tars.get(i));
+                    }
+                }
+                return tarsFiltradas;
+            
+        }
+        return tars;
+        
+    }
     /**
      * Esse metodo carrega tarefas vazias no vBox  
      */
-    private void carregaTarefas() {
+    private void carregaTarefas(ArrayList<Tarefa> tars) {
        //Array de tarefas que irão em cada ObjetoTarefa
-       ArrayList<Tarefa> tars = tarDAO.buscar_Sessao(2);
        Node [] nodes = new Node[tars.size()];
+       //Limpa o painel antes de popular com tarefas 
+       painelTarefa.getChildren().clear();
+       System.out.println("limpou" + "tamanho" + tars.size() );
         for (int i = 0; i < nodes.length; i++) {
             try {
                 System.out.println("foi"+i);
@@ -156,42 +238,26 @@ public class TelaBoardController implements Initializable  {
                 //Modificando cada node utilizando método do ObjetoTarefaController
                 ObjetoTarefaController tarControl = loader.getController();
                 tarControl.adc(tars.get(i));
-                
                 painelTarefa.getChildren().add(nodes[i]);
             }catch(Exception e){
             }
         } 
     }  
-      public void criarTar(){
+    public void criarTar(){
       try{
                
         Tarefa tar = new Tarefa();
         tar.setNome(txtNomeTarefa.getText());
         tar.setDescricao(txtareaDescricao.getText());
         //Definindo importancia
-        if(cbImportancia.getValue().equals("Baixa")){
-
-            tar.setImportancia(1);  
-
-        }else if(cbImportancia.getValue().equals("Media")){
-            tar.setImportancia(2);
-        }else{
-             tar.setImportancia(3);
-        }
+        tar.setImportancia(getImportancia(cbImportancia.getValue()));  
+        
         tar.setDataIni(dtDataIni.getValue());
         tar.setDataFim(dtDataFim.getValue());
         tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
         tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
         //Definindo Sessao
-        if(cbSessao.getValue().equals("Fazer")){
-            tar.setSessao(1);
-        }else if(cbSessao.getValue().equals("Fazendo")){
-            tar.setSessao(2);
-        }else if(cbSessao.getValue().equals("Concluida")){
-            tar.setSessao(3);
-        }else{
-            tar.setSessao(4);        
-        }
+        tar.setSessao(getSessao(cbSessao.getValue()));
 
         tarDAO.criar_Tarefa(tar);
         //Adicionado tarefa aqui para controle
@@ -215,29 +281,15 @@ public class TelaBoardController implements Initializable  {
           tar.setNome(txtNomeTarefa.getText());
           tar.setDescricao(txtareaDescricao.getText());
           //Definindo importancia
-          if(cbImportancia.getValue().equals("Baixa")){
+          tar.setImportancia(getImportancia(cbImportancia.getValue()));  
+       
 
-              tar.setImportancia(1);  
-
-          }else if(cbImportancia.getValue().equals("Média")){
-              tar.setImportancia(2);
-          }else{
-               tar.setImportancia(3);
-          }
           tar.setDataIni(dtDataIni.getValue());
           tar.setDataFim(dtDataFim.getValue());
           tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
           tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
           //Definindo Sessao
-          if(cbSessao.getValue().equals("Fazer")){
-              tar.setSessao(1);
-          }else if(cbSessao.getValue().equals("Fazendo")){
-              tar.setSessao(2);
-          }else if(cbSessao.getValue().equals("Feita")){
-              tar.setSessao(3);
-          }else{
-              tar.setSessao(4);        
-          }
+          tar.setSessao(getSessao(cbSessao.getValue()));
           tarDAO.alterar(tar);
             
       }catch(Exception e){
@@ -266,7 +318,7 @@ public class TelaBoardController implements Initializable  {
         }
 
     }
-    public void bosta (){
+    public void excTar (){
         Tarefa tar = new Tarefa();
         sessaoDAO.excTar(Integer.valueOf(cbSessao.getValue()), tar);
     }
@@ -363,6 +415,32 @@ public class TelaBoardController implements Initializable  {
             e.printStackTrace();
         }
         return sLista;
+    }
+    //Retornar valor da sessao em int de acordo com combobox
+    public int getSessao(String sessao){
+          if(sessao.equals("Fazer")){
+              return 1;
+          }else if(sessao.equals("Fazendo")){
+              return 2;
+          }else if(sessao.equals("Feita")){
+              return 3;
+          }else{
+              return 4;        
+          }
+        
+    }
+    //Retorna valor da importancia em int de acordo com combobox
+    public int getImportancia(String importancia){
+        if(importancia.equals("Baixa")){
+            return 1;  
+
+        }else if(importancia.equals("Media")){
+            return 2;
+        }else{
+             return 3;
+        }        
+
+        
     }
 }
 

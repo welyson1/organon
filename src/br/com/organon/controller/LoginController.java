@@ -37,8 +37,13 @@ public class LoginController implements Initializable {
     
     @FXML 
     private PasswordField txtSenha;
+    @FXML
+    private Button btnLogin;
+    @FXML
+    private Label loginMessageLabel;
     
     
+    @FXML
     public void btnLoginOnAction(ActionEvent e) throws IOException{
            
         if(txtUser.getText().isBlank() == false && txtSenha.getText().isBlank() == false){
