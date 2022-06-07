@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-package br.com.organon.view;
+
+package br.com.organon.controller;
 
 import br.com.organon.model.ProjetoDAO;
 import br.com.organon.model.Projeto;
@@ -94,17 +91,15 @@ public class TelaProjetoController implements Initializable {
         System.out.print("Entrou");
         try{
             Projeto p = new Projeto();
-
             ProjetoDAO pDAO = new ProjetoDAO();
+       
             
-            ArrayList<String> array = new ArrayList();
-
             p.setNome(txtNomeProjeto.getText());
             p.setRepositorio(txtLinkRepositorio.getText());
             p.setLinguagem(txtLinguagens.getText());
             p.setMdlProcess(txtModProcesso.getText());
             p.setDescricao(txtDescricao.getText());
-            p.setDevs(array);
+            p.setDevs(null);
 
             pDAO.criar(p);
         }catch(Exception e){

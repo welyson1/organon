@@ -21,7 +21,12 @@ public class ProjetoDAO {
            pst.setString(1, p.getNome());
            pst.setString(2, p.getLinguagem() );
            pst.setString(3, p.getDescricao());
-           pst.setString(4, String.join(",", p.getDevs()));
+           //Usado para criar o projeto antes de adicionar tarefas
+           if(p.getDevs()!= null){
+               pst.setString(4, String.join(",", p.getDevs()));
+           }else{
+               pst.setString(4,"");
+           }
            pst.setString(5, p.getRepositorio());
            pst.setString(6, p.getMdlProcess());
            pst.execute();    
@@ -165,7 +170,11 @@ public class ProjetoDAO {
            pst.setString(1, p.getNome());
            pst.setString(2, p.getLinguagem());
            pst.setString(3, p.getDescricao());
-           pst.setString(4, String.join(",",p.getDevs()));
+           if(p.getDevs()!= null){
+               pst.setString(4, String.join(",", p.getDevs()));
+           }else{
+               pst.setString(4,"");
+           }         
            pst.setString(5, p.getRepositorio());
            pst.setString(6, p.getMdlProcess());
            pst.setInt(7,p.getId());

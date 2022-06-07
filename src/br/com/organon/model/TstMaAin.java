@@ -7,10 +7,10 @@ import java.util.GregorianCalendar;
 
 public class TstMaAin {
     public static void main (String args[]){
+         
        //Testes Empregado
        
-       TarefaDAO tarDAO = new TarefaDAO();
-       Tarefa tar = tarDAO.buscar(12);
+       
        /*tar.setNome("Tarefa Teste");
        tar.setDescricao("Tarefa criada hoje");
        tar.setProjeto(3);
@@ -22,7 +22,6 @@ public class TstMaAin {
        
        tarDAO.criar_Tarefa(tar);
        */
-       tarDAO.deleta(tar);
         
         
         

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="576.0" minWidth="1024.0" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.view.TelaBoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="576.0" minWidth="1024.0" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.TelaBoardController">
    <children>
       <SplitPane fx:id="splitPane" dividerPositions="0.21330724070450097, 0.5724070450097848" prefHeight="576.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>

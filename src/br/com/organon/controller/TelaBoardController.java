@@ -1,4 +1,4 @@
-package br.com.organon.view;
+package br.com.organon.controller;
 import br.com.organon.model.Desenvolvedor;
 import br.com.organon.model.EmpregadoDAO;
 import br.com.organon.model.Gestor;
@@ -120,7 +120,7 @@ public class TelaBoardController implements Initializable  {
     @FXML
     void abrirCriadorProjeto(ActionEvent event) throws IOException {
         //Cria e chama a interface de criação de projeto
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TelaProjeto.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaProjeto.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
 
         Stage stage = new Stage();
@@ -132,7 +132,7 @@ public class TelaBoardController implements Initializable  {
     //Chama a tela de criar tarefa
     @FXML
     void abrirCriadorTarefa(ActionEvent event) throws IOException {        
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TelaTarefa.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaTarefa.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         
         Stage stage = new Stage();
@@ -151,7 +151,7 @@ public class TelaBoardController implements Initializable  {
         for (int i = 0; i < nodes.length; i++) {
             try {
                 System.out.println("foi"+i);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("ObjetoTarefa.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/organon/view/ObjetoTarefa.fxml"));
                 nodes[i] = loader.load();
                 //Modificando cada node utilizando método do ObjetoTarefaController
                 ObjetoTarefaController tarControl = loader.getController();

@@ -218,6 +218,7 @@ public class EmpregadoDAO {
               emp.setId(rst.getInt("id"));
               emp.setNome(rst.getString("nome"));
               emp.setTipo(rst.getInt("tipo"));
+              emp.setEmail(rst.getString("email"));
               lista.add(emp);
             }
             return lista;

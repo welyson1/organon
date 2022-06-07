@@ -1,4 +1,4 @@
-package br.com.organon.view;
+package br.com.organon.controller;
 
 import br.com.organon.model.Tarefa;
 import java.net.URL;

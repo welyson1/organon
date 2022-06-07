@@ -1,4 +1,4 @@
-package br.com.organon.view;
+package br.com.organon.controller;
 
 import br.com.organon.model.Desenvolvedor;
 import br.com.organon.model.EmpregadoDAO;
@@ -47,7 +47,7 @@ public class TelaMensagemController implements Initializable {
         // TODO
     }    
     public void btnEnviar(ActionEvent e) throws IOException{
-        //enviar();
+        enviar();
         txtAssunto.setText("");
         txtConteudo.setText("");
         cbDest.setValue("");
@@ -56,19 +56,24 @@ public class TelaMensagemController implements Initializable {
     }
     //Cria mensagem com dados e envia 
     public void enviar(){
-        Mensagem mensagem = new Mensagem();
-        Gestor ges = new Gestor();
-        //Montando mensagem
-        mensagem.setTitulo(txtAssunto.getText());   
-        mensagem.setConteudo(txtConteudo.getText());
-        mensagem.setDestEmail(getEmails());
-        
-        //Adicionando email e senha do gestor
-        ges.setEmail(LoginController.email);
-        ges.setSenha(LoginController.senha);
-       
-        MensagemDAO.enviar(ges,mensagem);
-        
+        try{
+            Mensagem mensagem = new Mensagem();
+            Gestor ges = new Gestor();
+            //Montando mensagem
+            mensagem.setTitulo(txtAssunto.getText());   
+            mensagem.setConteudo(txtConteudo.getText());
+            mensagem.setDestEmail(getEmails());
+            //Adicionando email e senha do gestor
+            ges.setEmail(LoginController.email);
+            ges.setSenha(LoginController.senha);
+
+            MensagemDAO.enviar(ges,mensagem);
+
+         
+        }catch(Exception e){
+                
+            System.out.println("Erro envio de mensagem " + e);
+        }
         
     }
     //ArrayList para alimentar o combobox com nome de projetos
@@ -105,13 +110,20 @@ public class TelaMensagemController implements Initializable {
     public ArrayList<String> getEmails(){
         Projeto p = pDAO.buscar(buscarNomeProjeto(cbDest.getValue()));
         ArrayList<Desenvolvedor> responsaveis = empDAO.buscarTodos();
+
         ArrayList<String> sLista = new ArrayList();
         try{
             for(Desenvolvedor dev: responsaveis){
                 for(String s : p.getDevs()){
-                    if(dev.getId() == Integer.valueOf(s)){
-                        sLista.add(dev.getEmail());
-                        break;
+                    if(!(s.equals(""))){                            
+
+                        if(dev.getId() == Integer.valueOf(s)){
+
+                            System.out.println("ADd email");
+                            sLista.add(dev.getEmail());
+
+                            break;
+                        }
                     }
                 } 
                 
@@ -119,7 +131,7 @@ public class TelaMensagemController implements Initializable {
             }            
             
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("Erro envio de mensagem " + e);
         }
 
         return sLista;

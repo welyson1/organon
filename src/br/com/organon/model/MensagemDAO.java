@@ -37,7 +37,7 @@ public class MensagemDAO {
             });
 
             Message mens = prepararMensagem(sec, mensagem, accountEmail);
-            Transport.send(mens);   
+            Transport.send(mens);
             }catch(Exception e){
                 System.out.println(e);
             }
