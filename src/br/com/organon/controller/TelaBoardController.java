@@ -106,6 +106,35 @@ public class TelaBoardController implements Initializable  {
     public void criar(ActionEvent e){
         criarTar();
     }
+    //Métodos responsáveis pela edição
+    public void editarPreencher(Tarefa tar){
+        txtNomeTarefa.setText(tar.getNome());/*
+        cbResponsavel.setValue();
+        //Setando sessao combobox
+        if(tar.getSessao()== 1){
+            cbSessao.setValue("Fazer");
+        }else if(tar.getSessao() == 2){
+            cbSessao.setValue("Fazendo");
+        }else if(tar.getSessao()== 3){
+            cbSessao.setValue("Feita");
+        }else{
+            cbSessao.setValue("Concluida");       
+        }
+        //Setando combobox importancia
+        if(tar.getImportancia()==1){
+            cbImportancia.setValue("Baixa");
+      
+        }else if(tar.getImportancia()==2){
+            
+            cbImportancia.setValue("Media");
+        }else{
+            cbImportancia.setValue("Alta");
+        }
+        cbProjeto.setValue(pDAO.buscar(tar.getProjeto()).getNome());
+        dtDataIni.setValue(tar.getDataIni());
+        dtDataFim.setValue(tar.getDataFim());
+        txtareaDescricao.setText(tar.getDescricao());*/        
+    }
     @FXML
     public void editar(ActionEvent e){
         Tarefa tar = tarDAO.buscar(1);
@@ -170,6 +199,9 @@ public class TelaBoardController implements Initializable  {
     public void btnBacklog(ActionEvent e){
         ArrayList<Tarefa> tars = tarDAO.buscar_Sessao(1); 
         carregaTarefas(tarFiltro(tars));
+    
+        cbFiltroImportancia.setValue(null);
+        cbFiltroResponsavel.setValue(null);
 
     }
     @FXML 
