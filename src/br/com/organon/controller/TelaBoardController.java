@@ -38,8 +38,8 @@ public class TelaBoardController implements Initializable  {
     TarefaDAO tarDAO = new TarefaDAO();
     SessaoDAO sessaoDAO = new SessaoDAO();
     ProjetoDAO pDAO = new ProjetoDAO();
-    
-    ArrayList<Tarefa> tarList = new ArrayList();
+    //Objeto criado para edição/exclusão
+    Tarefa tarefa = new Tarefa();
     @FXML
     private Button criarProjeto;
 
@@ -106,68 +106,30 @@ public class TelaBoardController implements Initializable  {
     public void criar(ActionEvent e){
         criarTar();
     }
-    //Métodos responsáveis pela edição
-    public void editarPreencher(Tarefa tar){
-        txtNomeTarefa.setText(tar.getNome());/*
-        cbResponsavel.setValue();
-        //Setando sessao combobox
-        if(tar.getSessao()== 1){
-            cbSessao.setValue("Fazer");
-        }else if(tar.getSessao() == 2){
-            cbSessao.setValue("Fazendo");
-        }else if(tar.getSessao()== 3){
-            cbSessao.setValue("Feita");
-        }else{
-            cbSessao.setValue("Concluida");       
-        }
-        //Setando combobox importancia
-        if(tar.getImportancia()==1){
-            cbImportancia.setValue("Baixa");
-      
-        }else if(tar.getImportancia()==2){
-            
-            cbImportancia.setValue("Media");
-        }else{
-            cbImportancia.setValue("Alta");
-        }
-        cbProjeto.setValue(pDAO.buscar(tar.getProjeto()).getNome());
-        dtDataIni.setValue(tar.getDataIni());
-        dtDataFim.setValue(tar.getDataFim());
-        txtareaDescricao.setText(tar.getDescricao());*/        
-    }
     @FXML
     public void editar(ActionEvent e){
-        Tarefa tar = tarDAO.buscar(1);
-        txtNomeTarefa.setText(tar.getNome());
-        cbResponsavel.setValue(empDAO.buscar(tar.getResponsavel()).getNome());
-        //Setando sessao combobox
-        if(tar.getSessao()== 1){
-            cbSessao.setValue("Fazer");
-        }else if(tar.getSessao() == 2){
-            cbSessao.setValue("Fazendo");
-        }else if(tar.getSessao()== 3){
-            cbSessao.setValue("Feta");
-        }else{
-            cbSessao.setValue("Concluida");       
+        Tarefa tar = tarDAO.buscar(tarefa.getId());
+        tar.setNome(txtNomeTarefa.getText());
+        tar.setDescricao(txtareaDescricao.getText());
+        //Definindo importancia
+        tar.setImportancia(getImportancia(cbImportancia.getValue()));  
+        
+        tar.setDataIni(dtDataIni.getValue());
+        tar.setDataFim(dtDataFim.getValue());
+        tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
+        tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
+        //Modificando sessão da tarefa
+        if(tar.getSessao() != getSessao(cbSessao.getValue())){
+            sessaoDAO.excTar(tar.getSessao(), tar);
+            sessaoDAO.adcTar(getSessao(cbSessao.getValue()), tar);
         }
-        //Setando combobox importancia
-        if(tar.getImportancia()==1){
-            cbImportancia.setValue("Baixa");
-      
-        }else if(tar.getImportancia()==2){
-            
-            cbImportancia.setValue("Media");
-        }else{
-            cbImportancia.setValue("Alta");
-        }
-        cbProjeto.setValue(pDAO.buscar(tar.getProjeto()).getNome());
-        dtDataIni.setValue(tar.getDataIni());
-        dtDataFim.setValue(tar.getDataFim());
-        txtareaDescricao.setText(tar.getDescricao());
+        tarDAO.alterar(tar);  
         
     }
     public void excluir(ActionEvent e){
-        excluirTar();
+        Tarefa tar = tarDAO.buscar(tarefa.getId());
+        sessaoDAO.excTar(tar.getSessao(), tar);
+        tarDAO.deleta(tarefa);
         
     }
     //Função que é chamada ao clicar no botão CRIAR PROJETO na interface
@@ -291,9 +253,10 @@ public class TelaBoardController implements Initializable  {
         //Definindo Sessao
         tar.setSessao(getSessao(cbSessao.getValue()));
 
+        //Criando tarefa
         tarDAO.criar_Tarefa(tar);
-        //Adicionado tarefa aqui para controle
-        tarList.add(tar);
+        //Adicionando tarefa a sessao
+        sessaoDAO.adcTar(tar.getSessao(), tar);
         //Add responsavel ao projeto no banco
         Projeto p = pDAO.buscar(tar.getProjeto());
         String dev = Integer.toString(tar.getResponsavel());
@@ -306,39 +269,7 @@ public class TelaBoardController implements Initializable  {
       
 
     }
-    public void editarTar(){
-            
-      try{
-          Tarefa tar = new Tarefa();
-          tar.setNome(txtNomeTarefa.getText());
-          tar.setDescricao(txtareaDescricao.getText());
-          //Definindo importancia
-          tar.setImportancia(getImportancia(cbImportancia.getValue()));  
-       
 
-          tar.setDataIni(dtDataIni.getValue());
-          tar.setDataFim(dtDataFim.getValue());
-          tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
-          tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
-          //Definindo Sessao
-          tar.setSessao(getSessao(cbSessao.getValue()));
-          tarDAO.alterar(tar);
-            
-      }catch(Exception e){
-            e.printStackTrace();
-      }
-      
-    }
-    public void excluirTar(){
-        try{
-            Tarefa tar = tarDAO.buscar(2);//;
-
-            tarDAO.deleta(tar);
-            
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
      /// Sessao 
     public void adcTar(){
         try{
@@ -472,6 +403,37 @@ public class TelaBoardController implements Initializable  {
              return 3;
         }        
 
+        
+    }
+    public void exibirDadosTarefa(Tarefa tar){
+       
+        txtNomeTarefa.setText(tar.getNome());
+        cbResponsavel.setValue(empDAO.buscar(tar.getResponsavel()).getNome());
+        //Setando sessao combobox
+        if(tar.getSessao()== 1){
+            cbSessao.setValue("Fazer");
+        }else if(tar.getSessao() == 2){
+            cbSessao.setValue("Fazendo");
+        }else if(tar.getSessao()== 3){
+            cbSessao.setValue("Feita");
+        }else{
+            cbSessao.setValue("Concluida");       
+        }
+        //Setando combobox importancia
+        if(tar.getImportancia()==1){
+            cbImportancia.setValue("Baixa");
+      
+        }else if(tar.getImportancia()==2){
+            
+            cbImportancia.setValue("Media");
+        }else{
+            cbImportancia.setValue("Alta");
+        }
+        cbProjeto.setValue(pDAO.buscar(tar.getProjeto()).getNome());
+        dtDataIni.setValue(tar.getDataIni());
+        dtDataFim.setValue(tar.getDataFim());
+        txtareaDescricao.setText(tar.getDescricao());  
+               
         
     }
 }

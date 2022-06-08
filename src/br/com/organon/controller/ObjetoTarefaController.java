@@ -1,6 +1,10 @@
+
 package br.com.organon.controller;
 
 import br.com.organon.model.Tarefa;
+import br.com.organon.model.TarefaDAO;
+import br.com.organon.view.MainFX;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -11,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 public class ObjetoTarefaController implements Initializable {
-
+    private int id;
     @FXML
     Label lblNome;
     @Override
@@ -19,15 +23,22 @@ public class ObjetoTarefaController implements Initializable {
         // TODO
     }    
     public void adc(Tarefa tar){
+        id = tar.getId();
         lblNome.setText(tar.getNome());
         
     }
-    public void rtnTar(MouseEvent e){
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("TelaBoard.fxml"));
-        TelaBoardController tarBoard = loader.getController();   
-        Tarefa tar = new Tarefa();
-        tar.setNome(lblNome.getText());
-        tarBoard.editarPreencher(tar);
+    public void rtnTar(MouseEvent e) throws IOException{
+        TarefaDAO tarDAO = new TarefaDAO();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaBoard.fxml"));
+        loader.setController(MainFX.loader.getController());
+
+        TelaBoardController controller = loader.getController();
+        Tarefa tar = tarDAO.buscar(id);
+        controller.exibirDadosTarefa(tar);
+        controller.tarefa.setId(id);
+        
     }
+
+
 }
     

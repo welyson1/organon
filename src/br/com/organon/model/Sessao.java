@@ -5,12 +5,12 @@ public class Sessao {
     
     private int numTar;
     private int tipo;
-    private ArrayList<Tarefa> tarList;
+    private ArrayList<String> tarList;
      
     public Sessao() {
         Tarefa a = new Tarefa();
         this.numTar = 0;
-        this.tarList.add(a);
+        this.tarList.add("");
         this.tipo = tipo;
         
     }
@@ -36,11 +36,11 @@ public class Sessao {
         this.tipo = tipo;
     }
 
-    public ArrayList<Tarefa> getTarList() {
+    public ArrayList<String> getTarList() {
         return tarList;
     }
 
-    public void setTarList(ArrayList<Tarefa> tarList) {
+    public void setTarList(ArrayList<String> tarList) {
         this.tarList = tarList;
     }
     

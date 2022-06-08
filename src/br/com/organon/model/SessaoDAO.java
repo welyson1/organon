@@ -48,6 +48,7 @@ public class SessaoDAO {
         try{
             conn = Conexao.conexao();
             pst = conn.prepareStatement(sql);
+
             list = list + "," + Integer.toString(tar.getId());
             pst.setString(1, list);
             pst.setInt(2,tipo);

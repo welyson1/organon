@@ -104,7 +104,7 @@
                         <TextArea fx:id="txtareaDescricao" prefHeight="113.0" prefWidth="414.0" promptText="Descrição" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Button fx:id="btnExcluirTarefa" mnemonicParsing="false" text="Excluir" />
+                              <Button fx:id="btnExcluirTarefa" mnemonicParsing="false" onAction="#excluir" text="Excluir" />
                               <Button fx:id="btnEditarTarefa" mnemonicParsing="false" onAction="#editar" text="Editar" />
                               <Button fx:id="btnSalvarTarefa" mnemonicParsing="false" onAction="#criar" text="Salvar" />
                            </children>
