@@ -7,3 +7,29 @@
 {
     -fx-background-color: #745b3a
 }
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button1 {
+    -fx-background-color: #99ff99; 
+    -fx-border: 2px;
+    -fx-transition-duration: 10s;
+}
+
+.button1:hover {
+    -fx-background-color: #745b3a;
+    -fx-color: white;
+}

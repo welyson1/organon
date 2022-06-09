@@ -10,7 +10,6 @@ import br.com.organon.model.ProjetoDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,8 +20,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class TelaMensagemController implements Initializable {
-
-   
     
     @FXML
     private TextField txtAssunto;
@@ -102,11 +99,10 @@ public class TelaMensagemController implements Initializable {
             
         }catch(Exception e){
             e.printStackTrace();
-        }
-        
+        }        
         return 0;
     }
-    //Busca o email de todos os desenvolvedores de um Projeto
+    //Busca o email de todos os desenvolvedores de um Projeto    
     public ArrayList<String> getEmails(){
         Projeto p = pDAO.buscar(buscarNomeProjeto(cbDest.getValue()));
         ArrayList<Desenvolvedor> responsaveis = empDAO.buscarTodos();
@@ -115,23 +111,17 @@ public class TelaMensagemController implements Initializable {
         try{
             for(Desenvolvedor dev: responsaveis){
                 for(String s : p.getDevs()){
-                    if(!(s.equals(""))){                            
-
+                    if(!(s.equals(""))){
                         if(dev.getId() == Integer.valueOf(s)){
                             sLista.add(dev.getEmail());
-
                             break;
                         }
                     }
-                } 
-                
-
-            }            
-            
+                }
+            }    
         }catch(Exception e){
             System.out.println("Erro envio de mensagem " + e);
         }
-
         return sLista;
     } 
 }

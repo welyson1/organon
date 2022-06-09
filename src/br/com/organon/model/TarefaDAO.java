@@ -142,7 +142,7 @@ public class TarefaDAO {
            //dataIn(string
            pst.setDate(4, java.sql.Date.valueOf(tarefa.getDataIni()));
            //dataFin(string
-           pst.setDate(5, java.sql.Date.valueOf(tarefa.getDataIni()));
+           pst.setDate(5, java.sql.Date.valueOf(tarefa.getDataFim()));
            //responsavelId(int
            pst.setInt(6, tarefa.getResponsavel());
            //sessaoId (int: 1,2,3,4)

@@ -13,10 +13,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="576.0" minWidth="1024.0" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.TelaBoardController">
    <children>
-      <SplitPane fx:id="splitPane" dividerPositions="0.21330724070450097, 0.5724070450097848" prefHeight="576.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane fx:id="splitPane" dividerPositions="0.2172211350293542, 0.5841487279843445" prefHeight="576.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
@@ -26,12 +27,12 @@
                            <children>
                               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                               <Label text="Nome da pessoa" />
-                              <Button mnemonicParsing="false" text="Sair" />
+                              <Button mnemonicParsing="false" styleClass="button1" stylesheets="@EstiloBoard.css" text="Sair" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                            <children>
-                              <Button fx:id="criarProjeto" mnemonicParsing="false" onAction="#abrirCriadorProjeto" prefHeight="2.0" prefWidth="121.0" styleClass="button2" stylesheets="@EstiloBoard.css" text="Criar Projeto" />
+                              <Button fx:id="criarProjeto" mnemonicParsing="false" onAction="#abrirCriadorProjeto" prefHeight="2.0" prefWidth="121.0" styleClass="button1" stylesheets="@EstiloBoard.css" text="Projeto" />
                               <Button mnemonicParsing="false" text="Mensagem" />
                            </children>
                         </HBox>
@@ -40,21 +41,19 @@
                               <Label text="Filtros" />
                               <ComboBox fx:id="cbFiltroImportancia" prefWidth="150.0" promptText="Importância" />
                               <ComboBox fx:id="cbFiltroResponsavel" prefWidth="150.0" promptText="Responsável" />
-                              <ComboBox fx:id="cbFiltroSessao" prefWidth="150.0" promptText="Sessão" />
                            </children>
                         </VBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="219.0" spacing="5.0">
                            <children>
-                              <Label text="Tarefas" />
-                              <Button fx:id="criarTarefa" mnemonicParsing="false" onAction="#abrirCriadorTarefa" text="Criar tarefa" />
+                              <Label text="Sessões" />
                            </children>
                         </HBox>
-                        <VBox alignment="BOTTOM_RIGHT" prefHeight="109.0" prefWidth="198.0" spacing="10.0">
+                        <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="198.0" spacing="10.0">
                            <children>
-                              <Button fx:id="btnBacklog" mnemonicParsing="false" onAction="#btnBacklog" text="Backlog" />
-                              <Button fx:id="btnFazer" mnemonicParsing="false" onAction="#btnFazer" text="Fazer" />
-                              <Button fx:id="btnFazendo" mnemonicParsing="false" onAction="#btnFazendo" text="Fazendo" />
-                              <Button fx:id="btnFeito" mnemonicParsing="false" onAction="#btnFeito" text="Feito" />
+                              <Button fx:id="btnSessaoFazer" mnemonicParsing="false" onAction="#btnBacklog" prefHeight="100.0" prefWidth="100.0" text="Fazer" />
+                              <Button fx:id="btnSessaoFazendo" mnemonicParsing="false" onAction="#btnFazer" prefHeight="100.0" text="Fazendo" />
+                              <Button fx:id="btnSessaoFeito" mnemonicParsing="false" onAction="#btnFazendo" text="Feito" />
+                              <Button fx:id="btnSessaoArquivado" mnemonicParsing="false" onAction="#btnFeito" text="Arquivado" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
@@ -65,11 +64,23 @@
                </children></AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="574.0" prefWidth="279.0">
                <children>
-                  <ScrollPane prefHeight="574.0" prefWidth="382.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <content>
-                        <VBox fx:id="painelTarefa" alignment="TOP_CENTER" prefHeight="579.0" prefWidth="387.0" />
-                     </content>
-                  </ScrollPane>
+                  <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="357.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="labelSessao" text="Sessão">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ScrollPane prefHeight="574.0" prefWidth="382.0">
+                           <content>
+                              <VBox fx:id="painelTarefa" alignment="TOP_CENTER" prefHeight="537.0" prefWidth="368.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -105,8 +116,8 @@
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
                               <Button fx:id="btnExcluirTarefa" mnemonicParsing="false" onAction="#excluir" text="Excluir" />
-                              <Button fx:id="btnEditarTarefa" mnemonicParsing="false" onAction="#editar" text="Editar" />
-                              <Button fx:id="btnSalvarTarefa" mnemonicParsing="false" onAction="#criar" text="Salvar" />
+                              <Button fx:id="btnEditarTarefa" mnemonicParsing="false" onAction="#editar" text="Salvar" />
+                              <Button fx:id="btnSalvarTarefa" mnemonicParsing="false" onAction="#criar" text="Criar" />
                            </children>
                         </HBox>
                      </children>

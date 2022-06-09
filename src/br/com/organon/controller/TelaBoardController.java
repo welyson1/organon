@@ -1,7 +1,6 @@
 package br.com.organon.controller;
 import br.com.organon.model.Desenvolvedor;
 import br.com.organon.model.EmpregadoDAO;
-import br.com.organon.model.Gestor;
 import br.com.organon.model.Projeto;
 import br.com.organon.model.ProjetoDAO;
 import br.com.organon.model.SessaoDAO;
@@ -11,8 +10,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.sql.Date;
-import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,15 +17,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -43,8 +40,6 @@ public class TelaBoardController implements Initializable  {
     @FXML
     private Button criarProjeto;
 
-    @FXML
-    private Button criarTarefa;
     @FXML
     private Button btnBacklog;
     @FXML
@@ -78,13 +73,13 @@ public class TelaBoardController implements Initializable  {
     @FXML
     private ComboBox<String> cbFiltroResponsavel;
     @FXML
-    private ComboBox<String> cbFiltroSessao;
-    @FXML
     private Button btnFazer;
     @FXML
     private Button btnFazendo;
     @FXML
     private Button btnFeito;
+    @FXML
+    private Label labelSessao;
 
 
     @Override
@@ -96,7 +91,6 @@ public class TelaBoardController implements Initializable  {
         cbImportancia.getItems().addAll(getNomeImportancia());
         //Populando combobox lado esquerdo
         cbFiltroImportancia.getItems().addAll(getNomeImportancia());
-        cbFiltroSessao.getItems().addAll(getNomeSessao());
         cbFiltroResponsavel.getItems().addAll(getNomeResponsavel());
         //Carrega tarefas da sessão fazer
         carregaTarefas(tarDAO.buscar_Sessao(1));
@@ -126,6 +120,7 @@ public class TelaBoardController implements Initializable  {
         tarDAO.alterar(tar);  
         
     }
+    @FXML
     public void excluir(ActionEvent e){
         Tarefa tar = tarDAO.buscar(tarefa.getId());
         sessaoDAO.excTar(tar.getSessao(), tar);
@@ -146,7 +141,6 @@ public class TelaBoardController implements Initializable  {
     }
     
     //Chama a tela de criar tarefa
-    @FXML
     void abrirCriadorTarefa(ActionEvent event) throws IOException {        
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaTarefa.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
@@ -156,31 +150,39 @@ public class TelaBoardController implements Initializable  {
         stage.setScene(new Scene(root1));  
         stage.show();
     }
-   ///Métodos responsáveis pela mudança na exibição das tarefas
+    //Métodos responsáveis pela mudança na exibição das tarefas
     @FXML
-    public void btnBacklog(ActionEvent e){
+    public void btnSessaoFazer(ActionEvent e){
         ArrayList<Tarefa> tars = tarDAO.buscar_Sessao(1); 
         carregaTarefas(tarFiltro(tars));
-    
+        
+        //chama um alert box
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.showAndWait();
+        
         cbFiltroImportancia.setValue(null);
         cbFiltroResponsavel.setValue(null);
+        //troca o nome do label da sessão
+        labelSessao.setText("Fazer");
 
     }
     @FXML 
-    public void btnFazer(ActionEvent e){
-        
+    public void btnSessaoFazendo(ActionEvent e){        
         carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(2)));        
-
+        cbFiltroImportancia.setValue(null);
+        cbFiltroResponsavel.setValue(null);
     }
     @FXML 
-    public void btnFazendo(ActionEvent e){
+    public void btnSessaoFeito(ActionEvent e){
         carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(3)));
-
+        cbFiltroImportancia.setValue(null);
+        cbFiltroResponsavel.setValue(null);
     }
     @FXML 
-    public void btnFeito(ActionEvent e){
+    public void btnSessaoArquivado(ActionEvent e){
         carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(4)));
-      
+        cbFiltroImportancia.setValue(null);
+        cbFiltroResponsavel.setValue(null);    
     }
     //Modifica a lista de tarefas caso algum frito esteja ativiado
     public ArrayList<Tarefa> tarFiltro(ArrayList<Tarefa> tars){
@@ -204,17 +206,16 @@ public class TelaBoardController implements Initializable  {
                 return tarsFiltradas;              
         }else if(cbFiltroResponsavel.getValue()!=null){
             
-                for(int i = 0; i<tars.size();i++){
-                    if(tars.get(i).getResponsavel()==buscarNomeResponsavel(cbFiltroResponsavel.getValue())){
-                        tarsFiltradas.add(tars.get(i));
-                    }
+            for(int i = 0; i<tars.size();i++){
+                if(tars.get(i).getResponsavel()==buscarNomeResponsavel(cbFiltroResponsavel.getValue())){
+                    tarsFiltradas.add(tars.get(i));
                 }
-                return tarsFiltradas;
-            
+            }
+            return tarsFiltradas;            
         }
-        return tars;
-        
+        return tars;        
     }
+    
     /**
      * Esse metodo carrega tarefas vazias no vBox  
      */
@@ -238,39 +239,35 @@ public class TelaBoardController implements Initializable  {
         } 
     }  
     public void criarTar(){
-      try{
-               
-        Tarefa tar = new Tarefa();
-        tar.setNome(txtNomeTarefa.getText());
-        tar.setDescricao(txtareaDescricao.getText());
-        //Definindo importancia
-        tar.setImportancia(getImportancia(cbImportancia.getValue()));  
-        
-        tar.setDataIni(dtDataIni.getValue());
-        tar.setDataFim(dtDataFim.getValue());
-        tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
-        tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
-        //Definindo Sessao
-        tar.setSessao(getSessao(cbSessao.getValue()));
+        try{
+            Tarefa tar = new Tarefa();
+            tar.setNome(txtNomeTarefa.getText());
+            tar.setDescricao(txtareaDescricao.getText());
+            //Definindo importancia
+            tar.setImportancia(getImportancia(cbImportancia.getValue()));  
 
-        //Criando tarefa
-        tarDAO.criar_Tarefa(tar);
-        //Adicionando tarefa a sessao
-        sessaoDAO.adcTar(tar.getSessao(), tar);
-        //Add responsavel ao projeto no banco
-        Projeto p = pDAO.buscar(tar.getProjeto());
-        String dev = Integer.toString(tar.getResponsavel());
-        p.addDev(dev);
-        pDAO.alterar(p);
-      }catch(Exception e){
+            tar.setDataIni(dtDataIni.getValue());
+            tar.setDataFim(dtDataFim.getValue());
+            tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
+            tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
+            //Definindo Sessao
+            tar.setSessao(getSessao(cbSessao.getValue()));
+
+            //Criando tarefa
+            tarDAO.criar_Tarefa(tar);
+            //Adicionando tarefa a sessao
+            sessaoDAO.adcTar(tar.getSessao(), tar);
+            //Add responsavel ao projeto no banco
+            Projeto p = pDAO.buscar(tar.getProjeto());
+            String dev = Integer.toString(tar.getResponsavel());
+            p.addDev(dev);
+            pDAO.alterar(p);
+        }catch(Exception e){
             e.printStackTrace();
-      } 
-      
-      
-
+        } 
     }
 
-     /// Sessao 
+    // Sessao 
     public void adcTar(){
         try{
             Tarefa tar = tarDAO.buscar(0);
@@ -279,12 +276,13 @@ public class TelaBoardController implements Initializable  {
         }catch(Exception e){
             e.printStackTrace();
         }
-
     }
+    
     public void excTar (){
         Tarefa tar = new Tarefa();
         sessaoDAO.excTar(Integer.valueOf(cbSessao.getValue()), tar);
     }
+    
    //Busca o id do responsável  selecionado no combobox
     public int buscarNomeResponsavel(String nome){
         ArrayList<Desenvolvedor> emp = empDAO.buscarTodos();
