@@ -11,45 +11,51 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.LoginController">
    <left>
-      <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #191970;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="500.0" prefWidth="350.0" styleClass="linear-grad" stylesheets="@csstrick.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="354.0" fitWidth="298.0" layoutX="26.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="134.0" fitWidth="125.0" layoutX="113.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/Organon.png" />
+                  <Image url="@img/icons8_task_100px_2.png" />
                </image>
             </ImageView>
+            <Text fill="#eae4e4" layoutX="126.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Organon">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+            <Text fill="#eae4e4" layoutX="95.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sua equipe em um só lugar!">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </left>
    <center>
       <AnchorPane prefHeight="500.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
-            <PasswordField fx:id="txtSenha" layoutX="73.0" layoutY="277.0" prefHeight="26.0" prefWidth="200.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: #191970; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField fx:id="txtUser" layoutX="73.0" layoutY="223.0" prefHeight="26.0" prefWidth="200.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #191970; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button fx:id="btnLogin" layoutX="119.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: #191970;" text="Entrar" textFill="WHITE">
+            <PasswordField fx:id="txtSenha" layoutX="71.0" layoutY="213.0" prefHeight="35.0" prefWidth="245.0" promptText="Senha" />
+            <TextField fx:id="txtUser" layoutX="71.0" layoutY="152.0" prefHeight="35.0" prefWidth="245.0" promptText="Email" />
+            <Button fx:id="btnLogin" layoutX="194.0" layoutY="274.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="35.0" prefWidth="120.0" styleClass="button1" stylesheets="@csstrick.css" text="Entrar" />
+            <Text fill="#635274" layoutX="39.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
                <font>
-                  <Font name="Book Antiqua" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="31.0" fitWidth="30.0" layoutX="41.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/Account-User-PNG-Photo.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="41.0" fitWidth="30.0" layoutX="41.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/lock-2.png" />
-               </image>
-            </ImageView>
-            <Text fill="MIDNIGHTBLUE" layoutX="73.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
-               <font>
-                  <Font name="Book Antiqua Bold" size="36.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Text>
-            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="3.0" layoutY="401.0" prefHeight="18.0" prefWidth="342.0" textAlignment="JUSTIFY" textFill="RED" />
-            <Label fx:id="txtLoginMessage" alignment="CENTER" layoutX="1.0" layoutY="188.0" prefHeight="18.0" prefWidth="346.0" textFill="RED" />
+            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="3.0" layoutY="362.0" prefHeight="18.0" prefWidth="342.0" textAlignment="JUSTIFY" textFill="RED" />
+            <Label fx:id="txtLoginMessage" alignment="CENTER" layoutX="1.0" layoutY="334.0" prefHeight="18.0" prefWidth="346.0" textFill="RED" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="32.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icons8_mail_48px_1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="32.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icons8_password_1_64px_1.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

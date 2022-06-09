@@ -50,10 +50,10 @@
                         </HBox>
                         <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="198.0" spacing="10.0">
                            <children>
-                              <Button fx:id="btnSessaoFazer" mnemonicParsing="false" onAction="#btnBacklog" prefHeight="100.0" prefWidth="100.0" text="Fazer" />
-                              <Button fx:id="btnSessaoFazendo" mnemonicParsing="false" onAction="#btnFazer" prefHeight="100.0" text="Fazendo" />
-                              <Button fx:id="btnSessaoFeito" mnemonicParsing="false" onAction="#btnFazendo" text="Feito" />
-                              <Button fx:id="btnSessaoArquivado" mnemonicParsing="false" onAction="#btnFeito" text="Arquivado" />
+                              <Button fx:id="btnSessaoFazer" mnemonicParsing="false" onAction="#btnSessaoFazer" prefHeight="100.0" prefWidth="100.0" text="Fazer" />
+                              <Button fx:id="btnSessaoFazendo" mnemonicParsing="false" onAction="#btnSessaoFazendo" prefHeight="100.0" text="Fazendo" />
+                              <Button fx:id="btnSessaoFeito" mnemonicParsing="false" onAction="#btnSessaoFeito" text="Feito" />
+                              <Button fx:id="btnSessaoArquivado" mnemonicParsing="false" onAction="#btnSessaoArquivado" text="Arquivado" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
