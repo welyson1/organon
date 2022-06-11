@@ -14,6 +14,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -42,15 +44,34 @@ public class TelaMensagemController implements Initializable {
         
         cbDest.getItems().addAll(getNomeProjeto());
         // TODO
-    }    
+    }   
+    
     public void btnEnviar(ActionEvent e) throws IOException{
+        
         enviar();
         txtAssunto.setText("");
         txtConteudo.setText("");
-        cbDest.setValue("");
+        cbDest.setValue(""); 
         
+        /*
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setHeaderText("Sua mensagem foi enviada!");
+        alert.setContentText("Todos os desenvolvedores presentes no projeto recebram sua mensagem.");
+        alert.showAndWait();
+        
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setHeaderText("Ocorreu um erro ao enviar a mensagem!");
+        alert.setContentText("Por favor preencha todos os campos corretamente.");
+        alert.showAndWait();
+        
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setHeaderText("Ocorreu um erro ao enviar a mensagem!");
+        alert.setContentText("Sua Mensagem não foi enviada.");
+        alert.showAndWait();
+        */
         
     }
+    
     //Cria mensagem com dados e envia 
     public void enviar(){
         try{
@@ -66,10 +87,10 @@ public class TelaMensagemController implements Initializable {
 
             MensagemDAO.enviar(ges,mensagem);
 
-         
         }catch(Exception e){
                 
             System.out.println("Erro envio de mensagem " + e);
+             
         }
         
     }
@@ -120,7 +141,10 @@ public class TelaMensagemController implements Initializable {
                 }
             }    
         }catch(Exception e){
-            System.out.println("Erro envio de mensagem " + e);
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setHeaderText("Ocorreu um erro ao enviar a mensagem!");
+            alert.setContentText("Escolha o projeto em que os desenvolvedores se encontram.");
+            alert.showAndWait();
         }
         return sLista;
     } 

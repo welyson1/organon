@@ -9,6 +9,7 @@ import br.com.organon.model.TarefaDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -99,6 +101,10 @@ public class TelaBoardController implements Initializable  {
     @FXML
     public void criar(ActionEvent e){
         criarTar();
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setHeaderText("Tarefa criada com sucesso!");
+        alert.setTitle("Criar Tarefa.");
+        alert.showAndWait();
     }
     @FXML
     public void editar(ActionEvent e){
@@ -119,12 +125,26 @@ public class TelaBoardController implements Initializable  {
         }
         tarDAO.alterar(tar);  
         
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setHeaderText("Tarefa editada com sucesso!");
+        alert.setTitle("Edição.");
+        alert.showAndWait();
+        
     }
     @FXML
     public void excluir(ActionEvent e){
-        Tarefa tar = tarDAO.buscar(tarefa.getId());
-        sessaoDAO.excTar(tar.getSessao(), tar);
-        tarDAO.deleta(tarefa);
+        
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setHeaderText("Deseja realmente excluir a Tarefa?");
+        alert.setTitle("Excluir Tarefa.");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() &&  result.get() == ButtonType.OK){
+            Tarefa tar = tarDAO.buscar(tarefa.getId());
+            sessaoDAO.excTar(tar.getSessao(), tar);
+            tarDAO.deleta(tarefa);
+        }
+        
         
     }
     //Função que é chamada ao clicar no botão CRIAR PROJETO na interface

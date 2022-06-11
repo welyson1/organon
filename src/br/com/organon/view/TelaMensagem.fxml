@@ -12,42 +12,44 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.TelaMensagemController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.TelaMensagemController">
    <top>
-      <AnchorPane prefHeight="27.0" prefWidth="600.0" style="-fx-background-color: #A9A9A9;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="21.0" prefWidth="600.0" style="-fx-background-color: #7bb0a8;" stylesheets="@csstrick.css" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="11.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova mensagem">
+            <Text fill="WHITE" layoutX="11.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova mensagem">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <ImageView fitHeight="43.0" fitWidth="28.0" layoutX="116.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="128.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/Aiga_mail.png" />
+                  <Image url="@../../../../../../../../AppData/Local/Temp/icons8_group_message_96px_2.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
    </top>
-   <bottom>
-      <AnchorPane prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+   <center>
+      <AnchorPane prefHeight="354.0" prefWidth="600.0" style="-fx-background-color: #536c8d;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnEnviar" layoutX="524.0" layoutY="-1.0" mnemonicParsing="false" onAction="#btnEnviar" style="-fx-background-color: #7FFFD4;" text="Enviar">
+            <Label layoutX="14.0" layoutY="22.0" text="Título:" textFill="WHITE">
                <font>
-                  <Font name="Calibri" size="14.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAssunto" layoutX="54.0" layoutY="18.0" prefHeight="26.0" prefWidth="531.0" />
+            <Label layoutX="14.0" layoutY="54.0" text="Mensagem:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="txtConteudo" layoutX="14.0" layoutY="74.0" prefHeight="195.0" prefWidth="571.0" styleClass="text-area" />
+            <ComboBox fx:id="cbDest" editable="true" layoutX="14.0" layoutY="280.0" prefHeight="26.0" prefWidth="487.0" promptText="Selecione o projeto dos desenvolvedores que deseja notificar..." styleClass="combo-box" />
+            <Button fx:id="btnEnviar" layoutX="524.0" layoutY="279.0" mnemonicParsing="false" onAction="#btnEnviar" styleClass="button2" stylesheets="@csstrick.css" text="Enviar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <ComboBox fx:id="cbDest" layoutX="14.0" layoutY="-1.0" prefHeight="26.0" prefWidth="487.0" promptText="Selecione o destinatário da mensagem..." />
-         </children>
-      </AnchorPane>
-   </bottom>
-   <center>
-      <AnchorPane prefHeight="207.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="26.0" layoutY="14.0" text="Título:" />
-            <TextField fx:id="txtAssunto" layoutX="66.0" layoutY="10.0" prefHeight="26.0" prefWidth="521.0" />
-            <Label layoutX="14.0" layoutY="78.0" text="Mensagem" />
-            <TextArea fx:id="txtConteudo" layoutX="14.0" layoutY="96.0" prefHeight="194.0" prefWidth="572.0" />
          </children>
       </AnchorPane>
    </center>

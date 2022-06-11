@@ -1,7 +1,7 @@
 .text-input
 {
     -fx-background-radius: 20;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #000000;
     -fx-prompt-text-fill:#D4CEE3;
 }
 
@@ -28,20 +28,20 @@
 
 .button2
 {
-    -fx-background-color: #ffffff;
+    -fx-background-color: #7bb0a8;
     -fx-background-radius: 20;
     -fx-prompt-text-fill:#2262C6;
 }
 
 .button2:hover
 {
-    -fx-background-color: #E4EEFD;
+    -fx-background-color: #a7dbab;
     -fx-background-radius: 20;
 }
 
 .button2:pressed
 {
-    -fx-background-color: #E4EEFD;
+    -fx-background-color: #7bb0a8;
     -fx-background-radius: 20;
 }
 
@@ -95,22 +95,22 @@
 
 .combo-box
 {
-    -fx-background-color : #141124;
-    -fx-border-color : #515658;
+    -fx-background-color :  #635274;
+    -fx-border-color :  #ffffff;
     -fx-border-radius : 30;
 }
 
 .combo-box:hover
 {
-    -fx-background-color : #141124;
-    -fx-border-color : #FFFF;
+    -fx-background-color : #ffffff;
+    -fx-border-color :  #635274;
     -fx-border-radius : 30;
 }
 
 .combo-box:pressed
 {
-    -fx-background-color : #141124;
-    -fx-border-color : #FFFF;
+    -fx-background-color : #ffffff;
+    -fx-border-color :  #635274;
     -fx-border-radius : 30;
 }
 
@@ -187,5 +187,14 @@
     -fx-background-color: linear-gradient(to bottom left, #635274, #7bb0a8);
 }
 
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
 
 
