@@ -37,10 +37,14 @@ public class TelaBoardController implements Initializable  {
     TarefaDAO tarDAO = new TarefaDAO();
     SessaoDAO sessaoDAO = new SessaoDAO();
     ProjetoDAO pDAO = new ProjetoDAO();
-    //Objeto criado para edição/exclusão
+    //Objeto criado para edição/exclusão (guarda id)
     Tarefa tarefa = new Tarefa();
+    //Variável que guarda a última sessão selecionada
+    int ultimaSessao = 1;
     @FXML
-    private Button criarProjeto;
+    private Button btnProjeto;
+    @FXML
+    private Button btnMensagem;
 
     @FXML
     private Button btnBacklog;
@@ -96,54 +100,119 @@ public class TelaBoardController implements Initializable  {
         cbFiltroResponsavel.getItems().addAll(getNomeResponsavel());
         //Carrega tarefas da sessão fazer
         carregaTarefas(tarDAO.buscar_Sessao(1));
+
+        
     } 
     //Ao clicar no botão salvar a tarefa é criada no banco
     @FXML
     public void criar(ActionEvent e){
-        criarTar();
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setHeaderText("Tarefa criada com sucesso!");
-        alert.setTitle("Criar Tarefa.");
-        alert.showAndWait();
+        try{
+            Tarefa tar = new Tarefa();
+            tar.setNome(txtNomeTarefa.getText());
+            tar.setDescricao(txtareaDescricao.getText());
+            //Definindo importancia
+            tar.setImportancia(getImportancia(cbImportancia.getValue()));  
+
+            tar.setDataIni(dtDataIni.getValue());
+            tar.setDataFim(dtDataFim.getValue());
+            tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
+            tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
+            //Definindo Sessao
+            tar.setSessao(getSessao(cbSessao.getValue()));
+
+            //Criando tarefa
+            tarDAO.criar_Tarefa(tar);
+            //Adicionando tarefa a sessao
+            sessaoDAO.adcTar(tar.getSessao(), tar);
+            //Add responsavel ao projeto no banco
+            Projeto p = pDAO.buscar(tar.getProjeto());
+            String dev = Integer.toString(tar.getResponsavel());
+            p.addDev(dev);
+            pDAO.alterar(p);
+            //Atualiza última sessão selecionada
+            carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(ultimaSessao)));
+            //Avisa criação da tarefa
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("Tarefa criada com sucesso!");
+            alert.setTitle("Criar Tarefa.");
+            alert.showAndWait();
+            
+            limparPainel();
+
+        }catch(Exception error){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setHeaderText("Ocorreu um erro ao criar a tarefa!");
+            alert.setContentText("Por favor preencha todos os campos corretamente.");
+            alert.showAndWait();
+            
+        }
+
     }
     @FXML
     public void editar(ActionEvent e){
-        Tarefa tar = tarDAO.buscar(tarefa.getId());
-        tar.setNome(txtNomeTarefa.getText());
-        tar.setDescricao(txtareaDescricao.getText());
-        //Definindo importancia
-        tar.setImportancia(getImportancia(cbImportancia.getValue()));  
-        
-        tar.setDataIni(dtDataIni.getValue());
-        tar.setDataFim(dtDataFim.getValue());
-        tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
-        tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
-        //Modificando sessão da tarefa
-        if(tar.getSessao() != getSessao(cbSessao.getValue())){
-            sessaoDAO.excTar(tar.getSessao(), tar);
-            sessaoDAO.adcTar(getSessao(cbSessao.getValue()), tar);
+        try{
+            Tarefa tar = tarDAO.buscar(tarefa.getId());
+            tar.setNome(txtNomeTarefa.getText());
+            tar.setDescricao(txtareaDescricao.getText());
+            //Definindo importancia
+            tar.setImportancia(getImportancia(cbImportancia.getValue()));  
+
+            tar.setDataIni(dtDataIni.getValue());
+            tar.setDataFim(dtDataFim.getValue());
+            tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
+            tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
+            //Modificando sessão da tarefa
+            if(tar.getSessao() != getSessao(cbSessao.getValue())){
+                sessaoDAO.excTar(tar.getSessao(), tar);
+                sessaoDAO.adcTar(getSessao(cbSessao.getValue()), tar);
+            }
+            tarDAO.alterar(tar);
+            //Atualiza última sessão selecionada
+            carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(ultimaSessao)));            
+            
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("Tarefa editada com sucesso!");
+            alert.setTitle("Edição.");
+            alert.showAndWait();
+            
+            limparPainel();
+        }catch(Exception error){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setHeaderText("Ocorreu um erro ao editar a tarefa!");
+            alert.setContentText("Por favor, selecione uma tarefa antes de editar.");
+            alert.showAndWait();
+            
+            
         }
-        tarDAO.alterar(tar);  
+          
         
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setHeaderText("Tarefa editada com sucesso!");
-        alert.setTitle("Edição.");
-        alert.showAndWait();
         
     }
     @FXML
     public void excluir(ActionEvent e){
-        
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setHeaderText("Deseja realmente excluir a Tarefa?");
-        alert.setTitle("Excluir Tarefa.");
-        
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() &&  result.get() == ButtonType.OK){
-            Tarefa tar = tarDAO.buscar(tarefa.getId());
-            sessaoDAO.excTar(tar.getSessao(), tar);
-            tarDAO.deleta(tarefa);
+        try{
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setHeaderText("Deseja realmente excluir a Tarefa?");
+            alert.setTitle("Excluir Tarefa.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() &&  result.get() == ButtonType.OK){
+                Tarefa tar = tarDAO.buscar(tarefa.getId());
+                sessaoDAO.excTar(tar.getSessao(), tar);
+                tarDAO.deleta(tarefa);
+            }
+            //Atualiza última sessão selecionada
+            carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(ultimaSessao)));
+            limparPainel();
+        }catch(Exception error){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setHeaderText("Ocorreu um erro ao excluir a tarefa!");
+            alert.setContentText("Por favor, selecione uma tarefa para realizar a exclusão!.");
+            alert.showAndWait();            
         }
+        
+        
+        
+
         
         
     }
@@ -175,10 +244,7 @@ public class TelaBoardController implements Initializable  {
     public void btnSessaoFazer(ActionEvent e){
         ArrayList<Tarefa> tars = tarDAO.buscar_Sessao(1); 
         carregaTarefas(tarFiltro(tars));
-        
-        //chama um alert box
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.showAndWait();
+        ultimaSessao = 1;
         
         cbFiltroImportancia.setValue(null);
         cbFiltroResponsavel.setValue(null);
@@ -188,19 +254,22 @@ public class TelaBoardController implements Initializable  {
     }
     @FXML 
     public void btnSessaoFazendo(ActionEvent e){        
-        carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(2)));        
+        carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(2)));
+        ultimaSessao = 2;
         cbFiltroImportancia.setValue(null);
         cbFiltroResponsavel.setValue(null);
     }
     @FXML 
     public void btnSessaoFeito(ActionEvent e){
         carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(3)));
+        ultimaSessao = 3;
         cbFiltroImportancia.setValue(null);
         cbFiltroResponsavel.setValue(null);
     }
     @FXML 
     public void btnSessaoArquivado(ActionEvent e){
         carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(4)));
+        ultimaSessao = 4;
         cbFiltroImportancia.setValue(null);
         cbFiltroResponsavel.setValue(null);    
     }
@@ -258,50 +327,9 @@ public class TelaBoardController implements Initializable  {
             }
         } 
     }  
-    public void criarTar(){
-        try{
-            Tarefa tar = new Tarefa();
-            tar.setNome(txtNomeTarefa.getText());
-            tar.setDescricao(txtareaDescricao.getText());
-            //Definindo importancia
-            tar.setImportancia(getImportancia(cbImportancia.getValue()));  
 
-            tar.setDataIni(dtDataIni.getValue());
-            tar.setDataFim(dtDataFim.getValue());
-            tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
-            tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
-            //Definindo Sessao
-            tar.setSessao(getSessao(cbSessao.getValue()));
 
-            //Criando tarefa
-            tarDAO.criar_Tarefa(tar);
-            //Adicionando tarefa a sessao
-            sessaoDAO.adcTar(tar.getSessao(), tar);
-            //Add responsavel ao projeto no banco
-            Projeto p = pDAO.buscar(tar.getProjeto());
-            String dev = Integer.toString(tar.getResponsavel());
-            p.addDev(dev);
-            pDAO.alterar(p);
-        }catch(Exception e){
-            e.printStackTrace();
-        } 
-    }
 
-    // Sessao 
-    public void adcTar(){
-        try{
-            Tarefa tar = tarDAO.buscar(0);
-            sessaoDAO.adcTar(Integer.valueOf(cbSessao.getValue()), tar);
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-    
-    public void excTar (){
-        Tarefa tar = new Tarefa();
-        sessaoDAO.excTar(Integer.valueOf(cbSessao.getValue()), tar);
-    }
     
    //Busca o id do responsável  selecionado no combobox
     public int buscarNomeResponsavel(String nome){
@@ -374,7 +402,7 @@ public class TelaBoardController implements Initializable  {
             sLista.add("Fazer");
             sLista.add("Fazendo");
             sLista.add("Feita");
-            sLista.add("Concluida");
+            sLista.add("Arquivada");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -435,7 +463,7 @@ public class TelaBoardController implements Initializable  {
         }else if(tar.getSessao()== 3){
             cbSessao.setValue("Feita");
         }else{
-            cbSessao.setValue("Concluida");       
+            cbSessao.setValue("Arquivada");       
         }
         //Setando combobox importancia
         if(tar.getImportancia()==1){
@@ -452,6 +480,40 @@ public class TelaBoardController implements Initializable  {
         dtDataFim.setValue(tar.getDataFim());
         txtareaDescricao.setText(tar.getDescricao());  
                
+        
+    }
+    public void limparPainel(){
+        
+        cbResponsavel.setValue("");
+        //Setando sessao combobox){
+        cbSessao.setValue("");
+
+        //Setando combobox importancia
+
+        cbImportancia.setValue("");
+
+        cbProjeto.setValue("");
+        
+        dtDataIni.setValue(null);
+        dtDataFim.setValue(null);
+        txtareaDescricao.setText("");        
+    }
+    public void visual(){
+        btnExcluirTarefa.setDisable(true);   
+        btnSalvarTarefa.setDisable(true);
+
+        btnMensagem.setDisable(true);
+        btnProjeto.setDisable(true);
+        
+        txtNomeTarefa.setEditable(false);
+        txtareaDescricao.setEditable(false);
+        cbProjeto.setDisable(true);
+        cbResponsavel.setDisable(true);
+        cbSessao.setEditable(true);
+        cbImportancia.setDisable(true);
+        dtDataIni.setDisable(true);
+        dtDataFim.setDisable(true);
+
         
     }
 }

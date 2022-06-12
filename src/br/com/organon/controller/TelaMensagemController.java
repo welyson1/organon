@@ -47,50 +47,47 @@ public class TelaMensagemController implements Initializable {
     }   
     
     public void btnEnviar(ActionEvent e) throws IOException{
-        
         enviar();
         txtAssunto.setText("");
         txtConteudo.setText("");
-        cbDest.setValue(""); 
-        
-        /*
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setHeaderText("Sua mensagem foi enviada!");
-        alert.setContentText("Todos os desenvolvedores presentes no projeto recebram sua mensagem.");
-        alert.showAndWait();
-        
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setHeaderText("Ocorreu um erro ao enviar a mensagem!");
-        alert.setContentText("Por favor preencha todos os campos corretamente.");
-        alert.showAndWait();
-        
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setHeaderText("Ocorreu um erro ao enviar a mensagem!");
-        alert.setContentText("Sua Mensagem não foi enviada.");
-        alert.showAndWait();
-        */
-        
+        cbDest.setValue("");       
     }
     
     //Cria mensagem com dados e envia 
     public void enviar(){
         try{
+            int confirmacao;
             Mensagem mensagem = new Mensagem();
             Gestor ges = new Gestor();
-            //Montando mensagem
-            mensagem.setTitulo(txtAssunto.getText());   
-            mensagem.setConteudo(txtConteudo.getText());
-            mensagem.setDestEmail(getEmails());
             //Adicionando email e senha do gestor
             ges.setEmail(LoginController.email);
             ges.setSenha(LoginController.senha);
 
-            MensagemDAO.enviar(ges,mensagem);
-
+            //Montando mensagem
+            mensagem.setTitulo(txtAssunto.getText());   
+            mensagem.setConteudo(txtConteudo.getText());       
+            //Verificando se algum projeto foi selecionado
+            if(getEmails()!=null){
+                mensagem.setDestEmail(getEmails());
+                //Verificando erro no envio
+                if(MensagemDAO.enviar(ges,mensagem) == 1){
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setHeaderText("Sua mensagem foi enviada!");
+                    alert.setContentText("Todos os desenvolvedores presentes no projeto receberam sua mensagem.");
+                    alert.showAndWait(); 
+                }else{
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setHeaderText("Ocorreu um erro ao enviar a mensagem!");
+                    alert.setContentText("Sua mensagem não foi enviada.");
+                    alert.showAndWait();
+                }     
+            }
+         
         }catch(Exception e){
-                
-            System.out.println("Erro envio de mensagem " + e);
-             
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setHeaderText("Ocorreu um erro ao enviar a mensagem!");
+            alert.setContentText("Por favor preencha todos os campos corretamente.");
+            alert.showAndWait();
         }
         
     }
@@ -140,12 +137,14 @@ public class TelaMensagemController implements Initializable {
                     }
                 }
             }    
+            
+            return sLista;
         }catch(Exception e){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setHeaderText("Ocorreu um erro ao enviar a mensagem!");
             alert.setContentText("Escolha o projeto em que os desenvolvedores se encontram.");
-            alert.showAndWait();
+            alert.showAndWait();       
         }
-        return sLista;
+        return null;
     } 
 }

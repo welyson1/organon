@@ -15,7 +15,7 @@ import java.util.Properties;
 public class MensagemDAO {
     
     
-    public static void enviar(Gestor gestor,Mensagem mensagem){
+    public static int enviar(Gestor gestor,Mensagem mensagem){
         
         try{
             //Definição do email e senha da conta 
@@ -38,9 +38,11 @@ public class MensagemDAO {
 
             Message mens = prepararMensagem(sec, mensagem, accountEmail);
             Transport.send(mens);
+            return 1;
             }catch(Exception e){
                 System.out.println(e);
             }
+        return 0;
     }
     
     //Atribui os campos básicos da mensagem
