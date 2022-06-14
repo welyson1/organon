@@ -46,7 +46,7 @@
                         <HBox alignment="CENTER" prefHeight="53.0" prefWidth="228.0" spacing="5.0">
                            <children>
                               <Button fx:id="btnProjeto" mnemonicParsing="false" onAction="#abrirCriadorProjeto" prefHeight="2.0" prefWidth="121.0" styleClass="button1" stylesheets="@EstiloBoard.css" text="Projeto" />
-                              <Button fx:id="btnMensagem" mnemonicParsing="false" text="Mensagem" />
+                              <Button fx:id="btnMensagem" mnemonicParsing="false" onAction="#abrirTelaMensagem" text="Mensagem" />
                            </children>
                         </HBox>
                         <VBox alignment="CENTER" prefHeight="154.0" prefWidth="228.0" spacing="10.0">
@@ -172,7 +172,7 @@
                                                 <Font size="15.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="InfoRepositorio" text="Repositorio">
+                                          <Label fx:id="infoRepositorio" text="Repositorio">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>

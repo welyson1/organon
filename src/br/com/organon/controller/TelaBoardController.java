@@ -9,6 +9,7 @@ import br.com.organon.model.TarefaDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -79,6 +80,8 @@ public class TelaBoardController implements Initializable  {
     @FXML
     private ComboBox<String> cbFiltroResponsavel;
     @FXML
+    private ComboBox<String> cbFiltroProjeto;
+    @FXML
     private Button btnFazer;
     @FXML
     private Button btnFazendo;
@@ -86,6 +89,16 @@ public class TelaBoardController implements Initializable  {
     private Button btnFeito;
     @FXML
     private Label labelSessao;
+    @FXML
+    private Label infoNome;
+    @FXML
+    private Label infoLinguagem;
+    @FXML
+    private Label infoDescricao;
+    @FXML
+    private Label infoMdlProcess;
+    @FXML
+    private Label infoRepositorio;
 
 
     @Override
@@ -98,6 +111,10 @@ public class TelaBoardController implements Initializable  {
         //Populando combobox lado esquerdo
         cbFiltroImportancia.getItems().addAll(getNomeImportancia());
         cbFiltroResponsavel.getItems().addAll(getNomeResponsavel());
+        cbFiltroProjeto.getItems().addAll(getNomeProjeto());
+        
+        //
+        cbFiltroProjeto.setOnAction(this::DadosProjeto);       
         //Carrega tarefas da sessão fazer
         carregaTarefas(tarDAO.buscar_Sessao(1));               
     } 
@@ -215,14 +232,12 @@ public class TelaBoardController implements Initializable  {
         stage.setScene(new Scene(root1));  
         stage.show();  
     }
-    
+    @FXML
     //Chama a tela de criar tarefa
-    void abrirCriadorTarefa(ActionEvent event) throws IOException {        
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaTarefa.fxml"));
+    void abrirTelaMensagem(ActionEvent event) throws IOException {        
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaMensagem.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
-        
         Stage stage = new Stage();
-        stage.setTitle("Criador de tarefas");
         stage.setScene(new Scene(root1));  
         stage.show();
     }
@@ -272,6 +287,15 @@ public class TelaBoardController implements Initializable  {
     //Modifica a lista de tarefas caso algum frito esteja ativiado
     public ArrayList<Tarefa> tarFiltro(ArrayList<Tarefa> tars){
         ArrayList<Tarefa> tarsFiltradas = new ArrayList();
+        //Verificando filtro projeto 
+        if(cbFiltroProjeto.getValue()!=null){
+                for(Iterator<Tarefa> tarefa = tars.iterator(); tarefa.hasNext();){
+                    if(tarefa.next().getProjeto()!= buscarNomeProjeto(cbFiltroProjeto.getValue())){
+                        tarefa.remove();
+                    }
+                }  
+            
+        }        
         if(cbFiltroImportancia.getValue()!= null && cbFiltroResponsavel.getValue()!=null){
 
                 for(int i = 0; i<tars.size();i++){
@@ -474,6 +498,23 @@ public class TelaBoardController implements Initializable  {
         txtareaDescricao.setText(tar.getDescricao());  
                
         
+    }
+    public void exibirDadosProjeto(Projeto p){
+        
+        infoNome.setText(p.getNome());
+    
+        infoLinguagem.setText(p.getLinguagem());
+    
+        infoDescricao.setText(p.getDescricao());
+    
+        infoMdlProcess.setText(p.getMdlProcess());
+    
+        infoRepositorio.setText(p.getRepositorio());
+        
+    }
+    //Utilizado para onAction do 
+    public void DadosProjeto(ActionEvent e){
+        exibirDadosProjeto(pDAO.buscar(buscarNomeProjeto(cbFiltroProjeto.getValue())));
     }
     public void limparPainel(){
         txtNomeTarefa.setText("");
