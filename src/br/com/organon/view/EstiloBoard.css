@@ -3,9 +3,35 @@
     Author     : Welyson
 */
 
-.root
-{
-    -fx-background-color: #745b3a
+.comboBox{
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-background-radius: 5;    
+}
+
+.split-pane-divider2 {
+  -fx-padding: 0 ;
+}
+
+.split-pane-divider {
+    -fx-padding: 0 1 0 1 ;
+    -fx-background-color: rgba(0,0,0,0.3) ;
+    -fx-background-insets: 0;}
+
+.tarefa{
+    -fx-background-color: #e4f5b1;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 5)
+}
+
+.tarefa:hover {
+    -fx-background-color: #a7dbab;
+    -fx-color: white;
+}
+
+.organon-logo{
+   -fx-background-color: #a7dbab; 
+   -fx-background-radius: 20;
+   -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 5)
 }
 
 .button {
@@ -21,6 +47,19 @@
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
+}
+
+.button-sessao {
+    -fx-background-color: #a7dbab; 
+    -fx-background-radius: 0,5,5,10
+}
+.button-sessao:hover 
+{
+  -fx-background-color: yellow;
+} 
+.button-sessao:pressed
+{
+  -fx-background-color: brown;
 }
 
 .button1 {

@@ -4,16 +4,37 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.ObjetoTarefaController">
    <children>
-      <BorderPane fx:id="painelObjeto" onMouseClicked="#rtnTar" prefHeight="400.0" prefWidth="600.0" style="-fx-background-radius: 1em;" styleClass="root" stylesheets="@EstiloBoard.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-         <center>
-            <Label fx:id="lblNome" text="Label" BorderPane.alignment="CENTER" />
-         </center>
+      <BorderPane fx:id="painelObjeto" onMouseClicked="#rtnTar" prefHeight="400.0" prefWidth="600.0" styleClass="tarefa" stylesheets="@EstiloBoard.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <opaqueInsets>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </opaqueInsets>
+         <top>
+            <Label fx:id="lblNome" prefHeight="17.0" prefWidth="297.0" text="Nome tarefa" BorderPane.alignment="CENTER_LEFT">
+               <BorderPane.margin>
+                  <Insets left="5.0" top="1.0" />
+               </BorderPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+         </top>
+         <right>
+            <Label fx:id="lblDataTermino" text="Data de termino" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="2.0" right="5.0" />
+               </BorderPane.margin>
+            </Label>
+         </right>
+         <left>
+            <Label fx:id="lblNomeResponsavel" text="Nome responsavel" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="2.0" left="5.0" />
+               </BorderPane.margin>
+            </Label>
+         </left>
       </BorderPane>
    </children>
    <opaqueInsets>

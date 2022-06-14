@@ -13,11 +13,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 
 public class ObjetoTarefaController implements Initializable {
     private int id;
     @FXML
     Label lblNome;
+    @FXML
+    private BorderPane painelObjeto;
+    @FXML
+    private Label lblNomeResponsavel;
+    @FXML
+    private Label lblDataTermino;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -25,8 +32,9 @@ public class ObjetoTarefaController implements Initializable {
     public void adc(Tarefa tar){
         id = tar.getId();
         lblNome.setText(tar.getNome());
-        
+        lblDataTermino.setText(tar.getDataFim().toString());        
     }
+    @FXML
     public void rtnTar(MouseEvent e) throws IOException{
         TarefaDAO tarDAO = new TarefaDAO();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaBoard.fxml"));

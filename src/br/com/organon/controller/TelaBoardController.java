@@ -99,9 +99,7 @@ public class TelaBoardController implements Initializable  {
         cbFiltroImportancia.getItems().addAll(getNomeImportancia());
         cbFiltroResponsavel.getItems().addAll(getNomeResponsavel());
         //Carrega tarefas da sessão fazer
-        carregaTarefas(tarDAO.buscar_Sessao(1));
-
-        
+        carregaTarefas(tarDAO.buscar_Sessao(1));               
     } 
     //Ao clicar no botão salvar a tarefa é criada no banco
     @FXML
@@ -180,13 +178,8 @@ public class TelaBoardController implements Initializable  {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setHeaderText("Ocorreu um erro ao editar a tarefa!");
             alert.setContentText("Por favor, selecione uma tarefa antes de editar.");
-            alert.showAndWait();
-            
-            
-        }
-          
-        
-        
+            alert.showAndWait();            
+        }        
     }
     @FXML
     public void excluir(ActionEvent e){
@@ -208,13 +201,7 @@ public class TelaBoardController implements Initializable  {
             alert.setHeaderText("Ocorreu um erro ao excluir a tarefa!");
             alert.setContentText("Por favor, selecione uma tarefa para realizar a exclusão!.");
             alert.showAndWait();            
-        }
-        
-        
-        
-
-        
-        
+        } 
     }
     //Função que é chamada ao clicar no botão CRIAR PROJETO na interface
     @FXML
@@ -258,6 +245,9 @@ public class TelaBoardController implements Initializable  {
         ultimaSessao = 2;
         cbFiltroImportancia.setValue(null);
         cbFiltroResponsavel.setValue(null);
+        
+        //troca o nome do label da sessão
+        labelSessao.setText("Fazendo");
     }
     @FXML 
     public void btnSessaoFeito(ActionEvent e){
@@ -265,13 +255,19 @@ public class TelaBoardController implements Initializable  {
         ultimaSessao = 3;
         cbFiltroImportancia.setValue(null);
         cbFiltroResponsavel.setValue(null);
+        
+        //troca o nome do label da sessão
+        labelSessao.setText("Feito");
     }
     @FXML 
     public void btnSessaoArquivado(ActionEvent e){
         carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(4)));
         ultimaSessao = 4;
         cbFiltroImportancia.setValue(null);
-        cbFiltroResponsavel.setValue(null);    
+        cbFiltroResponsavel.setValue(null);   
+        
+        //troca o nome do label da sessão
+        labelSessao.setText("Arquivado");
     }
     //Modifica a lista de tarefas caso algum frito esteja ativiado
     public ArrayList<Tarefa> tarFiltro(ArrayList<Tarefa> tars){
@@ -326,10 +322,7 @@ public class TelaBoardController implements Initializable  {
             }catch(Exception e){
             }
         } 
-    }  
-
-
-
+    }
     
    //Busca o id do responsável  selecionado no combobox
     public int buscarNomeResponsavel(String nome){
@@ -483,13 +476,12 @@ public class TelaBoardController implements Initializable  {
         
     }
     public void limparPainel(){
-        
+        txtNomeTarefa.setText("");
         cbResponsavel.setValue("");
         //Setando sessao combobox){
         cbSessao.setValue("");
 
         //Setando combobox importancia
-
         cbImportancia.setValue("");
 
         cbProjeto.setValue("");
@@ -513,8 +505,7 @@ public class TelaBoardController implements Initializable  {
         cbImportancia.setDisable(true);
         dtDataIni.setDisable(true);
         dtDataFim.setDisable(true);
-
-        
+ 
     }
 }
 
