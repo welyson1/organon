@@ -8,22 +8,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="377.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.TelaProjetoController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="377.0" style="-fx-background-color: #536c8d;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.TelaProjetoController">
    <children>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="318.0" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <VBox alignment="CENTER" layoutY="6.0" prefHeight="389.0" prefWidth="367.0" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="6.0">
          <children>
-            <TextField fx:id="txtNomeProjeto" promptText="Nome" />
-            <TextField fx:id="txtLinguagens" promptText="Linguagens de programação" />
-            <TextField fx:id="txtLinkRepositorio" promptText="Link do repositorio" />
-            <TextField fx:id="txtModProcesso" promptText="Modelo de processo" />
-            <TextArea fx:id="txtDescricao" prefHeight="200.0" prefWidth="200.0" promptText="Descrição" />
+            <TextField fx:id="txtNomeProjeto" promptText="Nome" stylesheets="@csstrick.css" />
+            <TextField fx:id="txtLinguagens" promptText="Linguagem de programação" stylesheets="@csstrick.css" />
+            <TextField fx:id="txtLinkRepositorio" promptText="Link do repositório" stylesheets="@csstrick.css" />
+            <TextField fx:id="txtModProcesso" promptText="Modelo de processo" stylesheets="@csstrick.css" />
+            <TextArea fx:id="txtDescricao" prefHeight="186.0" prefWidth="283.0" promptText="Descrição" stylesheets="@csstrick.css" />
             <HBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="367.0" spacing="5.0">
                <children>
-                  <ChoiceBox fx:id="choiseBoxEscolherProjeto" prefHeight="25.0" prefWidth="184.0" />
-                  <Button fx:id="btnEditarProjeto" mnemonicParsing="false" onAction="#funcaoEditarProjeto" prefHeight="25.0" prefWidth="58.0" text="Editar" />
-                  <Button fx:id="bntExcluirProjeto" mnemonicParsing="false" onAction="#funcaoExcluirProjeto" text="Excluir" />
-                  <Button fx:id="btnSalvarProjeto" mnemonicParsing="false" onAction="#funcaoSalvarProjeto" text="Salvar" />
+                  <ChoiceBox fx:id="choiseBoxEscolherProjeto" prefHeight="26.0" prefWidth="204.0" />
+                  <Button fx:id="bntExcluirProjeto" mnemonicParsing="false" onAction="#funcaoExcluirProjeto" prefHeight="26.0" prefWidth="50.0" styleClass="button222" stylesheets="@csstrick.css" text="Excluir" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font></Button>
+                  <Button fx:id="btnEditarProjeto" mnemonicParsing="false" onAction="#funcaoEditarProjeto" prefHeight="26.0" prefWidth="50.0" styleClass="button22" stylesheets="@csstrick.css" text="Editar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font></Button>
+                  <Button fx:id="btnSalvarProjeto" mnemonicParsing="false" onAction="#funcaoSalvarProjeto" prefHeight="26.0" prefWidth="50.0" styleClass="button2" stylesheets="@csstrick.css" text="Criar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font></Button>
                </children>
             </HBox>
          </children>

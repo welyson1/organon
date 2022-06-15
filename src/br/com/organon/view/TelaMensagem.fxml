@@ -37,13 +37,13 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAssunto" layoutX="54.0" layoutY="18.0" prefHeight="26.0" prefWidth="531.0" />
+            <TextField fx:id="txtAssunto" layoutX="54.0" layoutY="18.0" prefHeight="26.0" prefWidth="531.0" stylesheets="@csstrick.css" />
             <Label layoutX="14.0" layoutY="54.0" text="Mensagem:" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextArea fx:id="txtConteudo" layoutX="14.0" layoutY="74.0" prefHeight="195.0" prefWidth="571.0" styleClass="text-area" />
+            <TextArea fx:id="txtConteudo" layoutX="14.0" layoutY="74.0" prefHeight="195.0" prefWidth="571.0" styleClass="text-area" stylesheets="@csstrick.css" />
             <ComboBox fx:id="cbDest" editable="true" layoutX="14.0" layoutY="280.0" prefHeight="26.0" prefWidth="487.0" promptText="Selecione o projeto dos desenvolvedores que deseja notificar..." styleClass="combo-box" />
             <Button fx:id="btnEnviar" layoutX="524.0" layoutY="279.0" mnemonicParsing="false" onAction="#btnEnviar" styleClass="button2" stylesheets="@csstrick.css" text="Enviar" textFill="WHITE">
                <font>
