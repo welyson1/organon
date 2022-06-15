@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
@@ -71,6 +72,7 @@ public class TelaProjetoController implements Initializable {
     @FXML
     private void funcaoEditarProjeto(ActionEvent event) {        
         editar();
+        
     }
     
     /**
@@ -80,6 +82,7 @@ public class TelaProjetoController implements Initializable {
     @FXML
     private void funcaoExcluirProjeto(ActionEvent event) {
         excluir();
+        
     }
     
     /**
@@ -93,17 +96,21 @@ public class TelaProjetoController implements Initializable {
             Projeto p = new Projeto();
             ProjetoDAO pDAO = new ProjetoDAO();
        
-            
             p.setNome(txtNomeProjeto.getText());
             p.setRepositorio(txtLinkRepositorio.getText());
             p.setLinguagem(txtLinguagens.getText());
             p.setMdlProcess(txtModProcesso.getText());
             p.setDescricao(txtDescricao.getText());
             p.setDevs(null);
-
             pDAO.criar(p);
+       
+
+    
         }catch(Exception e){
-            System.out.print("Foi não");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Ocorreu um erro ao criar o projeto!");
+            alert.setContentText("Por favor preencha todos os campos corretamente.");
+            alert.showAndWait();
         }
     }
     
@@ -125,22 +132,44 @@ public class TelaProjetoController implements Initializable {
     /**
      * Edita a tarefa no banco de dados
      */
-    public void editar(){  
-        Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
-        p.setNome(txtNomeProjeto.getText());
-        p.setRepositorio(txtLinkRepositorio.getText());
-        p.setLinguagem(txtLinguagens.getText());
-        p.setMdlProcess(txtModProcesso.getText());
-        p.setDescricao(txtDescricao.getText());
-        pDAO.alterar(p);
+    public void editar(){ 
+        try{
+            Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
+            p.setNome(txtNomeProjeto.getText());
+            p.setRepositorio(txtLinkRepositorio.getText());
+            p.setLinguagem(txtLinguagens.getText());
+            p.setMdlProcess(txtModProcesso.getText());
+            p.setDescricao(txtDescricao.getText());
+            pDAO.alterar(p);
+            
+     
+        }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Ocorreu um erro ao editar o projeto!");
+            alert.setContentText("Por favor, selecione um projeto para realizar a edição!.");
+            alert.showAndWait();   
+        }
+
     }
     
     /**
      * Exclui a tarefa no banco de dados
      */
     public void excluir(){
-        Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
-        pDAO.deleta(p);
+        try{
+            Projeto p = buscarNome(choiseBoxEscolherProjeto.getValue());
+            pDAO.deleta(p);
+  
+       
+            limparProjeto();  
+        }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Ocorreu um erro ao excluir o projeto!");
+            alert.setContentText("Por favor, selecione um projeto para realizar a exclusão!.");
+            alert.showAndWait();   
+            
+        }
+
     }    
   
 
@@ -156,5 +185,23 @@ public class TelaProjetoController implements Initializable {
         }
         return sLista;
     }  
+    public void limparProjeto(){
+        
+        choiseBoxEscolherProjeto.setValue("");
+        txtNomeProjeto.setText("");
     
+        txtLinguagens.setText("");
+    
+        txtLinkRepositorio.setText("");
+    
+        txtModProcesso.setText("");
+   
+        txtDescricao.setText("");
+            
+    }    
+    public void atualizarProjeto(){
+         choiseBoxEscolherProjeto.getItems().clear();
+         choiseBoxEscolherProjeto.getItems().addAll(getNomeProjetos());
+          
+    }
 }

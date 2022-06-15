@@ -4,8 +4,19 @@
 */
 
 .comboBox{
-    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-background-color: rgba(255,200,200,0.5);
     -fx-background-radius: 5;    
+}
+
+.fundo-filtro{
+    -fx-background-color: transparent;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(0,0,0,1)
+}
+
+.fundo-comboBox{
+    -fx-background-color: rgba(255,255,255,1);
+    -fx-background-radius: 10; 
 }
 
 .split-pane-divider2 {
