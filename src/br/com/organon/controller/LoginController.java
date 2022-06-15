@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 
 
 public class LoginController implements Initializable {
+    public static FXMLLoader loader;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -49,7 +50,8 @@ public class LoginController implements Initializable {
         if(txtUser.getText().isBlank() == false && txtSenha.getText().isBlank() == false){
             
             if(validateLogin()==1){
-                root = FXMLLoader.load(getClass().getResource("/br/com/organon/view/TelaBoard.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaBoard.fxml"));
+                root = loader.load();
                 stage = (Stage)((Node)e.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);

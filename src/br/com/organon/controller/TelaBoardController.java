@@ -6,6 +6,7 @@ import br.com.organon.model.ProjetoDAO;
 import br.com.organon.model.SessaoDAO;
 import br.com.organon.model.Tarefa;
 import br.com.organon.model.TarefaDAO;
+import br.com.organon.view.MainFX;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -48,8 +49,6 @@ public class TelaBoardController implements Initializable  {
     private Button btnMensagem;
 
     @FXML
-    private Button btnBacklog;
-    @FXML
     private VBox painelTarefa;
     @FXML
     private SplitPane splitPane;
@@ -82,12 +81,6 @@ public class TelaBoardController implements Initializable  {
     @FXML
     private ComboBox<String> cbFiltroProjeto;
     @FXML
-    private Button btnFazer;
-    @FXML
-    private Button btnFazendo;
-    @FXML
-    private Button btnFeito;
-    @FXML
     private Label labelSessao;
     @FXML
     private Label infoNome;
@@ -99,6 +92,16 @@ public class TelaBoardController implements Initializable  {
     private Label infoMdlProcess;
     @FXML
     private Label infoRepositorio;
+    @FXML
+    private Button btnSair;
+    @FXML
+    private Button btnSessaoFazer;
+    @FXML
+    private Button btnSessaoFazendo;
+    @FXML
+    private Button btnSessaoFeito;
+    @FXML
+    private Button btnSessaoArquivado;
 
 
     @Override
@@ -247,9 +250,7 @@ public class TelaBoardController implements Initializable  {
         ArrayList<Tarefa> tars = tarDAO.buscar_Sessao(1); 
         carregaTarefas(tarFiltro(tars));
         ultimaSessao = 1;
-        
-        cbFiltroImportancia.setValue(null);
-        cbFiltroResponsavel.setValue(null);
+        //limparFiltros();
         //troca o nome do label da sessão
         labelSessao.setText("Fazer");
 
@@ -258,9 +259,7 @@ public class TelaBoardController implements Initializable  {
     public void btnSessaoFazendo(ActionEvent e){        
         carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(2)));
         ultimaSessao = 2;
-        cbFiltroImportancia.setValue(null);
-        cbFiltroResponsavel.setValue(null);
-        
+       // limparFiltros();
         //troca o nome do label da sessão
         labelSessao.setText("Fazendo");
     }
@@ -268,8 +267,7 @@ public class TelaBoardController implements Initializable  {
     public void btnSessaoFeito(ActionEvent e){
         carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(3)));
         ultimaSessao = 3;
-        cbFiltroImportancia.setValue(null);
-        cbFiltroResponsavel.setValue(null);
+       // limparFiltros();
         
         //troca o nome do label da sessão
         labelSessao.setText("Feito");
@@ -278,13 +276,12 @@ public class TelaBoardController implements Initializable  {
     public void btnSessaoArquivado(ActionEvent e){
         carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(4)));
         ultimaSessao = 4;
-        cbFiltroImportancia.setValue(null);
-        cbFiltroResponsavel.setValue(null);   
+       // limparFiltros(); 
         
         //troca o nome do label da sessão
         labelSessao.setText("Arquivado");
     }
-    //Modifica a lista de tarefas caso algum frito esteja ativiado
+    //Modifica a lista de tarefas caso algum filtro esteja ativiado
     public ArrayList<Tarefa> tarFiltro(ArrayList<Tarefa> tars){
         ArrayList<Tarefa> tarsFiltradas = new ArrayList();
         //Verificando filtro projeto 
@@ -435,7 +432,7 @@ public class TelaBoardController implements Initializable  {
 
             sLista.add("Baixa");
             sLista.add("Media");
-            sLista.add("Grande");
+            sLista.add("Alta");
             
         }catch(Exception e){
             e.printStackTrace();
@@ -512,10 +509,20 @@ public class TelaBoardController implements Initializable  {
         infoRepositorio.setText(p.getRepositorio());
         
     }
-    //Utilizado para onAction do 
+    //Utilizado para onAction do Projeto
     public void DadosProjeto(ActionEvent e){
-        exibirDadosProjeto(pDAO.buscar(buscarNomeProjeto(cbFiltroProjeto.getValue())));
+        Projeto p = pDAO.buscar(buscarNomeProjeto(cbFiltroProjeto.getValue()));
+        if(p!=null){    
+          exibirDadosProjeto(p);
+       
+        }
+
     }
+    //Usado pelo controlelr do Projeto para atualizar filtro Projeto na telaBoard
+    public void atualizarProjeto(){
+        cbFiltroProjeto.getItems().clear();
+        cbFiltroProjeto.getItems().addAll(getNomeProjeto());
+    }     
     public void limparPainel(){
         txtNomeTarefa.setText("");
         cbResponsavel.setValue("");
@@ -530,6 +537,11 @@ public class TelaBoardController implements Initializable  {
         dtDataIni.setValue(null);
         dtDataFim.setValue(null);
         txtareaDescricao.setText("");        
+    }
+    public void limparFiltros(){
+        cbFiltroImportancia.setValue(null);
+        cbFiltroResponsavel.setValue(null);
+        
     }
     public void visual(){
         btnExcluirTarefa.setDisable(true);   
@@ -547,6 +559,15 @@ public class TelaBoardController implements Initializable  {
         dtDataIni.setDisable(true);
         dtDataFim.setDisable(true);
  
+    }
+
+    @FXML
+    private void btnSair(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/br/com/organon/view/Login.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();  
     }
 }
 
