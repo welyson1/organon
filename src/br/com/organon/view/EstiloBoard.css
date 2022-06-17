@@ -3,83 +3,278 @@
     Author     : Welyson
 */
 
-.comboBox{
-    -fx-background-color: rgba(255,200,200,0.5);
-    -fx-background-radius: 5;    
+/*-----------------------------------dataPicker--------------------------------*/
+.calendar-grid {
+    -fx-background-color: #EE534F;
 }
 
-.fundo-filtro{
-    -fx-background-color: transparent;
-    -fx-border-radius: 10;
-    -fx-border-color: rgba(0,0,0,1)
+.date-picker > .text-field {
+    -fx-font-family: Consolas;
+    -fx-font-size: 12;
+    -fx-control-inner-background: #EEDBCC;
 }
+
+.date-picker-popup > .month-year-pane {
+    -fx-base: #2F3136;
+    -fx-mark-highlight-color: -fx-light-text-color ;
+}
+
+.date-picker:editable > .arrow-button > * {
+    -fx-opacity: 0; /* Set the node in the button to be visible */
+}
+
+.date-picker > .arrow-button {
+    -fx-background-image: url("img/icon-calendar.png"); /* Url of the icon */
+    -fx-background-size: 60% 60%; /* Can be `cover` or `100% 100%` ect. */
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center; /* Put the icon in the center */
+}
+/*--------------------------------- data Picker --------------------------------*/
+
+/*-------------------------- Entradas de dados ---------------------------------*/
+.inputs{
+    -fx-background-color: #EEDBCC;
+    -fx-background-radius: 5;
+    -fx-font-family: Consolas;
+    -fx-font-size: 12;    
+}
+/*-------------------------- Entradas de dados ---------------------------------*/
+
+/*----------------------------------- Text Area --------------------------------*/
+.text-area .content{
+    -fx-background-color: #EEDBCC;
+    -fx-background-radius: 5;
+}
+
+.text-area {
+    -fx-font-family: Consolas;
+    -fx-font-size: 12;
+    -fx-display-caret:true;
+}
+/*----------------------------------- Text Area --------------------------------*/
+
+/*----------------------------------- Projeto --------------------------------*/
+.tab-pane *.tab-header-area *.tab-header-background {
+  -fx-background-color:transparent;
+}
+
+.tab { 
+  -fx-font-size: 12;
+  -fx-background-color: #EE534F;
+}
+
+.tab-label {
+      -fx-text-fill: #ffffff;
+}
+
+.tab:hover {
+  -fx-background-color: #B04341;
+}
+
+.tab:selected {
+    -fx-background-color: #B04341;
+}
+/*----------------------------------- Projeto --------------------------------*/
 
 .fundo-comboBox{
-    -fx-background-color: rgba(255,255,255,1);
-    -fx-background-radius: 10; 
+    -fx-background-color: #EEDBCC;
+    -fx-background-radius: 5;
 }
 
+/*------------------------------------ Textos ---------------------------------*/
+.texto{    
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    /*-fx-text-fill: #919398;
+    -fx-font-family: consolas;
+    */    
+}
+/*------------------------------------ Textos ---------------------------------*/
+
+/*------------------------------------background---------------------------------*/
 .split-pane-divider2 {
   -fx-padding: 0 ;
+  -fx-background-color: #2F3136;
 }
 
 .split-pane-divider {
     -fx-padding: 0 1 0 1 ;
-    -fx-background-color: rgba(0,0,0,0.3) ;
-    -fx-background-insets: 0;}
+    -fx-background-color: rgba(238,219,204,1) ;
+    -fx-background-insets: 0;
+}
+/*------------------------------------background---------------------------------*/
 
+/*------------------------------------Scroll Tarefas-----------------------------*/
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: #212226;    
+}
+
+.box-tarefas{
+    -fx-background-color: transparent;
+}
+/*------------------------------------Scroll Tarefas-----------------------------*/
+
+/*----------------------------------- Objeto Tarefa -------------------------------*/
 .tarefa{
-    -fx-background-color: #e4f5b1;
+    -fx-background-color: #EE534F;
     -fx-background-radius: 5;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 5)
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 5);
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+}
+
+.tarefa > .label{    
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 2);
+    -fx-text-fill: #FFFFFF;
 }
 
 .tarefa:hover {
-    -fx-background-color: #a7dbab;
-    -fx-color: white;
+    -fx-background-color: #B04341;
+}
+/*----------------------------------- Objeto Tarefa ------------------------------*/
+
+/*----------------------------------- Botão sessoes -----------------------------*/
+.sessao {
+    -fx-background-color: #EE534F; 
+    -fx-border-radius: 5 0 0 5;
+    -fx-background-radius: 5 0 0 5;
+    -fx-font-size: 16px;
+    -fx-text-fill: #FFFFFF;
 }
 
-.organon-logo{
-   -fx-background-color: #a7dbab; 
-   -fx-background-radius: 20;
-   -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 5)
+.sessao:hover {
+  -fx-background-color: #EE534F;
 }
 
+.sessao:hover,
+.sessao:focused {
+  -fx-background-color: #212226;
+}
+/*----------------------------------- Botão sessoes -----------------------------*/
+
+/*----------------------------------- Botões -------------------------*/
 .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
+    -fx-background-color: #EE534F;
+    -fx-text-fill: #FFFFFF;
 }
 
-.button-sessao {
-    -fx-background-color: #a7dbab; 
-    -fx-background-radius: 0,5,5,10
+.button-mensagem:hover {
+    /*-fx-background-color: #B04341;*/
+    -fx-graphic: url("img/icon-mail.png");
 }
-.button-sessao:hover 
-{
-  -fx-background-color: yellow;
-} 
-.button-sessao:pressed
-{
-  -fx-background-color: brown;
+.button-projeto:hover {
+    /*-fx-background-color: #B04341;*/
+    -fx-graphic: url("img/icon-projeto.png");
+}
+.button-sair:hover {
+    /*-fx-background-color: #B04341;*/
+    -fx-graphic: url("img/icon-sair.png");
+}
+.button-excluir:hover {
+    /*-fx-background-color: #B04341;*/
+    -fx-graphic: url("img/icon-apagar.png");
+}
+.button-salvar:hover {
+    /*-fx-background-color: #B04341;*/
+    -fx-graphic: url("img/icon-save.png");
+}
+.button-criar:hover {
+    /*-fx-background-color: #B04341;*/
+    -fx-graphic: url("img/icon-criar.png");
+}
+/*----------------------------------- Botões --------------------------*/
+
+/*------------------------------ Logo Organon ------------------------------*/
+.logo-organon {
+    -fx-background-color: transparent;
+    -fx-graphic: url("img/logo.png");
 }
 
-.button1 {
-    -fx-background-color: #99ff99; 
-    -fx-border: 2px;
-    -fx-transition-duration: 10s;
+.logo-organon:hover {
+    -fx-graphic: url("img/logo-click.png");
+}
+/*------------------------------ Logo Organon ------------------------------*/
+
+/*------------------------------ Icone Avatar ------------------------------*/
+.icon-avatar{
+    -fx-background-color: transparent;
+    -fx-graphic: url("img/avatar.png");
 }
 
-.button1:hover {
-    -fx-background-color: #745b3a;
-    -fx-color: white;
+.icon-avatar:hover {
+    -fx-graphic: url("img/avatar-click.png");
 }
+/*------------------------------ Icone Avatar ------------------------------*/
+
+/*------------------------------ Buttons filtro ------------------------------*/
+.button-aplicar-filtro {
+    -fx-background-color: transparent;
+    -fx-graphic: url("img/icon-aplicar.png");
+}
+
+.button-aplicar-filtro:hover {
+    -fx-opacity: 0.5;
+    
+}
+
+.button-limpar-filtro {
+    -fx-background-color: transparent;
+    -fx-graphic: url("img/icon-limpar.png");
+}
+
+.button-limpar-filtro:hover {
+    -fx-opacity: 0.5;
+    
+}
+
+.button-add-tarefa {
+    -fx-background-color: transparent;
+    -fx-graphic: url("img/icon-add.png");
+}
+
+.button-add-tarefa:hover {
+    -fx-opacity: 0.5;
+    
+}
+/*------------------------------ Buttons filtro ------------------------------*/
+
+/*------------------------------ Texto destaque ------------------------------*/
+.label-destaque{    
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 2);
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: Consolas;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+/*------------------------------ Texto destaque ------------------------------*/

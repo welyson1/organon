@@ -6,33 +6,39 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.ObjetoTarefaController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.ObjetoTarefaController">
    <children>
-      <BorderPane fx:id="painelObjeto" onMouseClicked="#rtnTar" prefHeight="400.0" prefWidth="600.0" styleClass="tarefa" stylesheets="@EstiloBoard.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <BorderPane fx:id="painelObjeto" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50.0" onMouseClicked="#rtnTar" styleClass="tarefa" stylesheets="@EstiloBoard.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <opaqueInsets>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </opaqueInsets>
          <top>
-            <Label fx:id="lblNome" prefHeight="17.0" prefWidth="297.0" text="Nome tarefa" BorderPane.alignment="CENTER_LEFT">
+            <Label fx:id="lblNome" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="297.0" text="Nome tarefa" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
                <BorderPane.margin>
-                  <Insets left="5.0" top="1.0" />
+                  <Insets left="5.0" top="2.0" />
                </BorderPane.margin>
                <font>
                   <Font size="16.0" />
                </font></Label>
          </top>
          <right>
-            <Label fx:id="lblDataTermino" text="Data de termino" BorderPane.alignment="CENTER">
+            <Label fx:id="lblDataTermino" text="Data de termino" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="2.0" right="5.0" />
                </BorderPane.margin>
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
             </Label>
          </right>
          <left>
-            <Label fx:id="lblNomeResponsavel" text="Nome responsavel" BorderPane.alignment="CENTER">
+            <Label fx:id="lblNomeResponsavel" text="Nome responsavel" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="2.0" left="5.0" />
                </BorderPane.margin>
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
             </Label>
          </left>
       </BorderPane>

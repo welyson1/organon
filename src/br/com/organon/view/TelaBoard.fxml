@@ -11,140 +11,182 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="576.0" minWidth="1024.0" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.TelaBoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="576.0" minWidth="1024.0" prefHeight="576.0" prefWidth="1024.0" styleClass="background" stylesheets="@EstiloBoard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.TelaBoardController">
    <children>
-      <SplitPane fx:id="splitPane" dividerPositions="0.22407045009784735, 0.6007827788649707" prefHeight="576.0" prefWidth="1024.0" styleClass="split-pane-divider2" stylesheets="@EstiloBoard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane fx:id="splitPane" dividerPositions="0.220703125, 0.5810546875" prefHeight="576.0" prefWidth="960.0" styleClass="split-pane-divider2" stylesheets="@EstiloBoard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="602.0" prefWidth="234.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="70.0" prefWidth="208.0" styleClass="organon-logo" stylesheets="@EstiloBoard.css">
-                           <children>
-                              <Label prefHeight="51.0" prefWidth="156.0" text="ORGANON">
-                                 <font>
-                                    <Font name="Arial" size="30.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </HBox>
+                        <Button maxHeight="60.0" maxWidth="200.0" minHeight="43.0" minWidth="200.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="200.0" styleClass="logo-organon" stylesheets="@EstiloBoard.css" />
                         <HBox alignment="CENTER" prefHeight="67.0" prefWidth="228.0" spacing="5.0">
                            <children>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label text="Nome da pessoa" />
-                              <Button fx:id="btnSair" mnemonicParsing="false" onAction="#btnSair" styleClass="button1" stylesheets="@EstiloBoard.css" text="Sair" />
+                              <Button maxHeight="48.0" maxWidth="48.0" minHeight="48.0" minWidth="48.0" mnemonicParsing="false" styleClass="icon-avatar" stylesheets="@EstiloBoard.css" />
+                              <Label maxWidth="100.0" minWidth="100.0" styleClass="texto" stylesheets="@EstiloBoard.css" text="Nome da pessoa" wrapText="true" />
+                              <Button fx:id="btnSair" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#btnSair" styleClass="button-sair" stylesheets="@EstiloBoard.css" text="Sair">
+                                 <tooltip>
+                                    <Tooltip opacity="0.5" text="Volta para tela de login" />
+                                 </tooltip>
+                              </Button>
                            </children>
                         </HBox>
-                        <VBox alignment="CENTER_LEFT" maxHeight="100.0" maxWidth="250.0" prefHeight="80.0" prefWidth="100.0" styleClass="fundo-filtro" stylesheets="@EstiloBoard.css">
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0">
                            <children>
-                              <Label text="Opções">
-                                 <VBox.margin>
-                                    <Insets left="10.0" top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <Label styleClass="label-destaque" stylesheets="@EstiloBoard.css" text="Filtros" />
+                              <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                  <children>
-                                    <Button fx:id="btnProjeto" mnemonicParsing="false" onAction="#abrirCriadorProjeto" prefHeight="2.0" prefWidth="121.0" styleClass="button1" stylesheets="@EstiloBoard.css" text="Projeto" />
-                                    <Button fx:id="btnMensagem" mnemonicParsing="false" onAction="#abrirTelaMensagem" text="Mensagem" />
-                                 </children>
-                              </HBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="10.0" right="10.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox alignment="CENTER" maxWidth="250.0" prefHeight="180.0" prefWidth="228.0" spacing="1.0" styleClass="fundo-filtro" stylesheets="@EstiloBoard.css">
-                           <children>
-                              <HBox maxHeight="100.0" maxWidth="250.0" prefHeight="100.0" prefWidth="200.0">
-                                 <children>
-                                    <Label text="Filtros">
-                                       <HBox.margin>
-                                          <Insets top="10.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <VBox alignment="CENTER" maxWidth="180.0" minHeight="50.0" prefHeight="100.0" prefWidth="208.0" styleClass="fundo-comboBox" stylesheets="@EstiloBoard.css">
-                                 <children>
-                                    <Label opacity="0.79" text="Importância">
+                                    <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Importância">
                                        <font>
                                           <Font name="System Bold" size="10.0" />
                                        </font>
-                                    </Label>
-                                    <ComboBox fx:id="cbFiltroImportancia" prefWidth="150.0" styleClass="comboBox" stylesheets="@EstiloBoard.css">
                                        <VBox.margin>
-                                          <Insets left="1.0" right="1.0" />
+                                          <Insets />
+                                       </VBox.margin>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Label>
+                                    <ComboBox fx:id="cbFiltroImportancia" maxWidth="1.7976931348623157E308" styleClass="inputs" stylesheets="@EstiloBoard.css">
+                                       <VBox.margin>
+                                          <Insets />
                                        </VBox.margin>
                                     </ComboBox>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" maxWidth="180.0" minHeight="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="fundo-comboBox" stylesheets="@EstiloBoard.css">
+                              <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                  <children>
-                                    <Label opacity="0.79" text="Responsável">
+                                    <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Responsável">
                                        <font>
                                           <Font name="System Bold" size="10.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="cbFiltroResponsavel" prefWidth="150.0" styleClass="comboBox" stylesheets="@EstiloBoard.css" />
+                                    <ComboBox fx:id="cbFiltroResponsavel" maxWidth="1.7976931348623157E308" styleClass="inputs" stylesheets="@EstiloBoard.css" />
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" maxWidth="180.0" minHeight="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="fundo-comboBox" stylesheets="@EstiloBoard.css">
+                              <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                  <children>
-                                    <Label opacity="0.79" text="Projeto">
+                                    <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Projeto">
                                        <font>
                                           <Font name="System Bold" size="10.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="cbFiltroProjeto" prefWidth="150.0" styleClass="comboBox" stylesheets="@EstiloBoard.css" />
+                                    <ComboBox fx:id="cbFiltroProjeto" maxWidth="1.7976931348623157E308" styleClass="inputs" stylesheets="@EstiloBoard.css" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </VBox>
+                              <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                                 <children>
+                                    <Button fx:id="btnLimparFiltro" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" onAction="#btnLimparFiltros" styleClass="button-limpar-filtro" HBox.hgrow="NEVER">
+                                       <tooltip>
+                                          <Tooltip text="Limpa o filtragem feita" />
+                                       </tooltip>
+                                    </Button>
+                                    <Button fx:id="btnAplicarFIltro" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" onAction="#btnAplicarFiltro" styleClass="button-aplicar-filtro" HBox.hgrow="NEVER">
+                                       <tooltip>
+                                          <Tooltip text="Aplica os filtros selecionados" />
+                                       </tooltip>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <Label styleClass="label-destaque" stylesheets="@EstiloBoard.css" text="Opções" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Button fx:id="btnProjeto" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#abrirCriadorProjeto" styleClass="button-projeto" stylesheets="@EstiloBoard.css" text="Projeto">
+                                       <tooltip>
+                                          <Tooltip text="Abre a tela de projeto" />
+                                       </tooltip>
+                                    </Button>
+                                    <Button fx:id="btnMensagem" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#abrirTelaMensagem" styleClass="button-mensagem" text="Mensagem">
+                                       <tooltip>
+                                          <Tooltip text="Abre a tela de mensagem" />
+                                       </tooltip>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </VBox>
-                        <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="198.0" spacing="10.0">
+                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="140.0" prefWidth="228.0" spacing="5.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="219.0" spacing="5.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                                  <children>
-                                    <Label text="Sessões" />
+                                    <Label maxHeight="1.7976931348623157E308" styleClass="label-destaque" stylesheets="@EstiloBoard.css" text="Sessões">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnAddTarefa" styleClass="button-add-tarefa">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
                                  </children>
                               </HBox>
-                              <Button fx:id="btnSessaoFazer" mnemonicParsing="false" onAction="#btnSessaoFazer" prefHeight="100.0" prefWidth="100.0" styleClass="button-sessao" stylesheets="@EstiloBoard.css" text="Fazer" />
-                              <Button fx:id="btnSessaoFazendo" mnemonicParsing="false" onAction="#btnSessaoFazendo" prefHeight="100.0" prefWidth="100.0" styleClass="button-sessao" stylesheets="@EstiloBoard.css" text="Fazendo" />
-                              <Button fx:id="btnSessaoFeito" mnemonicParsing="false" onAction="#btnSessaoFeito" prefHeight="100.0" prefWidth="100.0" styleClass="button-sessao" stylesheets="@EstiloBoard.css" text="Feito" />
-                              <Button fx:id="btnSessaoArquivado" mnemonicParsing="false" onAction="#btnSessaoArquivado" prefHeight="100.0" prefWidth="100.0" styleClass="button-sessao" stylesheets="@EstiloBoard.css" text="Arquivado" />
+                              <VBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="105.0" spacing="5.0">
+                                 <children>
+                                    <Button fx:id="btnSessaoFazer" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="35.0" mnemonicParsing="false" onAction="#btnSessaoFazer" prefWidth="66.0" snapToPixel="false" styleClass="sessao" stylesheets="@EstiloBoard.css" text="Fazer" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="10.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnSessaoFazendo" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="35.0" mnemonicParsing="false" onAction="#btnSessaoFazendo" snapToPixel="false" styleClass="sessao" stylesheets="@EstiloBoard.css" text="Fazendo" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="10.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnSessaoFeito" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="35.0" mnemonicParsing="false" onAction="#btnSessaoFeito" snapToPixel="false" styleClass="sessao" stylesheets="@EstiloBoard.css" text="Feito" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="10.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnSessaoArquivado" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="35.0" mnemonicParsing="false" onAction="#btnSessaoArquivado" snapToPixel="false" styleClass="sessao" stylesheets="@EstiloBoard.css" text="Arquivado" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="10.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
                            </children>
-                           <padding>
-                              <Insets bottom="10.0" />
-                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" top="5.0" />
+                           </VBox.margin>
                         </VBox>
                      </children>
                   </VBox>
                </children></AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="574.0" prefWidth="279.0">
+            <AnchorPane minHeight="574.0" minWidth="0.0" prefHeight="574.0" prefWidth="279.0" styleClass="box-tarefas" stylesheets="@EstiloBoard.css">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="357.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="box-tarefas" stylesheets="@EstiloBoard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label fx:id="labelSessao" text="Sessão">
+                        <Label fx:id="labelSessao" styleClass="texto" stylesheets="@EstiloBoard.css" text="Sessão">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -152,10 +194,13 @@
                               <Insets left="10.0" />
                            </VBox.margin>
                         </Label>
-                        <ScrollPane prefHeight="574.0" prefWidth="382.0" styleClass="split-pane-divider2" stylesheets="@EstiloBoard.css">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@EstiloBoard.css">
                            <content>
-                              <VBox fx:id="painelTarefa" alignment="TOP_CENTER" prefHeight="537.0" prefWidth="368.0" stylesheets="@EstiloBoard.css" />
+                              <VBox fx:id="painelTarefa" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                            </content>
+                           <VBox.margin>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </VBox.margin>
                         </ScrollPane>
                      </children>
                   </VBox>
@@ -163,110 +208,115 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox alignment="TOP_CENTER" layoutX="24.0" layoutY="48.0" prefHeight="484.0" prefWidth="640.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <VBox alignment="TOP_CENTER" layoutX="24.0" layoutY="48.0" prefHeight="484.0" prefWidth="640.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                            <children>
+                              <Label styleClass="label-destaque" stylesheets="@EstiloBoard.css" text="Informações da tarefa">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
                               <VBox>
                                  <children>
-                                    <Label opacity="0.79" text="Nome da tarefa">
+                                    <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Nome da tarefa">
                                        <font>
                                           <Font name="System Bold" size="10.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="txtNomeTarefa" promptText="Escreva aqui" styleClass="comboBox" stylesheets="@EstiloBoard.css" />
+                                    <TextField fx:id="txtNomeTarefa" maxWidth="1.7976931348623157E308" promptText="Escreva aqui" styleClass="inputs" stylesheets="@EstiloBoard.css" />
                                  </children>
                               </VBox>
                               <VBox>
                                  <children>
-                                    <Label opacity="0.79" text="Responsável">
+                                    <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Responsável">
                                        <font>
                                           <Font name="System Bold" size="10.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="cbResponsavel" prefHeight="25.0" prefWidth="414.0" styleClass="comboBox" stylesheets="@EstiloBoard.css" />
+                                    <ComboBox fx:id="cbResponsavel" maxWidth="1.7976931348623157E308" styleClass="inputs" stylesheets="@EstiloBoard.css" />
                                  </children>
                               </VBox>
                               <HBox alignment="CENTER" spacing="10.0">
                                  <children>
-                                    <VBox>
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                        <children>
-                                          <Label opacity="0.79" text="Sessão">
+                                          <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Sessão">
                                              <font>
                                                 <Font name="System Bold" size="10.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cbSessao" prefHeight="25.0" prefWidth="200.0" promptText="Sessão" styleClass="comboBox" stylesheets="@EstiloBoard.css" />
+                                          <ComboBox fx:id="cbSessao" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="300.0" styleClass="inputs" stylesheets="@EstiloBoard.css" />
                                        </children>
                                     </VBox>
-                                    <VBox>
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                        <children>
-                                          <Label opacity="0.79" text="Importância">
+                                          <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Importância">
                                              <font>
                                                 <Font name="System Bold" size="10.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cbImportancia" prefHeight="25.0" prefWidth="200.0" promptText="Importancia" styleClass="comboBox" stylesheets="@EstiloBoard.css" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                              <VBox>
-                                 <children>
-                                    <Label opacity="0.79" text="Projeto">
-                                       <font>
-                                          <Font name="System Bold" size="10.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="cbProjeto" prefHeight="25.0" prefWidth="414.0" promptText="Projeto" styleClass="comboBox" stylesheets="@EstiloBoard.css" />
-                                 </children>
-                              </VBox>
-                              <HBox alignment="CENTER" spacing="30.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label opacity="0.79" text="Data de inicio">
-                                             <font>
-                                                <Font name="System Bold" size="10.0" />
-                                             </font>
-                                          </Label>
-                                          <DatePicker fx:id="dtDataIni" styleClass="comboBox" stylesheets="@EstiloBoard.css" />
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label opacity="0.79" text="Data de termino">
-                                             <font>
-                                                <Font name="System Bold" size="10.0" />
-                                             </font>
-                                          </Label>
-                                          <DatePicker fx:id="dtDataFim" styleClass="comboBox" stylesheets="@EstiloBoard.css" />
+                                          <ComboBox fx:id="cbImportancia" maxWidth="1.7976931348623157E308" prefWidth="300.0" styleClass="inputs" stylesheets="@EstiloBoard.css" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
                               <VBox>
                                  <children>
-                                    <Label opacity="0.79" text="Descrição">
+                                    <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Projeto">
                                        <font>
                                           <Font name="System Bold" size="10.0" />
                                        </font>
                                     </Label>
-                                    <TextArea fx:id="txtareaDescricao" minHeight="60.0" prefHeight="113.0" prefWidth="414.0" promptText="Escreva aqui" styleClass="comboBox" stylesheets="@EstiloBoard.css" />
+                                    <ComboBox fx:id="cbProjeto" maxWidth="1.7976931348623157E308" styleClass="inputs" stylesheets="@EstiloBoard.css" />
                                  </children>
                               </VBox>
+                              <HBox alignment="CENTER" prefWidth="408.0" spacing="30.0">
+                                 <children>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Data de inicio">
+                                             <font>
+                                                <Font name="System Bold" size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker fx:id="dtDataIni" minWidth="188.0" styleClass="inputs" stylesheets="@EstiloBoard.css" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Data de termino">
+                                             <font>
+                                                <Font name="System Bold" size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker fx:id="dtDataFim" minWidth="190.0" styleClass="inputs" stylesheets="@EstiloBoard.css" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <VBox maxWidth="1.7976931348623157E308">
+                                 <children>
+                                    <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Descrição">
+                                       <font>
+                                          <Font name="System Bold" size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea fx:id="txtareaDescricao" maxWidth="1.7976931348623157E308" minHeight="70.0" prefHeight="70.0" prefWidth="500.0" promptText="Escreva aqui" styleClass="inputs" stylesheets="@EstiloBoard.css" wrapText="true" />
+                                 </children>
+                              </VBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="388.0" spacing="10.0">
+                                 <children>
+                                    <Button fx:id="btnExcluirTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#excluir" styleClass="button-excluir" text="Excluir" />
+                                    <Button fx:id="btnEditarTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#editar" styleClass="button-salvar" text="Salvar" />
+                                    <Button fx:id="btnSalvarTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#criar" styleClass="button-criar" stylesheets="@EstiloBoard.css" text="Criar" />
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
-                        <HBox prefHeight="29.0" prefWidth="388.0" spacing="10.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Button fx:id="btnExcluirTarefa" mnemonicParsing="false" onAction="#excluir" text="Excluir" />
-                              <Button fx:id="btnEditarTarefa" mnemonicParsing="false" onAction="#editar" text="Salvar" />
-                              <Button fx:id="btnSalvarTarefa" mnemonicParsing="false" onAction="#criar" styleClass="comboBox" stylesheets="@EstiloBoard.css" text="Criar" />
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="fundo-filtro" stylesheets="@EstiloBoard.css">
-                           <children>
-                              <Label text="Informações do projeto">
+                              <Label styleClass="label-destaque" stylesheets="@EstiloBoard.css" text="Projeto">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -274,13 +324,13 @@
                                     <Insets left="10.0" top="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <TabPane minHeight="180.0" prefHeight="80.0" prefWidth="388.0" tabClosingPolicy="UNAVAILABLE">
+                              <TabPane minHeight="180.0" prefHeight="80.0" prefWidth="388.0" stylesheets="@EstiloBoard.css" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                   <Tab text="Nome">
                                     <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fundo-comboBox" stylesheets="@EstiloBoard.css">
                                              <children>
-                                                <Label fx:id="infoNome">
+                                                <Label fx:id="infoNome" alignment="TOP_LEFT" text="Selecione uma tarefa para ver as informações do projeto vinculado à ela..." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                                    <font>
                                                       <Font size="15.0" />
                                                    </font>
@@ -291,9 +341,9 @@
                                   </Tab>
                                   <Tab text="Linguagem">
                                     <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fundo-comboBox">
                                              <children>
-                                                <Label fx:id="infoLinguagem">
+                                                <Label fx:id="infoLinguagem" alignment="TOP_LEFT" text="Selecione uma tarefa para ver as informações do projeto vinculado à ela..." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                                    <font>
                                                       <Font size="15.0" />
                                                    </font>
@@ -304,9 +354,9 @@
                                   </Tab>
                                     <Tab text="Descrição">
                                        <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fundo-comboBox">
                                              <children>
-                                                <Label fx:id="infoDescricao">
+                                                <Label fx:id="infoDescricao" alignment="TOP_LEFT" text="Selecione uma tarefa para ver as informações do projeto vinculado à ela..." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                                    <font>
                                                       <Font size="15.0" />
                                                    </font>
@@ -317,9 +367,9 @@
                                     </Tab>
                                     <Tab text="Modelo de processo">
                                        <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fundo-comboBox">
                                              <children>
-                                                <Label fx:id="infoMdlProcess">
+                                                <Label fx:id="infoMdlProcess" alignment="TOP_LEFT" text="Selecione uma tarefa para ver as informações do projeto vinculado à ela..." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                                    <font>
                                                       <Font size="15.0" />
                                                    </font>
@@ -330,9 +380,9 @@
                                     </Tab>
                                     <Tab text="Repositorio">
                                        <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fundo-comboBox">
                                              <children>
-                                                <Label fx:id="infoRepositorio">
+                                                <Label fx:id="infoRepositorio" alignment="TOP_LEFT" text="Selecione uma tarefa para ver as informações do projeto vinculado à ela..." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                                    <font>
                                                       <Font size="15.0" />
                                                    </font>

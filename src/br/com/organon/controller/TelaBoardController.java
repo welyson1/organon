@@ -102,6 +102,10 @@ public class TelaBoardController implements Initializable  {
     private Button btnSessaoFeito;
     @FXML
     private Button btnSessaoArquivado;
+    @FXML
+    private Button btnLimparFiltro;
+    @FXML
+    private Button btnAplicarFIltro;
 
 
     @Override
@@ -117,7 +121,7 @@ public class TelaBoardController implements Initializable  {
         cbFiltroProjeto.getItems().addAll(getNomeProjeto());
         
         //
-        cbFiltroProjeto.setOnAction(this::DadosProjeto);       
+        cbFiltroProjeto.setOnAction(this::DadosProjeto);        
         //Carrega tarefas da sessão fazer
         carregaTarefas(tarDAO.buscar_Sessao(1));               
     } 
@@ -514,7 +518,6 @@ public class TelaBoardController implements Initializable  {
         Projeto p = pDAO.buscar(buscarNomeProjeto(cbFiltroProjeto.getValue()));
         if(p!=null){    
           exibirDadosProjeto(p);
-       
         }
 
     }
@@ -538,11 +541,14 @@ public class TelaBoardController implements Initializable  {
         dtDataFim.setValue(null);
         txtareaDescricao.setText("");        
     }
-    public void limparFiltros(){
+    @FXML
+    public void btnLimparFiltros(ActionEvent e){
         cbFiltroImportancia.setValue(null);
         cbFiltroResponsavel.setValue(null);
+        cbFiltroProjeto.setValue(null);
         
     }
+    
     public void visual(){
         btnExcluirTarefa.setDisable(true);   
         btnSalvarTarefa.setDisable(true);
@@ -568,6 +574,15 @@ public class TelaBoardController implements Initializable  {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();  
+    }
+
+    @FXML
+    private void btnAplicarFiltro(ActionEvent event) {
+        carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(ultimaSessao)));
+    }
+
+    @FXML
+    private void btnAddTarefa(ActionEvent event) {
     }
 }
 
