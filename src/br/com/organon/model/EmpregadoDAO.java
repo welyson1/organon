@@ -178,7 +178,7 @@ public class EmpregadoDAO {
         }
         return null;
     }
-    public <T extends Empregado> int Login(String email, String senha){
+    public <T extends Empregado> Desenvolvedor Login(String email, String senha){
         try{
             String sql = "Select * from Empregado where email = ? and senha = ?";
             conn = Conexao.conexao();
@@ -187,7 +187,12 @@ public class EmpregadoDAO {
             pst.setString(2,senha);
             rst = pst.executeQuery();
             if(rst.next()){
-                return rst.getInt("tipo");       
+                Desenvolvedor dev = new Desenvolvedor();
+                dev.setNome(rst.getString("nome"));
+                dev.setEmail(rst.getString("email"));
+                dev.setSenha(rst.getString("senha"));
+                dev.setTipo(rst.getInt("tipo"));
+                return dev;      
             }
         }catch(Exception e ){
             System.out.println(e);
@@ -203,7 +208,7 @@ public class EmpregadoDAO {
                 System.out.println("Erro Empregado " + e);
             }
         }
-        return 2;
+        return null;
     }
     public <T extends Empregado> ArrayList<Desenvolvedor> buscarTodos(){
         try{

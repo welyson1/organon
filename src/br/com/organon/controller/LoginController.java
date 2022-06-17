@@ -1,6 +1,7 @@
 package br.com.organon.controller;
 
 
+import br.com.organon.model.Desenvolvedor;
 import br.com.organon.model.EmpregadoDAO;
 import java.io.IOException;
 import java.net.URL;
@@ -26,9 +27,11 @@ public class LoginController implements Initializable {
     private Scene scene;
     private Parent root;
     
+    public static Desenvolvedor dev;
     public static String email;
     public static String senha;
-    public static int tipo;
+    
+    EmpregadoDAO empDAO = new EmpregadoDAO();
     
     @FXML
     private Label txtLoginMessage;
@@ -66,12 +69,11 @@ public class LoginController implements Initializable {
     
     public int validateLogin(){
         try{
-            EmpregadoDAO empDAO = new EmpregadoDAO();
             email =  txtUser.getText();
             senha = txtSenha.getText();
-            int validacao = empDAO.Login(email, senha);
+            dev = empDAO.Login(email, senha);
             
-            if(validacao == 2){
+            if(dev==null){
                 txtLoginMessage.setText("Credenciais inválidas, por favor tente novamente!");
                 return 0;
                 

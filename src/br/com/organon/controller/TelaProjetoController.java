@@ -217,7 +217,7 @@ public class TelaProjetoController implements Initializable {
         choiseBoxEscolherProjeto.getItems().clear();
         choiseBoxEscolherProjeto.getItems().addAll(getNomeProjetos());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaBoard.fxml"));
-        loader.setController(MainFX.loader.getController());
+        loader.setController(LoginController.loader.getController());
         TelaBoardController controller = loader.getController(); 
         //Exibi dados da tarefa ao clicar nela
         controller.atualizarProjeto();

@@ -29,7 +29,7 @@
                         <HBox alignment="CENTER" prefHeight="67.0" prefWidth="228.0" spacing="5.0">
                            <children>
                               <Button maxHeight="48.0" maxWidth="48.0" minHeight="48.0" minWidth="48.0" mnemonicParsing="false" styleClass="icon-avatar" stylesheets="@EstiloBoard.css" />
-                              <Label maxWidth="100.0" minWidth="100.0" styleClass="texto" stylesheets="@EstiloBoard.css" text="Nome da pessoa" wrapText="true" />
+                              <Label fx:id="lblNomeEmpregado" maxWidth="100.0" minWidth="100.0" styleClass="texto" stylesheets="@EstiloBoard.css" text="Nome da pessoa" wrapText="true" />
                               <Button fx:id="btnSair" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#btnSair" styleClass="button-sair" stylesheets="@EstiloBoard.css" text="Sair">
                                  <tooltip>
                                     <Tooltip opacity="0.5" text="Volta para tela de login" />

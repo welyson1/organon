@@ -106,6 +106,8 @@ public class TelaBoardController implements Initializable  {
     private Button btnLimparFiltro;
     @FXML
     private Button btnAplicarFIltro;
+    @FXML
+    private Label lblNomeEmpregado;
 
 
     @Override
@@ -119,11 +121,12 @@ public class TelaBoardController implements Initializable  {
         cbFiltroImportancia.getItems().addAll(getNomeImportancia());
         cbFiltroResponsavel.getItems().addAll(getNomeResponsavel());
         cbFiltroProjeto.getItems().addAll(getNomeProjeto());
-        
-        //
+        //OnAction
         cbFiltroProjeto.setOnAction(this::DadosProjeto);        
         //Carrega tarefas da sessão fazer
-        carregaTarefas(tarDAO.buscar_Sessao(1));               
+        carregaTarefas(tarDAO.buscar_Sessao(1));       
+        //Define o visual caso seja dev ou gestor
+        visual();
     } 
     //Ao clicar no botão salvar a tarefa é criada no banco
     @FXML
@@ -525,6 +528,9 @@ public class TelaBoardController implements Initializable  {
     public void atualizarProjeto(){
         cbFiltroProjeto.getItems().clear();
         cbFiltroProjeto.getItems().addAll(getNomeProjeto());
+        
+        cbProjeto.getItems().clear();
+        cbProjeto.getItems().addAll(getNomeProjeto());
     }     
     public void limparPainel(){
         txtNomeTarefa.setText("");
@@ -550,20 +556,24 @@ public class TelaBoardController implements Initializable  {
     }
     
     public void visual(){
-        btnExcluirTarefa.setDisable(true);   
-        btnSalvarTarefa.setDisable(true);
+        lblNomeEmpregado.setText( LoginController.dev.getNome());
+       
+        if(LoginController.dev.getTipo() == 0){
+            btnExcluirTarefa.setDisable(true);   
+            btnSalvarTarefa.setDisable(true);
 
-        btnMensagem.setDisable(true);
-        btnProjeto.setDisable(true);
-        
-        txtNomeTarefa.setEditable(false);
-        txtareaDescricao.setEditable(false);
-        cbProjeto.setDisable(true);
-        cbResponsavel.setDisable(true);
-        cbSessao.setEditable(true);
-        cbImportancia.setDisable(true);
-        dtDataIni.setDisable(true);
-        dtDataFim.setDisable(true);
+            btnMensagem.setDisable(true);
+            btnProjeto.setDisable(true);
+
+            txtNomeTarefa.setEditable(false);
+            txtareaDescricao.setEditable(false);
+            cbProjeto.setDisable(true);
+            cbResponsavel.setDisable(true);
+            cbSessao.setEditable(true);
+            cbImportancia.setDisable(true);
+            dtDataIni.setDisable(true);
+            dtDataFim.setDisable(true);
+        }
  
     }
 

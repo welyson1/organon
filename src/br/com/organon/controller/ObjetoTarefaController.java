@@ -48,7 +48,7 @@ public class ObjetoTarefaController implements Initializable {
         TarefaDAO tarDAO = new TarefaDAO();
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaBoard.fxml"));
-        loader.setController(MainFX.loader.getController());
+        loader.setController(LoginController.loader.getController());
         TelaBoardController controller = loader.getController();
         
         Tarefa tar = tarDAO.buscar(id);
