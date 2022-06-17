@@ -15,21 +15,11 @@
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="350.0" styleClass="linear-grad" stylesheets="@csstrick.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="134.0" fitWidth="125.0" layoutX="113.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="112.0" fitWidth="247.0" layoutX="52.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/icons8_task_100px_2.png" />
+                  <Image url="@img/logo-click.png" />
                </image>
             </ImageView>
-            <Text fill="#eae4e4" layoutX="126.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Organon">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fill="#eae4e4" layoutX="95.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sua equipe em um só lugar!">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Text>
          </children>
       </AnchorPane>
    </left>
@@ -39,21 +29,21 @@
             <PasswordField fx:id="txtSenha" layoutX="71.0" layoutY="213.0" prefHeight="35.0" prefWidth="245.0" promptText="Senha" />
             <TextField fx:id="txtUser" layoutX="71.0" layoutY="152.0" prefHeight="35.0" prefWidth="245.0" promptText="Email" />
             <Button fx:id="btnLogin" layoutX="194.0" layoutY="274.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="35.0" prefWidth="120.0" styleClass="button1" stylesheets="@csstrick.css" text="Entrar" />
-            <Text fill="#635274" layoutX="39.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+            <Text fill="#ee534f" layoutX="39.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
             <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="3.0" layoutY="362.0" prefHeight="18.0" prefWidth="342.0" textAlignment="JUSTIFY" textFill="RED" />
             <Label fx:id="txtLoginMessage" alignment="CENTER" layoutX="1.0" layoutY="334.0" prefHeight="18.0" prefWidth="346.0" textFill="RED" />
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="32.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="39.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/icons8_mail_48px_1.png" />
+                  <Image url="@img/icons8_mail_64px_1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="32.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="39.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/icons8_password_1_64px_1.png" />
+                  <Image url="@img/icons8_password_60px_1.png" />
                </image>
             </ImageView>
          </children>

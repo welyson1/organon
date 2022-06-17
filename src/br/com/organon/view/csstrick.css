@@ -7,7 +7,7 @@
 
 .button1
 {
-    -fx-background-color: #7bb0a8;
+    -fx-background-color: #EE534F;
     -fx-text-fill: #ffffff;
 }
 
@@ -28,14 +28,14 @@
 
 .button2
 {
-    -fx-background-color: #3fd97f;
+    -fx-background-color: #EE534F;
     -fx-background-radius: 10;
     -fx-prompt-text-fill:#2262C6;
 }
 
 .button2:hover
 {
-    -fx-background-color: #a7dbab;
+    -fx-background-color: #EE534F;
     -fx-background-radius: 10;
 }
 
@@ -135,22 +135,22 @@
 
 .combo-box
 {
-    -fx-background-color :  #635274;
-    -fx-border-color :  #ffffff;
+    -fx-background-color :  #EEDBCC;
+    -fx-border-color :  #EEDBCC;
     -fx-border-radius : 10;
 }
 
 .combo-box:hover
 {
-    -fx-background-color : #ffffff;
-    -fx-border-color :  #635274;
-    -fx-border-radius : 30;
+    -fx-background-color : #EEDBCC;
+    -fx-border-color :  #EEDBCC;
+    -fx-border-radius : 10;
 }
 
 .combo-box:pressed
 {
-    -fx-background-color : #ffffff;
-    -fx-border-color :  #635274;
+    -fx-background-color : #EEDBCC;
+    -fx-border-color :  #EEDBCC;
     -fx-border-radius : 10;
 }
 
@@ -224,7 +224,7 @@
 
 .linear-grad
 {
-    -fx-background-color: linear-gradient(to bottom left, #635274, #7bb0a8);
+    -fx-background-color: linear-gradient(to bottom left, #EE534F, #2F3156);
 }
 
 .text-area .scroll-pane {

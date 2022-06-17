@@ -36,7 +36,7 @@
             </VBox>
             <VBox>
                <children>
-                  <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Link do repositorio" />
+                  <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Link do repositório" />
                   <TextField fx:id="txtLinkRepositorio" promptText="Escreva aqui..." styleClass="inputs" stylesheets="@EstiloBoard.css" />
                </children>
             </VBox>

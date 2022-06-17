@@ -14,37 +14,37 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.organon.controller.TelaMensagemController">
    <top>
-      <AnchorPane prefHeight="21.0" prefWidth="600.0" style="-fx-background-color: #7bb0a8;" stylesheets="@csstrick.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="21.0" prefWidth="600.0" style="-fx-background-color: #EE534F;" stylesheets="@csstrick.css" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" layoutX="11.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova mensagem">
+            <Text fill="#2f3136" layoutX="9.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova mensagem">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="128.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="27.0" fitWidth="38.0" layoutX="128.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../AppData/Local/Temp/icons8_group_message_96px_2.png" />
+                  <Image url="@img/icons8_group_message_100px_1.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
    </top>
    <center>
-      <AnchorPane prefHeight="354.0" prefWidth="600.0" style="-fx-background-color: #536c8d;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="354.0" prefWidth="600.0" style="-fx-background-color: #2F3136;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="14.0" layoutY="22.0" text="Título:" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAssunto" layoutX="54.0" layoutY="18.0" prefHeight="26.0" prefWidth="531.0" stylesheets="@csstrick.css" />
+            <TextField fx:id="txtAssunto" layoutX="54.0" layoutY="18.0" prefHeight="26.0" prefWidth="531.0" style="-fx-background-color: #EEDBCC;" stylesheets="@csstrick.css" />
             <Label layoutX="14.0" layoutY="54.0" text="Mensagem:" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextArea fx:id="txtConteudo" layoutX="14.0" layoutY="74.0" prefHeight="195.0" prefWidth="571.0" styleClass="text-area" stylesheets="@csstrick.css" />
-            <ComboBox fx:id="cbDest" editable="true" layoutX="14.0" layoutY="280.0" prefHeight="26.0" prefWidth="487.0" promptText="Selecione o projeto dos desenvolvedores que deseja notificar..." styleClass="combo-box" />
+            <TextArea fx:id="txtConteudo" layoutX="14.0" layoutY="74.0" prefHeight="195.0" prefWidth="571.0" style="-fx-background-color: #EEDBCC;" styleClass="text-area" stylesheets="@csstrick.css" />
+            <ComboBox fx:id="cbDest" layoutX="14.0" layoutY="280.0" prefHeight="26.0" prefWidth="487.0" promptText="Selecione o projeto dos desenvolvedores que deseja notificar..." styleClass="combo-box" stylesheets="@csstrick.css" />
             <Button fx:id="btnEnviar" layoutX="524.0" layoutY="279.0" mnemonicParsing="false" onAction="#btnEnviar" styleClass="button2" stylesheets="@csstrick.css" text="Enviar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
