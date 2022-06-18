@@ -29,6 +29,11 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center; /* Put the icon in the center */
 }
+
+.date-picker:disabled, .date-picker:disabled > * {
+  -fx-opacity: 1.0 ;
+  -fx-font-fill: #EEDBCC;
+}
 /*--------------------------------- data Picker --------------------------------*/
 
 /*-------------------------- Entradas de dados ---------------------------------*/
@@ -37,6 +42,16 @@
     -fx-background-radius: 5;
     -fx-font-family: Consolas;
     -fx-font-size: 12;    
+}
+
+.inputs:disabled, .inputs:disabled > * {
+  -fx-opacity: 1.0 ;
+  -fx-font-fill: #919398;
+}
+
+.combo-box .list-cell{
+  -fx-opacity: 1.0 ;
+  -fx-font-fill: #919398; 
 }
 /*-------------------------- Entradas de dados ---------------------------------*/
 
@@ -50,6 +65,11 @@
     -fx-font-family: Consolas;
     -fx-font-size: 12;
     -fx-display-caret:true;
+}
+
+.text-area:disabled, .text-area:disabled > * {
+  -fx-opacity: 1.0 ;
+  -fx-font-fill: #EEDBCC;
 }
 /*----------------------------------- Text Area --------------------------------*/
 
@@ -213,6 +233,11 @@
     /*-fx-background-color: #B04341;*/
     -fx-graphic: url("img/icon-criar.png");
 }
+
+.button:disabled, .button:disabled > * {
+  -fx-background-opacity: 0.8 ;
+}
+
 /*----------------------------------- Botões --------------------------*/
 
 /*------------------------------ Logo Organon ------------------------------*/
@@ -266,6 +291,16 @@
 .button-add-tarefa:hover {
     -fx-opacity: 0.5;
     
+}
+
+.button-mini-calendar {
+    -fx-background-color: transparent;
+    -fx-graphic: url("img/mini-icon-calendar.png");
+}
+
+.button-mini-avatar {
+    -fx-background-color: transparent;
+    -fx-graphic: url("img/mini-icon-avatar.png");
 }
 /*------------------------------ Buttons filtro ------------------------------*/
 

@@ -564,15 +564,14 @@ public class TelaBoardController implements Initializable  {
 
             btnMensagem.setDisable(true);
             btnProjeto.setDisable(true);
-
-            txtNomeTarefa.setEditable(false);
-            txtareaDescricao.setEditable(false);
+            
+            txtNomeTarefa.setDisable(true);
+            txtareaDescricao.setDisable(true);
             cbProjeto.setDisable(true);
             cbResponsavel.setDisable(true);
-            cbSessao.setEditable(true);
             cbImportancia.setDisable(true);
             dtDataIni.setDisable(true);
-            dtDataFim.setDisable(true);
+            dtDataFim.setDisable(true);         
         }
  
     }

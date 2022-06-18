@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
@@ -29,6 +31,12 @@
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
+               <graphic>
+                  <Button mnemonicParsing="false" styleClass="button-mini-calendar" stylesheets="@EstiloBoard.css">
+                     <tooltip>
+                        <Tooltip text="Data de termino da tarefa" />
+                     </tooltip></Button>
+               </graphic>
             </Label>
          </right>
          <left>
@@ -39,6 +47,12 @@
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
+               <graphic>
+                  <Button mnemonicParsing="false" styleClass="button-mini-avatar" stylesheets="@EstiloBoard.css">
+                     <tooltip>
+                        <Tooltip text="Responsavel atribuido à tarefa" />
+                     </tooltip></Button>
+               </graphic>
             </Label>
          </left>
       </BorderPane>
