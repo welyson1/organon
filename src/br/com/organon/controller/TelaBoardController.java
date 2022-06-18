@@ -211,18 +211,26 @@ public class TelaBoardController implements Initializable  {
     @FXML
     public void excluir(ActionEvent e){
         try{
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setHeaderText("Deseja realmente excluir a Tarefa?");
-            alert.setTitle("Excluir Tarefa.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() &&  result.get() == ButtonType.OK){
-                Tarefa tar = tarDAO.buscar(tarefa.getId());
-                sessaoDAO.excTar(tar.getSessao(), tar);
-                tarDAO.deleta(tarefa);
+            if(!(txtNomeTarefa.getText().equals(""))){
+               
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setHeaderText("Deseja realmente excluir a Tarefa?");
+                alert.setTitle("Excluir Tarefa.");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() &&  result.get() == ButtonType.OK){
+                    Tarefa tar = tarDAO.buscar(tarefa.getId());
+                    sessaoDAO.excTar(tar.getSessao(), tar);
+                    tarDAO.deleta(tarefa);
+                }
+                //Atualiza última sessão selecionada
+                carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(ultimaSessao)));
+                limparPainel();                
+            }else{
+                    //Usado para acusar erro caso nenhuma tarefa esteja selecionada
+                    Tarefa tar = tarDAO.buscar(tarefa.getId());
+                    sessaoDAO.excTar(tar.getSessao(), tar);
+                    tarDAO.deleta(tarefa);
             }
-            //Atualiza última sessão selecionada
-            carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(ultimaSessao)));
-            limparPainel();
         }catch(Exception error){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setHeaderText("Ocorreu um erro ao excluir a tarefa!");

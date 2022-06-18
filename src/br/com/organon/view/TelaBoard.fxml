@@ -307,7 +307,7 @@
                               </VBox>
                               <HBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="388.0" spacing="10.0">
                                  <children>
-                                    <Button fx:id="btnExcluirTarefa" disable="true" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#excluir" styleClass="button-excluir" text="Excluir" />
+                                    <Button fx:id="btnExcluirTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#excluir" styleClass="button-excluir" text="Excluir" />
                                     <Button fx:id="btnEditarTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#editar" styleClass="button-salvar" text="Salvar" />
                                     <Button fx:id="btnSalvarTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#criar" styleClass="button-criar" stylesheets="@EstiloBoard.css" text="Criar" />
                                  </children>
