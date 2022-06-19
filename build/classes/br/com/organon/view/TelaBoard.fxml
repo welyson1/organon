@@ -224,7 +224,7 @@
                                           <Font name="System Bold" size="10.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="txtNomeTarefa" disable="true" maxWidth="1.7976931348623157E308" promptText="Escreva aqui" styleClass="inputs" stylesheets="@EstiloBoard.css" />
+                                    <TextField fx:id="txtNomeTarefa" maxWidth="1.7976931348623157E308" promptText="Escreva aqui" styleClass="inputs" stylesheets="@EstiloBoard.css" />
                                  </children>
                               </VBox>
                               <VBox>

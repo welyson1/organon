@@ -562,7 +562,8 @@ public class TelaBoardController implements Initializable  {
         cbFiltroProjeto.setValue(null);
         
     }
-    
+
+
     public void visual(){
         lblNomeEmpregado.setText( LoginController.dev.getNome());
        
@@ -600,6 +601,7 @@ public class TelaBoardController implements Initializable  {
 
     @FXML
     private void btnAddTarefa(ActionEvent event) {
+        limparPainel();
     }
 }
 
