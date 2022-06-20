@@ -11,8 +11,7 @@
     
         @Override
         public void start(Stage stage) throws Exception {            
-            //Criação do palco e cena (Esse parte inicia a tela inicial)
-          // FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaBoard.fxml"));
+            //Criação do palco e cena (Esse parte inicia a tela inicial)          
             loader = new FXMLLoader(getClass().getResource("/br/com/organon/view/Login.fxml"));
             
             Parent root = loader.load(); 
