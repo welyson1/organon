@@ -32,14 +32,17 @@
                               <Label fx:id="lblNomeEmpregado" maxWidth="100.0" minWidth="100.0" styleClass="texto" stylesheets="@EstiloBoard.css" text="Nome da pessoa" wrapText="true" />
                               <Button fx:id="btnSair" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#btnSair" styleClass="button-sair" stylesheets="@EstiloBoard.css" text="Sair">
                                  <tooltip>
-                                    <Tooltip opacity="0.5" text="Volta para tela de login" />
+                                    <Tooltip text="Ao clicar você volta para tela de login" />
                                  </tooltip>
                               </Button>
                            </children>
                         </HBox>
                         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0">
                            <children>
-                              <Label styleClass="label-destaque" stylesheets="@EstiloBoard.css" text="Filtros" />
+                              <Label styleClass="label-destaque" stylesheets="@EstiloBoard.css" text="Filtros">
+                                 <tooltip>
+                                    <Tooltip text="Filtre as sessões selecionando as opções abaixo e depois use o botão de check para aplicar." />
+                                 </tooltip></Label>
                               <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                  <children>
                                     <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Importância">
@@ -119,12 +122,12 @@
                                  <children>
                                     <Button fx:id="btnProjeto" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#abrirCriadorProjeto" styleClass="button-projeto" stylesheets="@EstiloBoard.css" text="Projeto">
                                        <tooltip>
-                                          <Tooltip text="Abre a tela de projeto" />
+                                          <Tooltip text="Ao clicar você vai para tela de edição e visualização de projetos" />
                                        </tooltip>
                                     </Button>
                                     <Button fx:id="btnMensagem" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#abrirTelaMensagem" styleClass="button-mensagem" text="Mensagem">
                                        <tooltip>
-                                          <Tooltip text="Abre a tela de mensagem" />
+                                          <Tooltip text="Ao clicar você vai para tela de mensagens" />
                                        </tooltip>
                                     </Button>
                                  </children>
@@ -142,11 +145,17 @@
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
+                                       <tooltip>
+                                          <Tooltip text="As sessões identificam o progresso das tarefas. Coloque o mouse sobre as sessões para saber o papel de cada uma..." />
+                                       </tooltip>
                                     </Label>
                                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnAddTarefa" styleClass="button-add-tarefa">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
+                                       <tooltip>
+                                          <Tooltip text="Adiciona uma nova tarefa" />
+                                       </tooltip>
                                     </Button>
                                  </children>
                               </HBox>
@@ -156,21 +165,33 @@
                                        <font>
                                           <Font name="Arial" size="10.0" />
                                        </font>
+                                       <tooltip>
+                                          <Tooltip text="Tarefas que devem ser feitas" />
+                                       </tooltip>
                                     </Button>
                                     <Button fx:id="btnSessaoFazendo" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="35.0" mnemonicParsing="false" onAction="#btnSessaoFazendo" snapToPixel="false" styleClass="sessao" stylesheets="@EstiloBoard.css" text="Fazendo" textAlignment="CENTER">
                                        <font>
                                           <Font name="Arial" size="10.0" />
                                        </font>
+                                       <tooltip>
+                                          <Tooltip text="Tarefas que estão sendo feitas" />
+                                       </tooltip>
                                     </Button>
                                     <Button fx:id="btnSessaoFeito" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="35.0" mnemonicParsing="false" onAction="#btnSessaoFeito" snapToPixel="false" styleClass="sessao" stylesheets="@EstiloBoard.css" text="Feito" textAlignment="CENTER">
                                        <font>
                                           <Font name="Arial" size="10.0" />
                                        </font>
+                                       <tooltip>
+                                          <Tooltip text="Tarefas feitas aguardando confirmação para arquivamento" />
+                                       </tooltip>
                                     </Button>
                                     <Button fx:id="btnSessaoArquivado" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="35.0" mnemonicParsing="false" onAction="#btnSessaoArquivado" snapToPixel="false" styleClass="sessao" stylesheets="@EstiloBoard.css" text="Arquivado" textAlignment="CENTER">
                                        <font>
                                           <Font name="Arial" size="10.0" />
                                        </font>
+                                       <tooltip>
+                                          <Tooltip text="Tarefas concluidas e verificadas são arquivadas aqui" />
+                                       </tooltip>
                                     </Button>
                                  </children>
                               </VBox>
@@ -212,14 +233,14 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                            <children>
-                              <Label styleClass="label-destaque" stylesheets="@EstiloBoard.css" text="Informações da tarefa">
+                              <Label styleClass="label-destaque" stylesheets="@EstiloBoard.css" text="Tarefa">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
                               <VBox>
                                  <children>
-                                    <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Nome da tarefa">
+                                    <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Nome da tarefa*">
                                        <font>
                                           <Font name="System Bold" size="10.0" />
                                        </font>
@@ -229,7 +250,7 @@
                               </VBox>
                               <VBox>
                                  <children>
-                                    <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Responsável">
+                                    <Label styleClass="texto" stylesheets="@EstiloBoard.css" text="Responsável*">
                                        <font>
                                           <Font name="System Bold" size="10.0" />
                                        </font>
@@ -307,9 +328,18 @@
                               </VBox>
                               <HBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="388.0" spacing="10.0">
                                  <children>
-                                    <Button fx:id="btnExcluirTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#excluir" styleClass="button-excluir" text="Excluir" />
-                                    <Button fx:id="btnEditarTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#editar" styleClass="button-salvar" text="Salvar" />
-                                    <Button fx:id="btnSalvarTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#criar" styleClass="button-criar" stylesheets="@EstiloBoard.css" text="Criar" />
+                                    <Button fx:id="btnExcluirTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#excluir" styleClass="button-excluir" text="Excluir">
+                                       <tooltip>
+                                          <Tooltip text="Exclui a arefa selecionada" />
+                                       </tooltip></Button>
+                                    <Button fx:id="btnEditarTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#editar" styleClass="button-salvar" text="Salvar">
+                                       <tooltip>
+                                          <Tooltip text="Salva alterações feitas nos campos acima" />
+                                       </tooltip></Button>
+                                    <Button fx:id="btnSalvarTarefa" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#criar" styleClass="button-criar" stylesheets="@EstiloBoard.css" text="Criar">
+                                       <tooltip>
+                                          <Tooltip text="Criar uma nova tarefa em alguma sessão" />
+                                       </tooltip></Button>
                                  </children>
                               </HBox>
                            </children>
@@ -323,6 +353,9 @@
                                  <VBox.margin>
                                     <Insets left="10.0" top="5.0" />
                                  </VBox.margin>
+                                 <tooltip>
+                                    <Tooltip text="Veja as informações do projeo atrelado à tarefa selecionada" />
+                                 </tooltip>
                               </Label>
                               <TabPane minHeight="180.0" prefHeight="80.0" prefWidth="388.0" stylesheets="@EstiloBoard.css" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>

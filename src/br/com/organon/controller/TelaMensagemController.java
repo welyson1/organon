@@ -40,10 +40,8 @@ public class TelaMensagemController implements Initializable {
     
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-        cbDest.getItems().addAll(getNomeProjeto());
-        // TODO
+    public void initialize(URL url, ResourceBundle rb) {        
+        cbDest.getItems().addAll(getNomeProjeto());        
     }   
     
     public void btnEnviar(ActionEvent e) throws IOException{
@@ -136,8 +134,7 @@ public class TelaMensagemController implements Initializable {
                         }
                     }
                 }
-            }    
-            
+            }
             return sLista;
         }catch(Exception e){
             Alert alert = new Alert(AlertType.ERROR);

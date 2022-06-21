@@ -234,6 +234,10 @@
     -fx-graphic: url("img/icon-criar.png");
 }
 
+.button-enviar:hover {
+    -fx-graphic: url("img/icon-enviar.png");
+}
+
 .button:disabled, .button:disabled > * {
   -fx-background-opacity: 0.8 ;
 }

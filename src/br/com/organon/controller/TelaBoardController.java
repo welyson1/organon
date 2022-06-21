@@ -47,7 +47,6 @@ public class TelaBoardController implements Initializable  {
     private Button btnProjeto;
     @FXML
     private Button btnMensagem;
-
     @FXML
     private VBox painelTarefa;
     @FXML
@@ -159,7 +158,7 @@ public class TelaBoardController implements Initializable  {
             //Avisa criação da tarefa
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText("Tarefa criada com sucesso!");
-            alert.setTitle("Criar Tarefa.");
+            alert.setTitle("Criar Tarefa");
             alert.showAndWait();
             
             limparPainel();
@@ -197,7 +196,7 @@ public class TelaBoardController implements Initializable  {
             
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText("Tarefa editada com sucesso!");
-            alert.setTitle("Edição.");
+            alert.setTitle("Edição");
             alert.showAndWait();
             
             limparPainel();
@@ -215,7 +214,7 @@ public class TelaBoardController implements Initializable  {
                
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setHeaderText("Deseja realmente excluir a Tarefa?");
-                alert.setTitle("Excluir Tarefa.");
+                alert.setTitle("Excluir Tarefa");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() &&  result.get() == ButtonType.OK){
                     Tarefa tar = tarDAO.buscar(tarefa.getId());
@@ -246,7 +245,7 @@ public class TelaBoardController implements Initializable  {
         Parent root1 = (Parent) fxmlLoader.load();
 
         Stage stage = new Stage();
-        stage.setTitle("Criador de Projeto");
+        stage.setTitle("Projeto -  Crie ou edite projetos");
         stage.setScene(new Scene(root1));  
         stage.show();  
     }
@@ -256,6 +255,7 @@ public class TelaBoardController implements Initializable  {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaMensagem.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
+        stage.setTitle("Mensagens - Envie mensagens para a equipe");
         stage.setScene(new Scene(root1));  
         stage.show();
     }
@@ -348,7 +348,6 @@ public class TelaBoardController implements Initializable  {
        System.out.println("limpou" + "tamanho" + tars.size() );
         for (int i = 0; i < nodes.length; i++) {
             try {
-                System.out.println("foi"+i);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/organon/view/ObjetoTarefa.fxml"));
                 nodes[i] = loader.load();
                 //Modificando cada node utilizando método do ObjetoTarefaController
@@ -476,9 +475,7 @@ public class TelaBoardController implements Initializable  {
             return 2;
         }else{
              return 3;
-        }        
-
-        
+        }
     }
     public void exibirDadosTarefa(Tarefa tar){
        
@@ -507,9 +504,7 @@ public class TelaBoardController implements Initializable  {
         cbProjeto.setValue(pDAO.buscar(tar.getProjeto()).getNome());
         dtDataIni.setValue(tar.getDataIni());
         dtDataFim.setValue(tar.getDataFim());
-        txtareaDescricao.setText(tar.getDescricao());  
-               
-        
+        txtareaDescricao.setText(tar.getDescricao()); 
     }
     public void exibirDadosProjeto(Projeto p){
         
@@ -562,8 +557,6 @@ public class TelaBoardController implements Initializable  {
         cbFiltroProjeto.setValue(null);
         
     }
-
-
     public void visual(){
         lblNomeEmpregado.setText( LoginController.dev.getNome());
        
@@ -582,7 +575,6 @@ public class TelaBoardController implements Initializable  {
             dtDataIni.setDisable(true);
             dtDataFim.setDisable(true);         
         }
- 
     }
 
     @FXML
