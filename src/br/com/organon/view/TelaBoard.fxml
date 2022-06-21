@@ -115,7 +115,7 @@
                            <children>
                               <HBox alignment="CENTER">
                                  <children>
-                                    <Label styleClass="label-destaque" stylesheets="@EstiloBoard.css" text="Opções" />
+                                    <Label fx:id="lblOpcoes" styleClass="label-destaque" stylesheets="@EstiloBoard.css" text="Opções" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" spacing="5.0">

@@ -39,14 +39,15 @@ public class TelaBoardController implements Initializable  {
     TarefaDAO tarDAO = new TarefaDAO();
     SessaoDAO sessaoDAO = new SessaoDAO();
     ProjetoDAO pDAO = new ProjetoDAO();
-    //Objeto criado para edição/exclusão (guarda id)
+    //Objeto criado para ediÃ§Ã£o/exclusÃ£o (guarda id)
     Tarefa tarefa = new Tarefa();
-    //Variável que guarda a última sessão selecionada
+    //VariÃ¡vel que guarda a Ãºltima sessÃ£o selecionada
     int ultimaSessao = 1;
     @FXML
     private Button btnProjeto;
     @FXML
     private Button btnMensagem;
+
     @FXML
     private VBox painelTarefa;
     @FXML
@@ -107,6 +108,8 @@ public class TelaBoardController implements Initializable  {
     private Button btnAplicarFIltro;
     @FXML
     private Label lblNomeEmpregado;
+    @FXML
+    private Label lblOpcoes;
 
 
     @Override
@@ -122,12 +125,12 @@ public class TelaBoardController implements Initializable  {
         cbFiltroProjeto.getItems().addAll(getNomeProjeto());
         //OnAction
         cbFiltroProjeto.setOnAction(this::DadosProjeto);        
-        //Carrega tarefas da sessão fazer
+        //Carrega tarefas da sessÃ£o fazer
         carregaTarefas(tarDAO.buscar_Sessao(1));       
         //Define o visual caso seja dev ou gestor
         visual();
     } 
-    //Ao clicar no botão salvar a tarefa é criada no banco
+    //Ao clicar no botÃ£o salvar a tarefa Ã© criada no banco
     @FXML
     public void criar(ActionEvent e){
         try{
@@ -153,12 +156,12 @@ public class TelaBoardController implements Initializable  {
             String dev = Integer.toString(tar.getResponsavel());
             p.addDev(dev);
             pDAO.alterar(p);
-            //Atualiza última sessão selecionada
+            //Atualiza Ãºltima sessÃ£o selecionada
             carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(ultimaSessao)));
-            //Avisa criação da tarefa
+            //Avisa criaÃ§Ã£o da tarefa
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText("Tarefa criada com sucesso!");
-            alert.setTitle("Criar Tarefa");
+            alert.setTitle("Criar Tarefa.");
             alert.showAndWait();
             
             limparPainel();
@@ -185,18 +188,18 @@ public class TelaBoardController implements Initializable  {
             tar.setDataFim(dtDataFim.getValue());
             tar.setResponsavel(buscarNomeResponsavel(cbResponsavel.getValue()));
             tar.setProjeto(buscarNomeProjeto(cbProjeto.getValue()));
-            //Modificando sessão da tarefa
+            //Modificando sessÃ£o da tarefa
             if(tar.getSessao() != getSessao(cbSessao.getValue())){
                 sessaoDAO.excTar(tar.getSessao(), tar);
                 sessaoDAO.adcTar(getSessao(cbSessao.getValue()), tar);
             }
             tarDAO.alterar(tar);
-            //Atualiza última sessão selecionada
+            //Atualiza Ãºltima sessÃ£o selecionada
             carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(ultimaSessao)));            
             
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText("Tarefa editada com sucesso!");
-            alert.setTitle("Edição");
+            alert.setTitle("EdiÃ§Ã£o.");
             alert.showAndWait();
             
             limparPainel();
@@ -214,14 +217,14 @@ public class TelaBoardController implements Initializable  {
                
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setHeaderText("Deseja realmente excluir a Tarefa?");
-                alert.setTitle("Excluir Tarefa");
+                alert.setTitle("Excluir Tarefa.");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() &&  result.get() == ButtonType.OK){
                     Tarefa tar = tarDAO.buscar(tarefa.getId());
                     sessaoDAO.excTar(tar.getSessao(), tar);
                     tarDAO.deleta(tarefa);
                 }
-                //Atualiza última sessão selecionada
+                //Atualiza Ãºltima sessÃ£o selecionada
                 carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(ultimaSessao)));
                 limparPainel();                
             }else{
@@ -233,19 +236,19 @@ public class TelaBoardController implements Initializable  {
         }catch(Exception error){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setHeaderText("Ocorreu um erro ao excluir a tarefa!");
-            alert.setContentText("Por favor, selecione uma tarefa para realizar a exclusão!.");
+            alert.setContentText("Por favor, selecione uma tarefa para realizar a exclusÃ£o!.");
             alert.showAndWait();            
         } 
     }
-    //Função que é chamada ao clicar no botão CRIAR PROJETO na interface
+    //FunÃ§Ã£o que Ã© chamada ao clicar no botÃ£o CRIAR PROJETO na interface
     @FXML
     void abrirCriadorProjeto(ActionEvent event) throws IOException {
-        //Cria e chama a interface de criação de projeto
+        //Cria e chama a interface de criaÃ§Ã£o de projeto
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaProjeto.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
 
         Stage stage = new Stage();
-        stage.setTitle("Projeto -  Crie ou edite projetos");
+        stage.setTitle("Criador de Projeto");
         stage.setScene(new Scene(root1));  
         stage.show();  
     }
@@ -255,18 +258,17 @@ public class TelaBoardController implements Initializable  {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/organon/view/TelaMensagem.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
-        stage.setTitle("Mensagens - Envie mensagens para a equipe");
         stage.setScene(new Scene(root1));  
         stage.show();
     }
-    //Métodos responsáveis pela mudança na exibição das tarefas
+    //MÃ©todos responsÃ¡veis pela mudanÃ§a na exibiÃ§Ã£o das tarefas
     @FXML
     public void btnSessaoFazer(ActionEvent e){
         ArrayList<Tarefa> tars = tarDAO.buscar_Sessao(1); 
         carregaTarefas(tarFiltro(tars));
         ultimaSessao = 1;
         //limparFiltros();
-        //troca o nome do label da sessão
+        //troca o nome do label da sessÃ£o
         labelSessao.setText("Fazer");
 
     }
@@ -275,7 +277,7 @@ public class TelaBoardController implements Initializable  {
         carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(2)));
         ultimaSessao = 2;
        // limparFiltros();
-        //troca o nome do label da sessão
+        //troca o nome do label da sessÃ£o
         labelSessao.setText("Fazendo");
     }
     @FXML 
@@ -284,7 +286,7 @@ public class TelaBoardController implements Initializable  {
         ultimaSessao = 3;
        // limparFiltros();
         
-        //troca o nome do label da sessão
+        //troca o nome do label da sessÃ£o
         labelSessao.setText("Feito");
     }
     @FXML 
@@ -293,10 +295,30 @@ public class TelaBoardController implements Initializable  {
         ultimaSessao = 4;
        // limparFiltros(); 
         
-        //troca o nome do label da sessão
+        //troca o nome do label da sessÃ£o
         labelSessao.setText("Arquivado");
     }
-    //Modifica a lista de tarefas caso algum filtro esteja ativiado
+    //BotÃµes complementares
+    @FXML
+    private void btnSair(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/br/com/organon/view/Login.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();  
+    }
+    //Aplica filtro(s) selecionados
+    @FXML
+    private void btnAplicarFiltro(ActionEvent event) {
+        carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(ultimaSessao)));
+    }
+    //Limpa os campos da tarefa
+    @FXML
+    private void btnAddTarefa(ActionEvent event) {
+        limparPainel();
+    }
+    //Filtragem e carregamento das tarefas 
+    //Filtragem
     public ArrayList<Tarefa> tarFiltro(ArrayList<Tarefa> tars){
         ArrayList<Tarefa> tarsFiltradas = new ArrayList();
         //Verificando filtro projeto 
@@ -337,20 +359,17 @@ public class TelaBoardController implements Initializable  {
         return tars;        
     }
     
-    /**
-     * Esse metodo carrega tarefas vazias no vBox  
-     */
+    //Carregamento das tarefas 
     private void carregaTarefas(ArrayList<Tarefa> tars) {
-       //Array de tarefas que irão em cada ObjetoTarefa
+       //Array de tarefas que irÃ£o em cada ObjetoTarefa
        Node [] nodes = new Node[tars.size()];
        //Limpa o painel antes de popular com tarefas 
        painelTarefa.getChildren().clear();
-       System.out.println("limpou" + "tamanho" + tars.size() );
         for (int i = 0; i < nodes.length; i++) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/organon/view/ObjetoTarefa.fxml"));
                 nodes[i] = loader.load();
-                //Modificando cada node utilizando método do ObjetoTarefaController
+                //Modificando cada node utilizando mÃ©todo do ObjetoTarefaController
                 ObjetoTarefaController tarControl = loader.getController();
                 tarControl.adc(tars.get(i));
                 painelTarefa.getChildren().add(nodes[i]);
@@ -358,8 +377,8 @@ public class TelaBoardController implements Initializable  {
             }
         } 
     }
-    
-   //Busca o id do responsável  selecionado no combobox
+   //MÃ©todos de busca usado nos combobox
+   //Busca o id do responsÃ¡vel  selecionado no combobox
     public int buscarNomeResponsavel(String nome){
         ArrayList<Desenvolvedor> emp = empDAO.buscarTodos();
         try{
@@ -392,6 +411,7 @@ public class TelaBoardController implements Initializable  {
         
         return 0;
     } 
+    //MÃ©todos para alimentacao dos comobox no initialize
     //Cria lista com nome de Projetos para alimentar o combobox
     public ArrayList<String> getNomeProjeto(){
         ArrayList<Projeto> projetos = pDAO.buscarTodos();
@@ -455,28 +475,33 @@ public class TelaBoardController implements Initializable  {
     }
     //Retornar valor da sessao em int de acordo com combobox
     public int getSessao(String sessao){
-          if(sessao.equals("Fazer")){
-              return 1;
-          }else if(sessao.equals("Fazendo")){
-              return 2;
-          }else if(sessao.equals("Feita")){
-              return 3;
-          }else{
-              return 4;        
-          }
+        switch (sessao) {
+            case "Fazer":
+                return 1;
+            case "Fazendo":
+                return 2;
+            case "Feita":
+                return 3;
+            default:
+                return 4;
+        }
         
     }
     //Retorna valor da importancia em int de acordo com combobox
     public int getImportancia(String importancia){
-        if(importancia.equals("Baixa")){
-            return 1;  
+        switch (importancia) {
+            case "Baixa":
+                return 1;
+            case "Media":
+                return 2;
+            default:
+                return 3;
+        }        
 
-        }else if(importancia.equals("Media")){
-            return 2;
-        }else{
-             return 3;
-        }
+        
     }
+    //MÃ©todos de exibiÃ§Ã£o dos dados
+    //Exibe dados das tarefas - utilizado pelo ObjetoTarefaController 
     public void exibirDadosTarefa(Tarefa tar){
        
         txtNomeTarefa.setText(tar.getNome());
@@ -504,8 +529,11 @@ public class TelaBoardController implements Initializable  {
         cbProjeto.setValue(pDAO.buscar(tar.getProjeto()).getNome());
         dtDataIni.setValue(tar.getDataIni());
         dtDataFim.setValue(tar.getDataFim());
-        txtareaDescricao.setText(tar.getDescricao()); 
+        txtareaDescricao.setText(tar.getDescricao());  
+               
+        
     }
+    //Exibe dados do Projeto selecionado 
     public void exibirDadosProjeto(Projeto p){
         
         infoNome.setText(p.getNome());
@@ -527,14 +555,16 @@ public class TelaBoardController implements Initializable  {
         }
 
     }
-    //Usado pelo controlelr do Projeto para atualizar filtro Projeto na telaBoard
+    //Atualiza filtro Projeto - utilizado por TelaProjetoController
     public void atualizarProjeto(){
         cbFiltroProjeto.getItems().clear();
         cbFiltroProjeto.getItems().addAll(getNomeProjeto());
         
         cbProjeto.getItems().clear();
         cbProjeto.getItems().addAll(getNomeProjeto());
-    }     
+    }
+    //MÃ©todos de limpeza
+    //Limpa campos das tarefas
     public void limparPainel(){
         txtNomeTarefa.setText("");
         cbResponsavel.setValue("");
@@ -550,6 +580,7 @@ public class TelaBoardController implements Initializable  {
         dtDataFim.setValue(null);
         txtareaDescricao.setText("");        
     }
+    //Limpa os filtros selecionados
     @FXML
     public void btnLimparFiltros(ActionEvent e){
         cbFiltroImportancia.setValue(null);
@@ -557,15 +588,22 @@ public class TelaBoardController implements Initializable  {
         cbFiltroProjeto.setValue(null);
         
     }
+
+    //Define o visual caso seja desenvolvedor
     public void visual(){
         lblNomeEmpregado.setText( LoginController.dev.getNome());
        
         if(LoginController.dev.getTipo() == 0){
             btnExcluirTarefa.setDisable(true);   
             btnSalvarTarefa.setDisable(true);
+            btnExcluirTarefa.setVisible(false);   
+            btnSalvarTarefa.setVisible(false);
 
             btnMensagem.setDisable(true);
             btnProjeto.setDisable(true);
+            btnMensagem.setVisible(false);
+            btnProjeto.setVisible(false);
+            lblOpcoes.setVisible(false);
             
             txtNomeTarefa.setDisable(true);
             txtareaDescricao.setDisable(true);
@@ -575,25 +613,9 @@ public class TelaBoardController implements Initializable  {
             dtDataIni.setDisable(true);
             dtDataFim.setDisable(true);         
         }
+ 
     }
 
-    @FXML
-    private void btnSair(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/br/com/organon/view/Login.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();  
-    }
-
-    @FXML
-    private void btnAplicarFiltro(ActionEvent event) {
-        carregaTarefas(tarFiltro(tarDAO.buscar_Sessao(ultimaSessao)));
-    }
-
-    @FXML
-    private void btnAddTarefa(ActionEvent event) {
-        limparPainel();
-    }
+    
 }
 
