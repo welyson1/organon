@@ -1,6 +1,6 @@
 ![](https://github.com/welyson1/organon/blob/main/Imagens/Icone/Nome.png?raw=true)
 
-----
+---
 ### Funcionalidades
 
 - Criaçãode tarefas;
@@ -13,10 +13,8 @@
 
 ----
 
-###Diagramas UML
+### Diagramas UML
 Diagrama de classes:
-
-![](link)
 
 ---
 ### Instruções
@@ -25,7 +23,7 @@ Passo 1...
 
 ----
 
-###Capturas de tela
+### Capturas de tela
 
 Interface geral:
 
@@ -33,7 +31,7 @@ Interface geral:
 
 ----
 
-###Grupo
+### Grupo
 
 | Nome      | Função | Github |
 | --------- | ----- | ----- |
@@ -41,4 +39,5 @@ Interface geral:
 | Henrique     |   Java BackEnd | Link |
 | Patrick      |   CSS FrontEnd | Link |
 | Welyson      |   JavaFX FrontEnd | Link |
+
 ----
