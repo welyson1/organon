@@ -4,9 +4,9 @@ import java.sql.*;
 public class Conexao {
         
         private static final String driver = "com.mysql.cj.jdbc.Driver";
-        private static final String url = "jdbc:mysql://sql10.freesqldatabase.com:3306/sql10498785";
-        private static final String user = "sql10498785";
-        private static final String pass = "XPGTjnIXaa";
+        private static final String url = "jdbc:mysql://sql10.freesqldatabase.com:3306/sql10603220";
+        private static final String user = "sql10603220";
+        private static final String pass = "u3xCXdhD5C";
     
         public static Connection conexao(){
             Connection  conn = null;

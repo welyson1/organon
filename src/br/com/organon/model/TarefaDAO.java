@@ -54,7 +54,7 @@ public class TarefaDAO {
               }
                 
 
-            }catch(Exception e){
+            }catch(SQLException e){
                 System.out.println("Erro DAO" + e);
             }finally{
                 try{

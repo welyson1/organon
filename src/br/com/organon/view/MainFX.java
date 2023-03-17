@@ -8,6 +8,10 @@
     
     public class MainFX extends Application {
         public static FXMLLoader loader;
+
+        public static void main(String[] args) {
+            launch(args);
+        }
     
         @Override
         public void start(Stage stage) throws Exception {            
@@ -19,9 +23,5 @@
             stage.setTitle("Organon - Gerencie as tarefas da sua equipe de desenvolvimento");
             stage.setScene(scene);
             stage.show();
-        }
-    
-        public static void main(String[] args) {
-            launch(args);
-        }    
+        }   
     }
