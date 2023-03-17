@@ -36,6 +36,7 @@ Objetivo: Verificar se o sistema permite ao usuário com perfil de gestor criar 
 - Os campos são preenchidos corretamente.
 
 ### Resultados Obtidos:
+Video: [Caso de Teste 1 - Criação de Tarefa.mp4]([https://link-da-documentação](https://github.com/welyson1/organon/blob/main/docsTest/Caixa%20Preta/Videos/Caso%20de%20Teste%201%20-%20Cria%C3%A7%C3%A3o%20de%20Tarefa.mp4))
 ```
 Erro DAOjava.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`sql10603220`.`Tarefa`, CONSTRAINT `sessaoId` FOREIGN KEY (`sessaoId`) REFERENCES `Sessao` (`tipo`) ON DELETE NO ACTION ON UPDATE NO ACTION)]
 ```
