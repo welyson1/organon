@@ -12,8 +12,9 @@ Objetivo: Verificar se o sistema permite ao usuário com perfil de gestor criar 
 2. Clicar no botão "Criar Tarefa".
 3. Preencher os campos com os seguintes valores:
 - Nome da Tarefa: "Implementação do Login".
-- Responsável: "João da Silva".
+- Responsável: "Diego".
 - Seção: "Fazendo".
+- Importância:  "Baixa"
 - Projeto: "Sistema de Gerenciamento de Tarefas".
 - Data de Início: "2023-03-15".
 - Data de Término: "2023-03-20".
@@ -22,8 +23,9 @@ Objetivo: Verificar se o sistema permite ao usuário com perfil de gestor criar 
 
 ### Entradas
 - Nome da Tarefa: "Implementação do Login".
-- Responsável: "João da Silva".
+- Responsável: "Diego".
 - Seção: "Fazendo".
+- Importância:  "Baixa"
 - Projeto: "Sistema de Gerenciamento de Tarefas".
 - Data de Início: "2023-03-15".
 - Data de Término: "2023-03-20".
@@ -39,4 +41,13 @@ Erro DAOjava.sql.SQLIntegrityConstraintViolationException: Cannot add or update 
 ```
 
 ### Correção
-Foi criado três linhas na tabela Sessao do banco de dados.
+Foram criadas três linhas na tabela Sessao do banco de dados. Seguindo a query abaixo
+```SQL
+INSERT INTO Sessao(tipo, nome) VALUES (1,"Fazer");
+INSERT INTO Sessao(tipo, nome) VALUES (2,"Fazendo");
+INSERT INTO Sessao(tipo, nome) VALUES (3,"Feito");
+```
+
+### Resultados Esperados após correção:
+A tarefa é criada com sucesso.
+Os campos são preenchidos corretamente.
