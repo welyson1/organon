@@ -3,9 +3,10 @@
 ------------
 ### Funcionalidades
 
-- Criaçãode tarefas;
-- CRUD SQL;
-- Kanban para mapear avanço nas tarefas.
+- Criação de tarefas;
+- Bando de dados;
+- Edição de tarefas.
+- Tipos de usuário (Gestor 0, Desenvolvedor 1)
 ------------
 
 ### Protótipo
@@ -19,7 +20,10 @@ Diagrama de classes:
 ---
 ### Instruções
 
-Passo 1...
+Passo 1 Crie um banco de dados com a querie do arquivo Query bando de dados.txt
+Passo 2 Clone esse projeto.
+Passo 3 Abra no seu editor de codigo (NetBens funciona bem)
+Passo 4 Coloque as credenciais do bando de dados na classe Conexao.java
 
 ----
 
@@ -38,6 +42,8 @@ Interface geral:
 | Adeline  | SQL Banco de dados | Link |
 | Henrique     |   Java BackEnd | Link |
 | Patrick      |   CSS FrontEnd | Link |
-| Welyson      |   JavaFX FrontEnd | Link |
+| Welyson      |   JavaFX FrontEnd/Teste | Link |
+| Diege      |   Teste | Link |
+| Leonardo      |   Teste | Link |
 
 ----
