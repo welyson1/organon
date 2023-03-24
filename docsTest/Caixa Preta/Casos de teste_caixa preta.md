@@ -49,6 +49,6 @@ INSERT INTO Sessao(tipo, nome) VALUES (2,"Fazendo");
 INSERT INTO Sessao(tipo, nome) VALUES (3,"Feito");
 ```
 
-### Resultados Esperados após correção:
+### Resultados Obtidos após correção:
 - A tarefa é criada com sucesso.
 - Os campos são preenchidos corretamente.
