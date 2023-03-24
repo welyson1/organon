@@ -52,3 +52,25 @@ INSERT INTO Sessao(tipo, nome) VALUES (3,"Feito");
 ### Resultados Obtidos após correção:
 - A tarefa é criada com sucesso.
 - Os campos são preenchidos corretamente.
+
+## Caso de Teste 8: Alteração do Grau de Importância da Tarefa
+Objetivo: Testar se o sistema permite que o usuário com perfil de gestor altere o grau de importância da tarefa ao editá-la.
+
+### Passos:
+1. Abra o software.
+2. Faça login com um usuário com perfil de gestor.
+3. Selecione uma tarefa para editar.
+4. Edite o grau de importância da tarefa.
+5. Salve as alterações.
+6. Verifique se o grau de importância da tarefa foi alterado com sucesso.
+
+### Entradas:
+- Usuário com perfil de gestor.
+- Tarefa selecionada para edição.
+- Grau de importância da tarefa a ser alterado.
+
+### Resultados esperados:
+- O grau de importância da tarefa deve ser alterado com sucesso.
+
+### Resultados obtidos:
+- O grau de importância da tarefa foi alterado com sucesso.
