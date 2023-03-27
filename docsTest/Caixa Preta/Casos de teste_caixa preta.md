@@ -83,7 +83,7 @@ Objetivo: Testar se o sistema permite que o usuário com perfil de gestor exclua
 5. Verifique se a tarefa selecionada foi excluída com sucesso.
 
 ### Entradas:
--Usuário com perfil de gestor.
+- Usuário com perfil de gestor.
 - Tarefa selecionada para exclusão.
 - Resultados esperados:
 - A tarefa selecionada deve ser excluída com sucesso.
