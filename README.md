@@ -22,7 +22,7 @@ Diagrama de classes:
 
 - Passo 1 Crie um banco de dados no supabase.
 - Passo 2 Clone esse projeto.
-- Passo 3 Abra no seu editor de codigo (NetBens funciona bem).
+- Passo 3 Abra no seu editor de codigo (NetBeans funciona bem).
 - Passo 4 Crie o banco de dados no supabase usando o SQL Editor com a query abaixo
 ```SQL
 CREATE TABLE IF NOT EXISTS Empregado (
