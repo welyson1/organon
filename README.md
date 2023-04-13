@@ -4,7 +4,7 @@
 ### Funcionalidades
 
 - Criação de tarefas;
-- Bando de dados;
+- Banco de dados;
 - Edição de tarefas.
 - Tipos de usuário (Gestor 0, Desenvolvedor 1)
 ------------
@@ -109,7 +109,7 @@ Teste e documentação em [/docsTest](https://github.com/welyson1/organon/tree/m
 | Henrique     |   Java BackEnd | Link |
 | Patrick      |   CSS FrontEnd | Link |
 | Welyson      |   JavaFX FrontEnd/Teste | Link |
-| Diege      |   Teste | Link |
+| Diego      |   Teste | Link |
 | Leonardo      |   Teste | Link |
 
 ----
